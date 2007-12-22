@@ -1,0 +1,140 @@
+<==== ....................... ====>
+Dados:
+	Nome
+	Ingredientes
+	Metodo de preparação
+	Tempo Total
+	Economia [baixo, médio, elevado]
+	Dificuldade [baixa, média, elevada]
+	Nr. Doses
+	Congelador
+	Frio
+	Tipo
+	Etiqueta
+	Estrela
+	Foto	
+	Fotos da preparação
+	Classificação
+
+Funcionalidades:	
+	Sistema de sugestões
+	Sistema de Ementas completas
+	Sistema de Dicas
+
+<==== ....................... ====>
+Nome: KCookB
+Autor: Sérgio Lopes
+Licença: GPL - A conferir de acordo com outras licenças usadas...
+Data: 24/12/2006
+
+[Geral]
+Aplicação que pretende gerir receitas de culinária, como se de um livro se tratasse. De forma fácil e intuitiva, organizar receitas de culinária.
+
+[Funcionalidades]
+> Adicionar receitas;
+Adicionar novas receitas através da interface principal da aplicação
+
+> Editar receitas;
+Editar receitas através da interface principal da aplicação
+
+> Procurar receitas;
+Procurar receitas por nome
+Procurar receitas por tipo
+Procurar receitas por data
+Procurar receitas por ingredientes
+
+> Eliminar receitas;
+Eliminar receitas através da interface principal da aplicação
+Eliminar receitas na listagem das diferentes receitas existentes
+Eliminar receitas por tipo
+Eliminar tudo<?>
+
+> Organizar as receitas por nome, visualmente
+Mostrar árvore com lista de receitas agrupadas por tipo|nome ou por data|nome
+
+> Permitir "percorrer" a lista de receitas - NOT
+Manter uma lista interna de receitas que pode ser percorrida por botões de navegação
+
+> Exportar receitas para vários formatos
+Exportar para XML
+Exportar para SQL
+Exportar para CSV
+
+> Criar albuns html
+Criar sistema de templates que permita criar albuns html com as receitas.
+
+> Importar receitas
+Importar receitas de outro ficheiro da mesma aplicação
+Importar receitas de ficheiros XML
+Importar receitas de ficheiros CSV
+Importar receitas de ficheiros SQL
+Importar de outros sites/sistemas existentes
+
+> Internacionalizar a aplicação
+Criar ficheiros de internacionalização em, pelo menos, Inglês, Francês e Português
+Criar sistema de internacionalização de uma base de dados já implementada
+
+> Transportar dados
+Criar um arquivo zip/tar/tgz/jar da base de dados. Permitir a abertura/leitura de dados em formato compactado?
+
+> definir clssificações
+Possibilidade de definir e guardar para uso futuro, classificações de receitas
+Possibilidade de obter de outras bases de dados as classificações
+Importar definições de outros ficheiros
+
+> Juntar duas bases de dados
+Permitir ao utilizador juntar duas bases de dados de receitas
+Verificar se existem campos parecidos nas duas bases de dados que se possam sobrepor
+
+[Dados]
+- Receita
+. Nome da receita
+. Ingredientes
+. Método de preparação
+. Fotografia principal
+. Data de adição
+. Fotografias de preparação
+. Tempo de preparação
+. Tempo de cozedura
+. Tempo no frigorífico
+. Tempo no congelador
+. Número de doses
+. Tipo de Receita
+. Dificuldade
+. Economia
+. Notas
+. Tags - ?
+. Truques
+
+- Truqes
+. Nome
+. Fotos
+. Método
+
+[Menus]
+[Barra Ferramentas]
+[Barra de Estado]
+[Janelas]
+
+[LOG]
+Iniciar a definição dos dados a guardar.
+Garantir uma boa base de dados.
+Determinar MVC.
+Determinar elementos da interface.
+Implementar funcionalidades base de adição, edição, remoção e pesquisa.
+Implementar funcionalidades avançadas de pesquisa.
+Implementar funcionalides de organização.
+Implementar funcionalidades de exportação simples e importação simples.
+Implementar funcionalidades de exportação e importação avançadas.
+Implementar motor de templates.
+Implementar página dedicada ao projecto.
+Analizar todo os sistema, corrigir bugs e falhas de performance.
+Implemetar funcionalidades avançadas e novas funcionalidades pretendidas.
+Pensar em funcionalidades avançadas de webservices e afins.
+
+[Defs]
+- Sem undo/redo.
+- Guardar insere os dados na base de dados.
+- Internacionalização é feita na altura em que a base de dados é criada, sempre que a aplicação abre é verificado se a base de dados foi movida de sitio e pergunta-se
+ao utilizador se ele pretende actualizar. Poderá ser melhor verificar se a localização foi alterada.
+<==== ....................... ====>
