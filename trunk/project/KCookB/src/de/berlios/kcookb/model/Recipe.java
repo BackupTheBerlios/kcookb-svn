@@ -26,7 +26,7 @@ public class Recipe {
     private LinkedList<Image> sequence;
     private Image principal;
     private LinkedList<Note> notes;
-    private LinkedList<Note> tips;
+    private LinkedList<Tip> tips;
     private double rating;
     private boolean stared;
     private LinkedList<String> tags;
@@ -37,7 +37,7 @@ public class Recipe {
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
             String type, int doses, LinkedList<Image> sequence, Image principal,
-            LinkedList<Note> notes, LinkedList<Note> tips, double rating, boolean stared,
+            LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
             LinkedList<String> tags, String method, Date freazer, Date fridge) {
 
         this.title = title;
@@ -157,11 +157,11 @@ public class Recipe {
         this.notes = notes;
     }
 
-    public LinkedList<Note> getTips() {
+    public LinkedList<Tip> getTips() {
         return tips;
     }
 
-    public void setTips(LinkedList<Note> tips) {
+    public void setTips(LinkedList<Tip> tips) {
         this.tips = tips;
     }
 

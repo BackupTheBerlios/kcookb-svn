@@ -4,8 +4,6 @@
  */
 package de.berlios.kcookb.model;
 
-import java.util.LinkedList;
-
 /**
  *
  * @author Knitter
@@ -14,20 +12,20 @@ public class Note {
 
     private String title;
     private String text;
-    private LinkedList<Recipe> associeted;
+    private Recipe owner;
 
-    public Note(String title, String text, LinkedList<Recipe> associeted) {
+    public Note(String title, String text, Recipe owner) {
         this.title = title;
         this.text = text;
-        this.associeted = associeted;
+        this.owner = owner;
     }
 
-    public LinkedList<Recipe> getAssocieted() {
-        return associeted;
+    public Recipe getOwner() {
+        return owner;
     }
 
-    public void setAssocieted(LinkedList<Recipe> associeted) {
-        this.associeted = associeted;
+    public void setOwner(Recipe owner) {
+        this.owner = owner;
     }
 
     public String getText() {
@@ -57,14 +55,8 @@ public class Note {
         }
 
         Note other = (Note) obj;
-        if (this.associeted != null && other.associeted != null) {
-            for (Recipe r : associeted) {
-                if (!other.associeted.contains(r)) {
-                    return false;
-                }
-            }
-        }
-        return this.text.equalsIgnoreCase(other.text) && this.title.equalsIgnoreCase(other.title);
+        return this.text.equalsIgnoreCase(other.text) && this.title.equalsIgnoreCase(other.title) 
+                && this.owner.equals(other.owner);
     }
 
     @Override
@@ -72,7 +64,7 @@ public class Note {
         int hash = 5;
         hash = 23 * hash + (this.title != null ? this.title.hashCode() : 0);
         hash = 23 * hash + (this.text != null ? this.text.hashCode() : 0);
-        hash = 23 * hash + (this.associeted != null ? this.associeted.hashCode() : 0);
+        hash = 23 * hash + (this.owner != null ? this.owner.hashCode() : 0);
         return hash;
     }
 }

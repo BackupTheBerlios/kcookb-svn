@@ -37,26 +37,70 @@ public class KCookB {
         openDB(filename);
     }
 
+    /**
+     * Opens the database file. Attempting to open a file without closing a 
+     * previous open file will make that previous file closed. All uncommited 
+     * changes will be commit, if that is not desire all changes should be
+     * rolled back and the file explicitly closed before atempting to open 
+     * another one.
+     * 
+     * Trying to open a lock file will cause a runtime exception to be throwen, 
+     * namely <code>DatabaseFileLockedException</code>.
+     * 
+     * @param filename The new file to be open
+     */
     private void openDB(String filename) {
-        if (db != null) {
-            db.close();
-            db = null;
-        }
-        db = Db4o.openFile(filename);//TODO: exception handling
+        closeCatalog();
+        db = Db4o.openFile(filename);
     }
 
+    /**
+     * Opens a database file.
+     * 
+     * @param name The file to be open.
+     * @see de.berlios.kcookb.model.KCookB.openCatalog
+     */
     public void openCatalog(String name) {
         openDB(name);
     }
 
+    /**
+     * Closes an open database file, if it exists.
+     * Trying to close a closed file will produce no efect.
+     */
     public void closeCatalog() {
-        db.close();
+        if (db != null) {
+            db.close();
+            db = null;
+        }
     }
 
+    /**
+     * 
+     * @param title
+     * @param preparation
+     * @param cooking
+     * @param dificulty
+     * @param price
+     * @param ingredients
+     * @param table
+     * @param type
+     * @param doses
+     * @param sequence
+     * @param principal
+     * @param notes
+     * @param tips
+     * @param rating
+     * @param stared
+     * @param tags
+     * @param method
+     * @param freazer
+     * @param fridge
+     */
     public void addRecipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
             String type, int doses, LinkedList<Image> sequence, Image principal,
-            LinkedList<Note> notes, LinkedList<Note> tips, double rating, boolean stared,
+            LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
             LinkedList<String> tags, String method, Date freazer, Date fridge) {
 
         Recipe rec = new Recipe(title, preparation, cooking, dificulty, price,
@@ -68,6 +112,11 @@ public class KCookB {
         fireRecipeAdded(new KCookBEvent(this, null, rec));
     }
 
+    /**
+     * 
+     * @param recipe
+     * @throws de.berlios.kcookb.exceptions.NonCoerentDatabaseException
+     */
     public void removeRecipe(Recipe recipe) throws NonCoerentDatabaseException {
         List<Recipe> found = db.get(recipe);
         if (found.size() != 1) {
@@ -79,16 +128,52 @@ public class KCookB {
         fireRecipeDeleted(new KCookBEvent(this, rec, null));
     }
 
+    /**
+     * Saves any unsave changes submited to this book.
+     */
     public void save() {
+        if(unsavedRecipes != null) {
         for (Recipe rec : unsavedRecipes) {
             db.set(rec);
         }
+        }
     }
 
+    /**
+     * Gets all existing recipes. The returned list is not ordered and 
+     * <em>all</em> recipes will be returned.
+     * 
+     * Uses special case of Query by Example API.
+     * 
+     * @return A list with all existing recipes.
+     */
     public List<Recipe> getAllRecipes() {
         return db.get(Recipe.class);
     }
 
+    /**
+     * Gets all tips available in this book. The returned list is not ordered.
+     * 
+     * Uses special case of Query by Example API.
+     * 
+     * @return A list will all existing tips.
+     */
+    public List<Recipe> getAllTips() {
+        return db.get(Tip.class);
+    }
+
+    /**
+     * Searches the book for any recipe that has the <code>name</code> string in
+     * it's title.
+     * This method matches any recipe that has <code>name</code> in it, the 
+     * regular expressiong used is <code>*name*</code>. The search is case 
+     * insentive.
+     * 
+     * Uses Native Query API.
+     * 
+     * @param name The string to search the recipes for.
+     * @return A list containing the recipes found, if any.
+     */
     public List<Recipe> searchByName(final String name) {
         return db.query(new Predicate<Recipe>() {
 

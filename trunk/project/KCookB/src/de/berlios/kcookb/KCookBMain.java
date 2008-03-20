@@ -10,6 +10,7 @@ import de.berlios.kcookb.model.Note;
 import de.berlios.kcookb.model.Recipe;
 import de.berlios.kcookb.model.RecipeDificulty;
 import de.berlios.kcookb.model.RecipePrice;
+import de.berlios.kcookb.model.Tip;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class KCookBMain {
         LinkedList<String> tags3 = new LinkedList<String>();
         tags3.add("remedio");
         tags3.add("outros");
-        LinkedList<Note> tips1 = new LinkedList<Note>();
+        LinkedList<Tip> tips1 = new LinkedList<Tip>();
         LinkedList<Note> notes1 = new LinkedList<Note>();
         
         book.addRecipe("receita 1", new Date(), new Date(), RecipeDificulty.HARD,
