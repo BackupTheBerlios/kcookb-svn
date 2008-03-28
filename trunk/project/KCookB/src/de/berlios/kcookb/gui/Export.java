@@ -6,6 +6,8 @@
 
 package de.berlios.kcookb.gui;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author  Knitter
@@ -19,6 +21,8 @@ public class Export extends javax.swing.JDialog {
     }
     
     public void showCentered() {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }    
     
@@ -30,23 +34,100 @@ public class Export extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jpAvailableTypes = new javax.swing.JPanel();
+        jscpAvailableTypes = new javax.swing.JScrollPane();
+        jlistAvailableTypes = new javax.swing.JList();
+        jpOptions = new javax.swing.JPanel();
+        jbtHelp = new javax.swing.JButton();
+        jbtCancel = new javax.swing.JButton();
+        jbtExport = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jpAvailableTypes.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipos dispniveis"));
+
+        jlistAvailableTypes.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jscpAvailableTypes.setViewportView(jlistAvailableTypes);
+
+        javax.swing.GroupLayout jpAvailableTypesLayout = new javax.swing.GroupLayout(jpAvailableTypes);
+        jpAvailableTypes.setLayout(jpAvailableTypesLayout);
+        jpAvailableTypesLayout.setHorizontalGroup(
+            jpAvailableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+        );
+        jpAvailableTypesLayout.setVerticalGroup(
+            jpAvailableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+        );
+
+        jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder("dsds"));
+
+        javax.swing.GroupLayout jpOptionsLayout = new javax.swing.GroupLayout(jpOptions);
+        jpOptions.setLayout(jpOptionsLayout);
+        jpOptionsLayout.setHorizontalGroup(
+            jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
+        jpOptionsLayout.setVerticalGroup(
+            jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
+
+        jbtHelp.setText("jButton1");
+
+        jbtCancel.setText("jButton2");
+
+        jbtExport.setText("jButton3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpAvailableTypes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtExport)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtHelp)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpAvailableTypes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtHelp)
+                    .addComponent(jbtCancel)
+                    .addComponent(jbtExport))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbtCancel;
+    private javax.swing.JButton jbtExport;
+    private javax.swing.JButton jbtHelp;
+    private javax.swing.JList jlistAvailableTypes;
+    private javax.swing.JPanel jpAvailableTypes;
+    private javax.swing.JPanel jpOptions;
+    private javax.swing.JScrollPane jscpAvailableTypes;
     // End of variables declaration//GEN-END:variables
     
 }

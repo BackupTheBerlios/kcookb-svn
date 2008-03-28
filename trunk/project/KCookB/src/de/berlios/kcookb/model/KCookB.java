@@ -74,6 +74,11 @@ public class KCookB {
             db = null;
         }
     }
+    
+    public boolean hasChanges() {
+        //TODO:
+        return false;
+    }
 
     /**
      * 

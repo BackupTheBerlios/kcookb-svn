@@ -18,6 +18,8 @@ public class Options extends javax.swing.JDialog {
     }
 
     public void showCentered() {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }
 

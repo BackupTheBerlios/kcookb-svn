@@ -19,6 +19,8 @@ public class About extends javax.swing.JDialog {
     }
     
     public void showCentered() {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }
     
@@ -32,7 +34,7 @@ public class About extends javax.swing.JDialog {
 
         jtbpAbout = new javax.swing.JTabbedPane();
         jpLogo = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
+        jlblLogo = new javax.swing.JLabel();
         jpLicense = new javax.swing.JPanel();
         jscpLicense = new javax.swing.JScrollPane();
         jepLicense = new javax.swing.JEditorPane();
@@ -42,7 +44,7 @@ public class About extends javax.swing.JDialog {
         setTitle(bundle.getString("ABOUTDIALOG_TITLE")); // NOI18N
         setResizable(false);
 
-        lblLogo.setText("jLabel1");
+        jlblLogo.setText("jLabel1");
 
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
@@ -50,14 +52,14 @@ public class About extends javax.swing.JDialog {
             jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLogoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addComponent(jlblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpLogoLayout.setVerticalGroup(
             jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLogoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addComponent(jlblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -100,11 +102,11 @@ public class About extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane jepLicense;
+    private javax.swing.JLabel jlblLogo;
     private javax.swing.JPanel jpLicense;
     private javax.swing.JPanel jpLogo;
     private javax.swing.JScrollPane jscpLicense;
     private javax.swing.JTabbedPane jtbpAbout;
-    private javax.swing.JLabel lblLogo;
     // End of variables declaration//GEN-END:variables
     
 }
