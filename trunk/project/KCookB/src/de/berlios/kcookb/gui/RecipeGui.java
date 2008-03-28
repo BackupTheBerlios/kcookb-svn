@@ -1,26 +1,23 @@
 /*
- * Options.java
+ * RecipeGui.java
  *
- * Created on 15 de Março de 2008, 18:01
+ * Created on 28 de Março de 2008, 0:36
  */
+
 package de.berlios.kcookb.gui;
 
 /**
  *
  * @author  Knitter
  */
-public class Options extends javax.swing.JDialog {
-
-    /** Creates new form Options */
-    public Options(java.awt.Frame parent, boolean modal) {
+public class RecipeGui extends javax.swing.JDialog {
+    
+    /** Creates new form RecipeGui */
+    public RecipeGui(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
-    public void showCentered() {
-        setVisible(true);
-    }
-
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -44,7 +41,25 @@ public class Options extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                RecipeGui dialog = new RecipeGui(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    
 }

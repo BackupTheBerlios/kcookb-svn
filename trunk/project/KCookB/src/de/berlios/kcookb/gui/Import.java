@@ -3,7 +3,6 @@
  *
  * Created on 15 de Março de 2008, 18:01
  */
-
 package de.berlios.kcookb.gui;
 
 /**
@@ -11,13 +10,17 @@ package de.berlios.kcookb.gui;
  * @author  Knitter
  */
 public class Import extends javax.swing.JDialog {
-    
+
     /** Creates new form Import */
     public Import(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
+
+    public void showCentered() {
+        setVisible(true);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -41,8 +44,6 @@ public class Import extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
 }

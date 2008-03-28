@@ -14,7 +14,7 @@ import java.util.LinkedList;
  */
 public class Recipe {
 
-    private String title;
+    private String title;   
     private Date preparation;
     private Date cooking;
     private RecipeDificulty dificulty;
@@ -23,8 +23,8 @@ public class Recipe {
     private NutricionalTable table;
     private String type;
     private int doses;
-    private LinkedList<Image> sequence;
-    private Image principal;
+    private LinkedList<String> sequence;
+    private String principal;
     private LinkedList<Note> notes;
     private LinkedList<Tip> tips;
     private double rating;
@@ -36,7 +36,7 @@ public class Recipe {
 
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
-            String type, int doses, LinkedList<Image> sequence, Image principal,
+            String type, int doses, LinkedList<String> sequence, String principal,
             LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
             LinkedList<String> tags, String method, Date freazer, Date fridge) {
 
@@ -109,19 +109,19 @@ public class Recipe {
         this.price = price;
     }
 
-    public Image getPrincipal() {
+    public String getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(Image principal) {
+    public void setPrincipal(String principal) {
         this.principal = principal;
     }
 
-    public LinkedList<Image> getSequence() {
+    public LinkedList<String> getSequence() {
         return sequence;
     }
 
-    public void setSequence(LinkedList<Image> sequence) {
+    public void setSequence(LinkedList<String> sequence) {
         this.sequence = sequence;
     }
 

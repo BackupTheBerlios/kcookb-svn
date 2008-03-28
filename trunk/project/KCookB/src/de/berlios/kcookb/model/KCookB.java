@@ -99,7 +99,7 @@ public class KCookB {
      */
     public void addRecipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
-            String type, int doses, LinkedList<Image> sequence, Image principal,
+            String type, int doses, LinkedList<String> sequence, String principal,
             LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
             LinkedList<String> tags, String method, Date freazer, Date fridge) {
 

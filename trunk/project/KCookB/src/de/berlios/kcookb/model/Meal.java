@@ -10,11 +10,11 @@ import java.util.LinkedList;
  *
  * @author Knitter
  */
-public class CompleteMeal {
+public class Meal {
 
     private LinkedList<Recipe> recipes;
 
-    public CompleteMeal(LinkedList<Recipe> recipes) {
+    public Meal(LinkedList<Recipe> recipes) {
         this.recipes = recipes;
     }
 
@@ -33,11 +33,11 @@ public class CompleteMeal {
             return true;
         }
 
-        if (!(obj instanceof CompleteMeal)) {
+        if (!(obj instanceof Meal)) {
             return false;
         }
 
-        CompleteMeal other = (CompleteMeal) obj;
+        Meal other = (Meal) obj;
         if (this.recipes != null && other.recipes != null) {
             for (Recipe r : recipes) {
                 if (!other.recipes.contains(r)) {
