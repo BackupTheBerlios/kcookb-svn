@@ -227,6 +227,11 @@ public class KCookBGui extends javax.swing.JFrame {
         jbtUndo.setEnabled(active);
         jtfQuickSearch.setEnabled(active);
     }
+    
+    private void getFromWeb() {
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet!");
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -282,6 +287,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jmiSave = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JSeparator();
+        jmiBookInfo = new javax.swing.JMenuItem();
+        jSeparator17 = new javax.swing.JSeparator();
         jmiImport = new javax.swing.JMenuItem();
         jmiExport = new javax.swing.JMenuItem();
         jmiTemplatedBook = new javax.swing.JMenuItem();
@@ -652,6 +659,15 @@ public class KCookBGui extends javax.swing.JFrame {
         jmFile.add(jmiSave);
         jmFile.add(jSeparator15);
 
+        jmiBookInfo.setText(bundle.getString("WINDOW_FILEMENU_BOOKINFO")); // NOI18N
+        jmiBookInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiBookInfoActionPerformed(evt);
+            }
+        });
+        jmFile.add(jmiBookInfo);
+        jmFile.add(jSeparator17);
+
         jmiImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/import.png"))); // NOI18N
         jmiImport.setText(bundle.getString("WINDOW_FILEMENU_IMPORT")); // NOI18N
         jmiImport.setEnabled(false);
@@ -830,6 +846,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmiHelpContents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/help.png"))); // NOI18N
         jmiHelpContents.setText(bundle.getString("WINDOW_HELPMENU_HELP")); // NOI18N
+        jmiHelpContents.setEnabled(false);
         jmiHelpContents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiHelpContentsActionPerformed(evt);
@@ -839,6 +856,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmOnlineResources.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/web-resources.png"))); // NOI18N
         jmOnlineResources.setText(bundle.getString("WINDOW_HELPMENU_ONLINERESOURCES")); // NOI18N
+        jmOnlineResources.setEnabled(false);
 
         jmiHome.setText(bundle.getString("WINDOW_HELPMENU_ONLINEHOME")); // NOI18N
         jmiHome.addActionListener(new java.awt.event.ActionListener() {
@@ -1096,12 +1114,21 @@ public class KCookBGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiSaveActionPerformed
 
     private void jmiGetFromWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGetFromWebActionPerformed
-        // TODO add your handling code here:
+        getFromWeb();
     }//GEN-LAST:event_jmiGetFromWebActionPerformed
 
     private void jbtGetFromWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtGetFromWebActionPerformed
-        // TODO add your handling code here:
+        getFromWeb();
     }//GEN-LAST:event_jbtGetFromWebActionPerformed
+
+    private void jmiBookInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBookInfoActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new BookInfoGui(me, true, book.getInfo()).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jmiBookInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1135,6 +1162,7 @@ public class KCookBGui extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JToolBar.Separator jSeparator16;
+    private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -1167,6 +1195,7 @@ public class KCookBGui extends javax.swing.JFrame {
     private javax.swing.JMenu jmRecipe;
     private javax.swing.JMenuBar jmbMainMenu;
     private javax.swing.JMenuItem jmiAbout;
+    private javax.swing.JMenuItem jmiBookInfo;
     private javax.swing.JMenuItem jmiCloseBook;
     private javax.swing.JMenuItem jmiDeleteRecipe;
     private javax.swing.JMenuItem jmiEditRecipe;

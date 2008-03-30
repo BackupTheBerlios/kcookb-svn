@@ -1,23 +1,23 @@
 /*
- * CatalogData.java
+ * BookInfoGui.java
  *
  * Created on 15 de Março de 2008, 18:01
  */
 
 package de.berlios.kcookb.gui;
 
-import de.berlios.kcookb.model.CatalogInfo;
+import de.berlios.kcookb.model.BookInfo;
 
 /**
  *
  * @author  Knitter
  */
-public class CatalogData extends javax.swing.JDialog {
+public class BookInfoGui extends javax.swing.JDialog {
     
-    private CatalogInfo info;
+    private BookInfo info;
     
-    /** Creates new form CatalogData */
-    public CatalogData(java.awt.Frame parent, boolean modal, CatalogInfo info) {
+    /** Creates new form BookInfoGui */
+    public BookInfoGui(java.awt.Frame parent, boolean modal, BookInfo info) {
         super(parent, modal);
         initComponents();
         this.info = info;
@@ -51,6 +51,7 @@ public class CatalogData extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
         setTitle(bundle.getString("BOOKINFODIALOG_TITLE")); // NOI18N
+        setResizable(false);
 
         jpCatalogInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("BOOKINFODIALOG_BORDER"))); // NOI18N
 
@@ -92,9 +93,10 @@ public class CatalogData extends javax.swing.JDialog {
                     .addComponent(jlblAuthorEmail)
                     .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpCatalogInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jpCatalogInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlblCreatedOn)
-                    .addComponent(jdcCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jdcCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jbtHelp.setText("Ajuda");
@@ -123,7 +125,7 @@ public class CatalogData extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jbtSave)
@@ -134,7 +136,7 @@ public class CatalogData extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jpCatalogInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,15 +155,17 @@ public class CatalogData extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
-        // TODO add your handling code here:
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jbtHelpActionPerformed
 
     private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jbtCancelActionPerformed
 
     private void jbtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSaveActionPerformed
-        // TODO add your handling code here:
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jbtSaveActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,6 +25,7 @@ public class KCookB {
     private ObjectContainer db = null;
     private ArrayList<Recipe> unsavedRecipes = null;
     private Vector<KCookBChangedListener> bookChandeListeners = null;
+    private BookInfo info;
     
     
 
@@ -37,6 +38,8 @@ public class KCookB {
     public KCookB(String filename) {
         this();
         openDB(filename);
+        List rs = db.get(BookInfo.class);
+        info = (BookInfo) rs.get(0);
     }
 
     /**
@@ -80,6 +83,10 @@ public class KCookB {
     public boolean hasChanges() {
         //TODO:
         return false;
+    }
+    
+    public BookInfo getInfo() {
+        return info;
     }
 
     /**

@@ -15,8 +15,8 @@ import java.util.Vector;
  * @author Knitter
  */
 public class Recipe {
-    
-    private String title;   
+
+    private String title;
     private Date preparation;
     private Date cooking;
     private RecipeDificulty dificulty;
@@ -36,7 +36,6 @@ public class Recipe {
     private Date freazer;
     private Date fridge;
     private Date added;
-    
     private Vector<RecipeListener> listeners;
 
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
@@ -65,7 +64,7 @@ public class Recipe {
         this.freazer = freazer;
         this.fridge = fridge;
         added = new Date();
-        
+
         listeners = new Vector<RecipeListener>();
     }
 
@@ -94,23 +93,23 @@ public class Recipe {
     }
 
     public void addIngredient(Ingredient ingredient) {
-        if(ingredients == null) {
+        if (ingredients == null) {
             ingredients = new LinkedList<Ingredient>();
         }
         ingredients.add(ingredient);
     }
-    
+
     public void removeIngredient(Ingredient ingredient) {
-        if(ingredients != null) {
-        ingredients.remove(ingredient);
+        if (ingredients != null) {
+            ingredients.remove(ingredient);
         }
     }
-    
+
     //TODO: see if these set/get methods are necessary
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
-    
+
     public void setIngredients(LinkedList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
@@ -122,7 +121,7 @@ public class Recipe {
     public void setSequence(LinkedList<String> sequence) {
         this.sequence = sequence;
     }
-    
+
     public List<Note> getNotes() {
         return notes;
     }
@@ -138,16 +137,16 @@ public class Recipe {
     public void setTips(LinkedList<Tip> tips) {
         this.tips = tips;
     }
-    
+
     public List<RecipeTag> getTags() {
         return tags;
     }
 
     public void setTags(LinkedList<RecipeTag> tags) {
         this.tags = tags;
-    }    
+    }
     /*END OF TODO*/
-    
+
     public Date getPreparation() {
         return preparation;
     }
@@ -173,15 +172,15 @@ public class Recipe {
     }
 
     public void addSequenceElement(String name) {
-        if(sequence == null) {
+        if (sequence == null) {
             sequence = new LinkedList<String>();
         }
         sequence.add(name);
     }
-    
+
     public void removeSequenceElement(String name) {
-        if(sequence != null) {
-        sequence.remove(name);
+        if (sequence != null) {
+            sequence.remove(name);
         }
     }
 
@@ -210,28 +209,28 @@ public class Recipe {
     }
 
     public void addNote(Note note) {
-        if(notes == null) {
+        if (notes == null) {
             notes = new LinkedList<Note>();
         }
         notes.add(note);
     }
-    
+
     public void removeNote(Note note) {
-        if(notes != null) {
-        notes.remove(note);
+        if (notes != null) {
+            notes.remove(note);
         }
     }
 
     public void addTip(Tip tip) {
-        if(tips == null) {
+        if (tips == null) {
             tips = new LinkedList<Tip>();
         }
         tips.add(tip);
     }
-    
+
     public void removeTip(Tip tip) {
-        if(tips != null) {
-        tips.remove(tip);
+        if (tips != null) {
+            tips.remove(tip);
         }
     }
 
@@ -250,17 +249,17 @@ public class Recipe {
     public void setStared(boolean stared) {
         this.stared = stared;
     }
-    
+
     public void addTag(RecipeTag tag) {
-        if(tags == null) {
+        if (tags == null) {
             tags = new LinkedList<RecipeTag>();
         }
         tags.add(tag);
     }
-    
+
     public void removeTag(RecipeTag tag) {
-        if(tags != null) {
-        tags.remove(tag);
+        if (tags != null) {
+            tags.remove(tag);
         }
     }
 
@@ -287,20 +286,20 @@ public class Recipe {
     public void setFridge(Date fridge) {
         this.fridge = fridge;
     }
-    
+
     public Date getAdded() {
         return added;
     }
-    
+
     public void addListener(RecipeListener l) {
-        if(listeners == null) {
+        if (listeners == null) {
             listeners = new Vector<RecipeListener>();
         }
         listeners.add(l);
     }
-    
+
     public void removeListener(RecipeListener l) {
-        if(listeners != null) {
+        if (listeners != null) {
             listeners.remove(l);
         }
     }
@@ -324,7 +323,7 @@ public class Recipe {
         Recipe other = (Recipe) obj;
         return this.title.equalsIgnoreCase(other.title);
     }
-    
+
     public String toString() {
         return title;
     }

@@ -11,13 +11,13 @@ import java.util.Date;
  *
  * @author Knitter
  */
-public class CatalogInfo {
+public class BookInfo {
     
     private String author;
     private String email;
     private Date created;
     
-    public CatalogInfo(String author, String email) {
+    public BookInfo(String author, String email) {
         this.author = author;
         this.email = email;
         created = new Date();
@@ -53,11 +53,11 @@ public class CatalogInfo {
             return true;
         }
         
-        if(!(obj instanceof CatalogInfo)) {
+        if(!(obj instanceof BookInfo)) {
             return false;
         }
         
-        CatalogInfo other = (CatalogInfo)obj;
+        BookInfo other = (BookInfo)obj;
         return author.equals(other.author) && email.equals(other.email) 
                 && created.equals(other.created);
     }
