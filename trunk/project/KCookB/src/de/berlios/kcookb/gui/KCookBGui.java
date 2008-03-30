@@ -97,7 +97,7 @@ public class KCookBGui extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new RecipeGui(me, true).showCentered();
+                new RecipeGui(me, true, null).showCentered();
             }
         });
     }
@@ -106,7 +106,7 @@ public class KCookBGui extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new RecipeGui(me, true).showCentered();//TODO: send recipe into edit dialog
+                new RecipeGui(me, true, null).showCentered();//TODO: send recipe into edit dialog
             }
         });
     }
@@ -491,10 +491,17 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtNext);
         jtbMainBar.add(jSeparator16);
 
-        jbtGetFromWeb.setText("1");
+        jbtGetFromWeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/get-from-web.png"))); // NOI18N
+        jbtGetFromWeb.setToolTipText(bundle.getString("MAINBAR_TIP_GETFROMWEB")); // NOI18N
+        jbtGetFromWeb.setEnabled(false);
         jbtGetFromWeb.setFocusable(false);
         jbtGetFromWeb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtGetFromWeb.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtGetFromWeb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtGetFromWebActionPerformed(evt);
+            }
+        });
         jtbMainBar.add(jbtGetFromWeb);
 
         jspMainSplit.setDividerLocation(150);
@@ -514,7 +521,7 @@ public class KCookBGui extends javax.swing.JFrame {
             .addComponent(jscpTreeTypeScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
         );
 
-        jtpTreeTabs.addTab("tab1", jpTabType);
+        jtpTreeTabs.addTab(bundle.getString("WINDOW_TABCATEGORIES"), jpTabType); // NOI18N
 
         jscpTreeLabelScroll.setViewportView(jtreeLabel);
 
@@ -529,16 +536,17 @@ public class KCookBGui extends javax.swing.JFrame {
             .addComponent(jscpTreeLabelScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
         );
 
-        jtpTreeTabs.addTab("tab2", jpTabLabel);
+        jtpTreeTabs.addTab(bundle.getString("WINDOW_LABELTAB"), jpTabLabel); // NOI18N
 
         jspMainSplit.setLeftComponent(jtpTreeTabs);
+        jtpTreeTabs.getAccessibleContext().setAccessibleName(bundle.getString("WINDOW_LABELTAB")); // NOI18N
 
         jepRecipe.setEditable(false);
         jscpEditor.setViewportView(jepRecipe);
 
         jpExtras.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jbtNotes.setText("15");
+        jbtNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/notes.png"))); // NOI18N
         jbtNotes.setEnabled(false);
         jbtNotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -554,7 +562,7 @@ public class KCookBGui extends javax.swing.JFrame {
             }
         });
 
-        jbtTips.setText("13");
+        jbtTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tips.png"))); // NOI18N
         jbtTips.setEnabled(false);
         jbtTips.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -567,7 +575,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpExtrasLayout.setHorizontalGroup(
             jpExtrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpExtrasLayout.createSequentialGroup()
-                .addContainerGap(432, Short.MAX_VALUE)
+                .addContainerGap(412, Short.MAX_VALUE)
                 .addComponent(jbtTips)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtNutricionalTable)
@@ -592,7 +600,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpMainRightPanelLayout.setVerticalGroup(
             jpMainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMainRightPanelLayout.createSequentialGroup()
-                .addComponent(jscpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                .addComponent(jscpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpExtras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -646,6 +654,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmiImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/import.png"))); // NOI18N
         jmiImport.setText(bundle.getString("WINDOW_FILEMENU_IMPORT")); // NOI18N
+        jmiImport.setEnabled(false);
         jmiImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiImportActionPerformed(evt);
@@ -771,6 +780,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmiTools.add(jmiMeal);
 
+        jmiTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/tips.png"))); // NOI18N
         jmiTips.setText(bundle.getString("WINDOW_TOOLSMENU_TIPS")); // NOI18N
         jmiTips.setEnabled(false);
         jmiTools.add(jmiTips);
@@ -794,7 +804,14 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmiTools.add(jmiNutricionalTable);
 
-        jmiGetFromWeb.setText("1 ...");
+        jmiGetFromWeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/get-from-web.png"))); // NOI18N
+        jmiGetFromWeb.setText(bundle.getString("WINDOW_FILEMENU_GETFROMWEB")); // NOI18N
+        jmiGetFromWeb.setEnabled(false);
+        jmiGetFromWeb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGetFromWebActionPerformed(evt);
+            }
+        });
         jmiTools.add(jmiGetFromWeb);
         jmiTools.add(jSeparator8);
 
@@ -811,6 +828,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmHelp.setText(bundle.getString("WINDOW_HELPMENU")); // NOI18N
 
+        jmiHelpContents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/help.png"))); // NOI18N
         jmiHelpContents.setText(bundle.getString("WINDOW_HELPMENU_HELP")); // NOI18N
         jmiHelpContents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1076,6 +1094,14 @@ public class KCookBGui extends javax.swing.JFrame {
     private void jmiSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSaveActionPerformed
         save();
     }//GEN-LAST:event_jmiSaveActionPerformed
+
+    private void jmiGetFromWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGetFromWebActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiGetFromWebActionPerformed
+
+    private void jbtGetFromWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtGetFromWebActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtGetFromWebActionPerformed
 
     /**
      * @param args the command line arguments

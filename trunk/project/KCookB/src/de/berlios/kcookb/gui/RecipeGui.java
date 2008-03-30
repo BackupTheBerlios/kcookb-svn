@@ -17,20 +17,19 @@ public class RecipeGui extends javax.swing.JDialog {
     private Recipe recipe;
     
     /** Creates new form RecipeGui */
-    public RecipeGui(java.awt.Frame parent, boolean modal) {
+    public RecipeGui(java.awt.Frame parent, boolean modal, Recipe recipe) {
         super(parent, modal);
         initComponents();
+        this.recipe = recipe;
+        if(recipe != null) {
+            //TODO: method to populate interface fields with recipe data
+        }
     }
     
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }
-    
-    public void showCentered(Recipe recipe) {
-        this.recipe = recipe;
-        showCentered();
     }
     
     /** This method is called from within the constructor to

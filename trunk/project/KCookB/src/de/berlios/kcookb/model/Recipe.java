@@ -4,8 +4,11 @@
  */
 package de.berlios.kcookb.model;
 
+import de.berlios.kcookb.model.events.RecipeListener;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -13,56 +16,57 @@ import java.util.LinkedList;
  */
 public class Recipe {
     
-    //TODO: add/remove list elements methods
-    //TODO: remove get/set methods for lists
-
     private String title;   
     private Date preparation;
     private Date cooking;
     private RecipeDificulty dificulty;
     private RecipePrice price;
-    private LinkedList<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
     private NutricionalTable table;
     private RecipeType type;
     private int doses;
-    private LinkedList<String> sequence;
+    private List<String> sequence;
     private String principal;
-    private LinkedList<Note> notes;
-    private LinkedList<Tip> tips;
+    private List<Note> notes;
+    private List<Tip> tips;
     private double rating;
     private boolean stared;
-    private LinkedList<RecipeTag> tags;
+    private List<RecipeTag> tags;
     private String method;
     private Date freazer;
     private Date fridge;
     private Date added;
+    
+    private Vector<RecipeListener> listeners;
 
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
-            RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
-            RecipeType type, int doses, LinkedList<String> sequence, String principal,
-            LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
-            LinkedList<RecipeTag> tags, String method, Date freazer, Date fridge) {
+            RecipePrice price, List<Ingredient> ingredients, NutricionalTable table,
+            RecipeType type, int doses, List<String> sequence, String principal,
+            List<Note> notes, List<Tip> tips, double rating, boolean stared,
+            List<RecipeTag> tags, String method, Date freazer, Date fridge) {
 
         this.title = title;
         this.preparation = preparation;
         this.cooking = cooking;
         this.dificulty = dificulty;
         this.price = price;
-        this.ingredients = ingredients;
+        this.ingredients = (ingredients != null ? ingredients : new LinkedList<Ingredient>());
         this.table = table;
         this.type = type;
         this.doses = doses;
-        this.sequence = sequence;
+        this.sequence = (sequence != null ? sequence : new LinkedList<String>());
         this.principal = principal;
-        this.notes = notes;
-        this.tips = tips;
+        this.notes = (notes != null ? notes : new LinkedList<Note>());
+        this.tips = (tips != null ? tips : new LinkedList<Tip>());
         this.rating = rating;
         this.stared = stared;
-        this.tags = tags;
+        this.tags = (tags != null ? tags : new LinkedList<RecipeTag>());
         this.method = method;
         this.freazer = freazer;
         this.fridge = fridge;
-        added = new Date(System.currentTimeMillis());
+        added = new Date();
+        
+        listeners = new Vector<RecipeListener>();
     }
 
     public Date getCooking() {
@@ -89,14 +93,61 @@ public class Recipe {
         this.doses = doses;
     }
 
-    public LinkedList<Ingredient> getIngredients() {
+    public void addIngredient(Ingredient ingredient) {
+        if(ingredients == null) {
+            ingredients = new LinkedList<Ingredient>();
+        }
+        ingredients.add(ingredient);
+    }
+    
+    public void removeIngredient(Ingredient ingredient) {
+        if(ingredients != null) {
+        ingredients.remove(ingredient);
+        }
+    }
+    
+    //TODO: see if these set/get methods are necessary
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
-
+    
     public void setIngredients(LinkedList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
+    public List<String> getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(LinkedList<String> sequence) {
+        this.sequence = sequence;
+    }
+    
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(LinkedList<Note> notes) {
+        this.notes = notes;
+    }
+
+    public List<Tip> getTips() {
+        return tips;
+    }
+
+    public void setTips(LinkedList<Tip> tips) {
+        this.tips = tips;
+    }
+    
+    public List<RecipeTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(LinkedList<RecipeTag> tags) {
+        this.tags = tags;
+    }    
+    /*END OF TODO*/
+    
     public Date getPreparation() {
         return preparation;
     }
@@ -121,12 +172,17 @@ public class Recipe {
         this.principal = principal;
     }
 
-    public LinkedList<String> getSequence() {
-        return sequence;
+    public void addSequenceElement(String name) {
+        if(sequence == null) {
+            sequence = new LinkedList<String>();
+        }
+        sequence.add(name);
     }
-
-    public void setSequence(LinkedList<String> sequence) {
-        this.sequence = sequence;
+    
+    public void removeSequenceElement(String name) {
+        if(sequence != null) {
+        sequence.remove(name);
+        }
     }
 
     public NutricionalTable getTable() {
@@ -153,20 +209,30 @@ public class Recipe {
         this.type = type;
     }
 
-    public LinkedList<Note> getNotes() {
-        return notes;
+    public void addNote(Note note) {
+        if(notes == null) {
+            notes = new LinkedList<Note>();
+        }
+        notes.add(note);
+    }
+    
+    public void removeNote(Note note) {
+        if(notes != null) {
+        notes.remove(note);
+        }
     }
 
-    public void setNotes(LinkedList<Note> notes) {
-        this.notes = notes;
+    public void addTip(Tip tip) {
+        if(tips == null) {
+            tips = new LinkedList<Tip>();
+        }
+        tips.add(tip);
     }
-
-    public LinkedList<Tip> getTips() {
-        return tips;
-    }
-
-    public void setTips(LinkedList<Tip> tips) {
-        this.tips = tips;
+    
+    public void removeTip(Tip tip) {
+        if(tips != null) {
+        tips.remove(tip);
+        }
     }
 
     public double getRating() {
@@ -184,13 +250,18 @@ public class Recipe {
     public void setStared(boolean stared) {
         this.stared = stared;
     }
-
-    public LinkedList<RecipeTag> getTags() {
-        return tags;
+    
+    public void addTag(RecipeTag tag) {
+        if(tags == null) {
+            tags = new LinkedList<RecipeTag>();
+        }
+        tags.add(tag);
     }
-
-    public void setTags(LinkedList<RecipeTag> tags) {
-        this.tags = tags;
+    
+    public void removeTag(RecipeTag tag) {
+        if(tags != null) {
+        tags.remove(tag);
+        }
     }
 
     public String getMethod() {
@@ -219,6 +290,19 @@ public class Recipe {
     
     public Date getAdded() {
         return added;
+    }
+    
+    public void addListener(RecipeListener l) {
+        if(listeners == null) {
+            listeners = new Vector<RecipeListener>();
+        }
+        listeners.add(l);
+    }
+    
+    public void removeListener(RecipeListener l) {
+        if(listeners != null) {
+            listeners.remove(l);
+        }
     }
 
     /**
