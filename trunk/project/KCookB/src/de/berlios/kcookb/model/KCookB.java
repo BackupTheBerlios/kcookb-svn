@@ -10,7 +10,6 @@ import com.db4o.query.Predicate;
 import de.berlios.kcookb.exceptions.NonCoerentDatabaseException;
 import de.berlios.kcookb.model.events.KCookBChangedListener;
 import de.berlios.kcookb.model.events.KCookBEvent;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -24,12 +23,15 @@ import java.util.Vector;
 public class KCookB {
 
     private ObjectContainer db = null;
-    private LinkedList<Recipe> unsavedRecipes = null;
+    private ArrayList<Recipe> unsavedRecipes = null;
     private Vector<KCookBChangedListener> bookChandeListeners = null;
+    
+    
 
     public KCookB() {
-        unsavedRecipes = new LinkedList<Recipe>();
+        unsavedRecipes = new ArrayList<Recipe>(100);
         bookChandeListeners = new Vector<KCookBChangedListener>();
+        
     }
 
     public KCookB(String filename) {
@@ -104,9 +106,9 @@ public class KCookB {
      */
     public void addRecipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
-            String type, int doses, LinkedList<String> sequence, String principal,
+            RecipeType type, int doses, LinkedList<String> sequence, String principal,
             LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
-            LinkedList<String> tags, String method, Date freazer, Date fridge) {
+            LinkedList<RecipeTag> tags, String method, Date freazer, Date fridge) {
 
         Recipe rec = new Recipe(title, preparation, cooking, dificulty, price,
                 ingredients, table, type, doses, sequence, principal, notes,
@@ -166,6 +168,18 @@ public class KCookB {
     public List<Recipe> getAllTips() {
         return db.get(Tip.class);
     }
+    
+    public List<Recipe> getAllTypes() {
+        return db.get(RecipeType.class);
+    }
+    
+    public List<Recipe> getMeals() {
+        return db.get(Meal.class);
+    }
+    
+    public List<Recipe> getAllTags() {
+        return db.get(RecipeTag.class);
+    }
 
     /**
      * Searches the book for any recipe that has the <code>name</code> string in
@@ -189,17 +203,17 @@ public class KCookB {
         });
     }
 
-    public List<Recipe> searchByType(final String type) {
+    public List<Recipe> searchByType(final RecipeType type) {
         return db.query(new Predicate<Recipe>() {
 
             @Override
             public boolean match(Recipe rec) {
-                return rec.getType().equalsIgnoreCase(type);
+                return rec.getType().equals(type);
             }
         });
     }
 
-    public List<Recipe> searchByTag(final String tag) {
+    public List<Recipe> searchByTag(final RecipeTag tag) {
         return db.query(new Predicate<Recipe>() {
 
             @Override
@@ -209,11 +223,11 @@ public class KCookB {
         });
     }
 
-    public List<Recipe> searchWithTags(final List<String> tags) {
+    public List<Recipe> searchWithTags(final List<RecipeTag> tags) {
         List<Recipe> temp = getAllRecipes();
         ArrayList<Recipe> rs = new ArrayList<Recipe>();
 
-        for (String t : tags) {
+        for (RecipeTag t : tags) {
             for (Recipe r : temp) {
                 if (r.getTags().contains(t)) {
                     rs.add(r);
@@ -269,6 +283,15 @@ public class KCookB {
         });
     }
 
+    /**
+     * Adds a new listener to the book's events.
+     * If the list is null it will be created.
+     * 
+     * This method uses a syncronized data structure.
+     * 
+     * @param l Listener to be added
+     * @see Vector
+     */
     public void addKCookBChangedListener(KCookBChangedListener l) {
         if (bookChandeListeners == null) {
             bookChandeListeners = new Vector<KCookBChangedListener>();
@@ -277,18 +300,38 @@ public class KCookB {
         bookChandeListeners.add(l);
     }
 
+    /**
+     * Removes a listener from the list of this book's listeners.
+     * If the listener is not present or the list is empty or null nothing will
+     * happen.
+     * 
+     * This method uses a syncronized data structure
+     * 
+     * @param l Listener to be removed
+     * @see Vector
+     */
     public void removeKCookBChangedListener(KCookBChangedListener l) {
         if (bookChandeListeners != null) {
             bookChandeListeners.remove(l);
         }
     }
 
+    /**
+     * Notifies all listeners that a recipe was removed.
+     * 
+     * @param ev The event object that encapsulates event information
+     */
     private void fireRecipeDeleted(KCookBEvent ev) {
         for (KCookBChangedListener l : bookChandeListeners) {
             l.recipeAdded(ev);
         }
     }
 
+    /**
+     * Notifies all listeners that a new recipe was added.
+     * 
+     * @param ev The event object that encapsulates event information
+     */
     private void fireRecipeAdded(KCookBEvent ev) {
         for (KCookBChangedListener l : bookChandeListeners) {
             l.recipeDeleted(ev);

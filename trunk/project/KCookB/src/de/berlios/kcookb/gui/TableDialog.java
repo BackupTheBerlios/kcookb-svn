@@ -1,7 +1,7 @@
 /*
- * RecipeMainPanel.java
+ * TableDialog.java
  *
- * Created on 15 de Março de 2008, 22:49
+ * Created on 29 de Março de 2008, 3:59
  */
 
 package de.berlios.kcookb.gui;
@@ -10,11 +10,18 @@ package de.berlios.kcookb.gui;
  *
  * @author  Knitter
  */
-public class RecipeMainPanel extends javax.swing.JPanel {
+public class TableDialog extends javax.swing.JDialog {
     
-    /** Creates new form RecipeMainPanel */
-    public RecipeMainPanel() {
+    /** Creates new form TableDialog */
+    public TableDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+    }
+
+    public void showCentered() {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
+        setVisible(true);
     }
     
     /** This method is called from within the constructor to
@@ -25,18 +32,21 @@ public class RecipeMainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

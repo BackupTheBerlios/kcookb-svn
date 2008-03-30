@@ -31,22 +31,379 @@ public class Options extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgBookLocation = new javax.swing.ButtonGroup();
+        jbtHelp = new javax.swing.JButton();
+        jbtCancel = new javax.swing.JButton();
+        jbtApply = new javax.swing.JButton();
+        jpBookLocation = new javax.swing.JPanel();
+        jlblCustomLocation = new javax.swing.JLabel();
+        jtfCustomLocation = new javax.swing.JTextField();
+        jbtBrowseLocation = new javax.swing.JButton();
+        jrbtUseHome = new javax.swing.JRadioButton();
+        jrbtUseMyDocuments = new javax.swing.JRadioButton();
+        jrbtCustomLocation = new javax.swing.JRadioButton();
+        jpInternetOptions = new javax.swing.JPanel();
+        jchkUseProxy = new javax.swing.JCheckBox();
+        jlblProxyAddress = new javax.swing.JLabel();
+        jtfProxyAddress = new javax.swing.JTextField();
+        jlblProxyPort = new javax.swing.JLabel();
+        jffProxyPort = new javax.swing.JFormattedTextField();
+        jtfUsername = new javax.swing.JTextField();
+        jpfPassword = new javax.swing.JPasswordField();
+        jlblUsername = new javax.swing.JLabel();
+        jlblPassword = new javax.swing.JLabel();
+        jlblProxyType = new javax.swing.JLabel();
+        jcbxProxyType = new javax.swing.JComboBox();
+        jpNewBookOptions = new javax.swing.JPanel();
+        jlblOwnerName = new javax.swing.JLabel();
+        jtfOwnerName = new javax.swing.JTextField();
+        jlblEmail = new javax.swing.JLabel();
+        jtfEmail = new javax.swing.JTextField();
+        jchkSaveCreationDate = new javax.swing.JCheckBox();
+        jchkPopulateCategories = new javax.swing.JCheckBox();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
+        setTitle(bundle.getString("OPTIONSDIALOG_TITLE")); // NOI18N
+        setResizable(false);
+
+        jbtHelp.setText(bundle.getString("OPTIONSDIALOG_HELPBUTTON")); // NOI18N
+        jbtHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtHelpActionPerformed(evt);
+            }
+        });
+
+        jbtCancel.setText(bundle.getString("OPTIONSDIALOG_CANCELBUTTON")); // NOI18N
+        jbtCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCancelActionPerformed(evt);
+            }
+        });
+
+        jbtApply.setText(bundle.getString("OPTIONSDIALOG_APPLYBUTTON")); // NOI18N
+        jbtApply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtApplyActionPerformed(evt);
+            }
+        });
+
+        jpBookLocation.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("OPTIONSDIALOG_BOOKLOCATIONBORDER"))); // NOI18N
+
+        jlblCustomLocation.setText(bundle.getString("OPTIONSDIALOG_LABELCUSTOMLOCATION")); // NOI18N
+
+        jtfCustomLocation.setEnabled(false);
+
+        jbtBrowseLocation.setText("...");
+        jbtBrowseLocation.setToolTipText(bundle.getString("OPTIONSDIALOG_BROWSEBUTTONTOOLTIP")); // NOI18N
+        jbtBrowseLocation.setEnabled(false);
+        jbtBrowseLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtBrowseLocationActionPerformed(evt);
+            }
+        });
+
+        jrbtUseHome.setText(bundle.getString("OPTIONSDIALOG_USEHOMEOPTION")); // NOI18N
+        jrbtUseHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbtUseHomeActionPerformed(evt);
+            }
+        });
+
+        jrbtUseMyDocuments.setText(bundle.getString("OPTIONSDIALOG_USEMYDOCUMENTSOPTION")); // NOI18N
+        jrbtUseMyDocuments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbtUseMyDocumentsActionPerformed(evt);
+            }
+        });
+
+        jrbtCustomLocation.setText(bundle.getString("OPTIONSDIALOG_CUSTOMOPTION")); // NOI18N
+        jrbtCustomLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbtCustomLocationActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpBookLocationLayout = new javax.swing.GroupLayout(jpBookLocation);
+        jpBookLocation.setLayout(jpBookLocationLayout);
+        jpBookLocationLayout.setHorizontalGroup(
+            jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBookLocationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpBookLocationLayout.createSequentialGroup()
+                        .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrbtCustomLocation)
+                            .addGroup(jpBookLocationLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jlblCustomLocation)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfCustomLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtBrowseLocation))
+                    .addComponent(jrbtUseHome)
+                    .addComponent(jrbtUseMyDocuments))
+                .addContainerGap())
+        );
+        jpBookLocationLayout.setVerticalGroup(
+            jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBookLocationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jrbtUseHome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrbtUseMyDocuments)
+                .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpBookLocationLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtBrowseLocation)
+                            .addComponent(jtfCustomLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpBookLocationLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbtCustomLocation)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlblCustomLocation)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jpInternetOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("OPTIONSDIALOG_INTERNETBORDER"))); // NOI18N
+
+        jchkUseProxy.setText(bundle.getString("OPTIONSDIALOG_USEPROXYOPTION")); // NOI18N
+        jchkUseProxy.setEnabled(false);
+        jchkUseProxy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkUseProxyActionPerformed(evt);
+            }
+        });
+
+        jlblProxyAddress.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYADDRESS")); // NOI18N
+
+        jtfProxyAddress.setEnabled(false);
+
+        jlblProxyPort.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYPORT")); // NOI18N
+
+        jffProxyPort.setEnabled(false);
+
+        jtfUsername.setEnabled(false);
+
+        jpfPassword.setText("jPasswordField1");
+        jpfPassword.setEnabled(false);
+
+        jlblUsername.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYUSER")); // NOI18N
+
+        jlblPassword.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYPASSWORD")); // NOI18N
+
+        jlblProxyType.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYTYPE")); // NOI18N
+
+        jcbxProxyType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SOCKS 4" }));
+        jcbxProxyType.setEnabled(false);
+        jcbxProxyType.setFocusable(false);
+
+        javax.swing.GroupLayout jpInternetOptionsLayout = new javax.swing.GroupLayout(jpInternetOptions);
+        jpInternetOptions.setLayout(jpInternetOptionsLayout);
+        jpInternetOptionsLayout.setHorizontalGroup(
+            jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInternetOptionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jchkUseProxy)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInternetOptionsLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblProxyAddress)
+                            .addComponent(jlblUsername)
+                            .addComponent(jlblPassword)
+                            .addComponent(jlblProxyType))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbxProxyType, 0, 184, Short.MAX_VALUE)
+                            .addComponent(jtfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                            .addComponent(jtfProxyAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                            .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlblProxyPort)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jffProxyPort, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jpInternetOptionsLayout.setVerticalGroup(
+            jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInternetOptionsLayout.createSequentialGroup()
+                .addComponent(jchkUseProxy)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblProxyAddress)
+                    .addComponent(jffProxyPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblProxyPort)
+                    .addComponent(jtfProxyAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblUsername))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblPassword))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblProxyType)
+                    .addComponent(jcbxProxyType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jpNewBookOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("OPTIONSDIALOG_NEWBOOKBORDER"))); // NOI18N
+
+        jlblOwnerName.setText(bundle.getString("OPTIONSDIALOG_NEWBOOKOWNER")); // NOI18N
+
+        jlblEmail.setText(bundle.getString("OPTIONSDIALOG_NEWBOOKOWNEREMAIL")); // NOI18N
+
+        jchkSaveCreationDate.setSelected(true);
+        jchkSaveCreationDate.setText(bundle.getString("OPTIONSDIALOG_SAVECREATIONDATEOPTION")); // NOI18N
+
+        jchkPopulateCategories.setSelected(true);
+        jchkPopulateCategories.setText(bundle.getString("OPTIONSDIALOG_POPULATECATEGORIESOPTION")); // NOI18N
+
+        javax.swing.GroupLayout jpNewBookOptionsLayout = new javax.swing.GroupLayout(jpNewBookOptions);
+        jpNewBookOptions.setLayout(jpNewBookOptionsLayout);
+        jpNewBookOptionsLayout.setHorizontalGroup(
+            jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNewBookOptionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblEmail)
+                    .addComponent(jlblOwnerName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfOwnerName, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                    .addComponent(jchkSaveCreationDate)
+                    .addComponent(jchkPopulateCategories)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jpNewBookOptionsLayout.setVerticalGroup(
+            jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNewBookOptionsLayout.createSequentialGroup()
+                .addGroup(jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblOwnerName)
+                    .addComponent(jtfOwnerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblEmail)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkSaveCreationDate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkPopulateCategories)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpNewBookOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtApply)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtHelp))
+                    .addComponent(jpBookLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpInternetOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpNewBookOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpBookLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpInternetOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtHelp)
+                    .addComponent(jbtCancel)
+                    .addComponent(jbtApply))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet");
+    }//GEN-LAST:event_jbtHelpActionPerformed
+
+    private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
+        //TODO:
+        dispose();
+    }//GEN-LAST:event_jbtCancelActionPerformed
+
+    private void jbtApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtApplyActionPerformed
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet");
+}//GEN-LAST:event_jbtApplyActionPerformed
+
+    private void jbtBrowseLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseLocationActionPerformed
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet");
+    }//GEN-LAST:event_jbtBrowseLocationActionPerformed
+
+    private void jchkUseProxyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkUseProxyActionPerformed
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet");
+    }//GEN-LAST:event_jchkUseProxyActionPerformed
+
+    private void jrbtCustomLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtCustomLocationActionPerformed
+        jtfCustomLocation.setEditable(true);
+        jbtBrowseLocation.setEnabled(true);
+    }//GEN-LAST:event_jrbtCustomLocationActionPerformed
+
+    private void jrbtUseMyDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtUseMyDocumentsActionPerformed
+        jtfCustomLocation.setEditable(false);
+        jbtBrowseLocation.setEnabled(false);
+    }//GEN-LAST:event_jrbtUseMyDocumentsActionPerformed
+
+    private void jrbtUseHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtUseHomeActionPerformed
+        jtfCustomLocation.setEditable(false);
+        jbtBrowseLocation.setEnabled(false);
+    }//GEN-LAST:event_jrbtUseHomeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgBookLocation;
+    private javax.swing.JButton jbtApply;
+    private javax.swing.JButton jbtBrowseLocation;
+    private javax.swing.JButton jbtCancel;
+    private javax.swing.JButton jbtHelp;
+    private javax.swing.JComboBox jcbxProxyType;
+    private javax.swing.JCheckBox jchkPopulateCategories;
+    private javax.swing.JCheckBox jchkSaveCreationDate;
+    private javax.swing.JCheckBox jchkUseProxy;
+    private javax.swing.JFormattedTextField jffProxyPort;
+    private javax.swing.JLabel jlblCustomLocation;
+    private javax.swing.JLabel jlblEmail;
+    private javax.swing.JLabel jlblOwnerName;
+    private javax.swing.JLabel jlblPassword;
+    private javax.swing.JLabel jlblProxyAddress;
+    private javax.swing.JLabel jlblProxyPort;
+    private javax.swing.JLabel jlblProxyType;
+    private javax.swing.JLabel jlblUsername;
+    private javax.swing.JPanel jpBookLocation;
+    private javax.swing.JPanel jpInternetOptions;
+    private javax.swing.JPanel jpNewBookOptions;
+    private javax.swing.JPasswordField jpfPassword;
+    private javax.swing.JRadioButton jrbtCustomLocation;
+    private javax.swing.JRadioButton jrbtUseHome;
+    private javax.swing.JRadioButton jrbtUseMyDocuments;
+    private javax.swing.JTextField jtfCustomLocation;
+    private javax.swing.JTextField jtfEmail;
+    private javax.swing.JTextField jtfOwnerName;
+    private javax.swing.JTextField jtfProxyAddress;
+    private javax.swing.JTextField jtfUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
 
 package de.berlios.kcookb.gui;
 
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author  Knitter
@@ -35,6 +37,7 @@ public class NewBook extends javax.swing.JDialog {
         jpNewbook = new javax.swing.JPanel();
         jlblNewBook = new javax.swing.JLabel();
         jtfNewBookName = new javax.swing.JTextField();
+        jbtBrowse = new javax.swing.JButton();
         jbtHelp = new javax.swing.JButton();
         jbtCancel = new javax.swing.JButton();
         jbtOK = new javax.swing.JButton();
@@ -48,6 +51,13 @@ public class NewBook extends javax.swing.JDialog {
 
         jlblNewBook.setText(bundle.getString("NEWBOOKDIALOG_NAME_LABEL")); // NOI18N
 
+        jbtBrowse.setText("...");
+        jbtBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtBrowseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpNewbookLayout = new javax.swing.GroupLayout(jpNewbook);
         jpNewbook.setLayout(jpNewbookLayout);
         jpNewbookLayout.setHorizontalGroup(
@@ -55,13 +65,16 @@ public class NewBook extends javax.swing.JDialog {
             .addGroup(jpNewbookLayout.createSequentialGroup()
                 .addComponent(jlblNewBook)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfNewBookName, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jtfNewBookName, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtBrowse))
         );
         jpNewbookLayout.setVerticalGroup(
             jpNewbookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpNewbookLayout.createSequentialGroup()
                 .addGroup(jpNewbookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblNewBook)
+                    .addComponent(jbtBrowse)
                     .addComponent(jtfNewBookName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -129,10 +142,17 @@ public class NewBook extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtCancelActionPerformed
 
     private void jbtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtOKActionPerformed
-        throw new UnsupportedOperationException("Not implemented yet");
+        ((KCookBGui)getOwner()).newBook(jtfNewBookName.getText());
     }//GEN-LAST:event_jbtOKActionPerformed
+
+    private void jbtBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseActionPerformed
+        //JFileChooser jfc = new JFileChooser();
+        //TODO:
+        throw new UnsupportedOperationException("Not implemented yet");
+    }//GEN-LAST:event_jbtBrowseActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbtBrowse;
     private javax.swing.JButton jbtCancel;
     private javax.swing.JButton jbtHelp;
     private javax.swing.JButton jbtOK;

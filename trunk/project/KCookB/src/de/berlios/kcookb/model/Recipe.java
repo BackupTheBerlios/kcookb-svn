@@ -4,7 +4,6 @@
  */
 package de.berlios.kcookb.model;
 
-import java.awt.Image;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -13,6 +12,9 @@ import java.util.LinkedList;
  * @author Knitter
  */
 public class Recipe {
+    
+    //TODO: add/remove list elements methods
+    //TODO: remove get/set methods for lists
 
     private String title;   
     private Date preparation;
@@ -21,7 +23,7 @@ public class Recipe {
     private RecipePrice price;
     private LinkedList<Ingredient> ingredients;
     private NutricionalTable table;
-    private String type;
+    private RecipeType type;
     private int doses;
     private LinkedList<String> sequence;
     private String principal;
@@ -29,16 +31,17 @@ public class Recipe {
     private LinkedList<Tip> tips;
     private double rating;
     private boolean stared;
-    private LinkedList<String> tags;
+    private LinkedList<RecipeTag> tags;
     private String method;
     private Date freazer;
     private Date fridge;
+    private Date added;
 
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
-            String type, int doses, LinkedList<String> sequence, String principal,
+            RecipeType type, int doses, LinkedList<String> sequence, String principal,
             LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
-            LinkedList<String> tags, String method, Date freazer, Date fridge) {
+            LinkedList<RecipeTag> tags, String method, Date freazer, Date fridge) {
 
         this.title = title;
         this.preparation = preparation;
@@ -59,6 +62,7 @@ public class Recipe {
         this.method = method;
         this.freazer = freazer;
         this.fridge = fridge;
+        added = new Date(System.currentTimeMillis());
     }
 
     public Date getCooking() {
@@ -141,11 +145,11 @@ public class Recipe {
         this.title = title;
     }
 
-    public String getType() {
+    public RecipeType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(RecipeType type) {
         this.type = type;
     }
 
@@ -181,11 +185,11 @@ public class Recipe {
         this.stared = stared;
     }
 
-    public LinkedList<String> getTags() {
+    public LinkedList<RecipeTag> getTags() {
         return tags;
     }
 
-    public void setTags(LinkedList<String> tags) {
+    public void setTags(LinkedList<RecipeTag> tags) {
         this.tags = tags;
     }
 
@@ -212,6 +216,10 @@ public class Recipe {
     public void setFridge(Date fridge) {
         this.fridge = fridge;
     }
+    
+    public Date getAdded() {
+        return added;
+    }
 
     /**
      * This does not extensibly compare two recipe objects, only the name is 
@@ -232,29 +240,8 @@ public class Recipe {
         Recipe other = (Recipe) obj;
         return this.title.equalsIgnoreCase(other.title);
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + (this.title != null ? this.title.hashCode() : 0);
-        hash = 17 * hash + (this.preparation != null ? this.preparation.hashCode() : 0);
-        hash = 17 * hash + (this.cooking != null ? this.cooking.hashCode() : 0);
-        hash = 17 * hash + (this.dificulty != null ? this.dificulty.hashCode() : 0);
-        hash = 17 * hash + (this.price != null ? this.price.hashCode() : 0);
-        hash = 17 * hash + (this.ingredients != null ? this.ingredients.hashCode() : 0);
-        hash = 17 * hash + (this.table != null ? this.table.hashCode() : 0);
-        hash = 17 * hash + (this.type != null ? this.type.hashCode() : 0);
-        hash = 17 * hash + this.doses;
-        hash = 17 * hash + (this.sequence != null ? this.sequence.hashCode() : 0);
-        hash = 17 * hash + (this.principal != null ? this.principal.hashCode() : 0);
-        hash = 17 * hash + (this.notes != null ? this.notes.hashCode() : 0);
-        hash = 17 * hash + (this.tips != null ? this.tips.hashCode() : 0);
-        hash = 17 * hash + (int) (Double.doubleToLongBits(this.rating) ^ (Double.doubleToLongBits(this.rating) >>> 32));
-        hash = 17 * hash + (this.stared ? 1 : 0);
-        hash = 17 * hash + (this.tags != null ? this.tags.hashCode() : 0);
-        hash = 17 * hash + (this.method != null ? this.method.hashCode() : 0);
-        hash = 17 * hash + (this.freazer != null ? this.freazer.hashCode() : 0);
-        hash = 17 * hash + (this.fridge != null ? this.fridge.hashCode() : 0);
-        return hash;
+    
+    public String toString() {
+        return title;
     }
 }

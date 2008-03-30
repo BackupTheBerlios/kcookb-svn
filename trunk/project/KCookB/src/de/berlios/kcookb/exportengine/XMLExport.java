@@ -9,6 +9,6 @@ package de.berlios.kcookb.exportengine;
  *
  * @author Knitter
  */
-public class XMLExport {
+public class XMLExport implements ExportEngine {
 
 }
