@@ -260,8 +260,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jSeparator14 = new javax.swing.JToolBar.Separator();
         jbtPrevious = new javax.swing.JButton();
         jbtNext = new javax.swing.JButton();
-        jSeparator16 = new javax.swing.JToolBar.Separator();
-        jbtGetFromWeb = new javax.swing.JButton();
         jspMainSplit = new javax.swing.JSplitPane();
         jtpTreeTabs = new javax.swing.JTabbedPane();
         jpTabType = new javax.swing.JPanel();
@@ -310,7 +308,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jmiTips = new javax.swing.JMenuItem();
         jmiSchedule = new javax.swing.JMenuItem();
         jmiNutricionalTable = new javax.swing.JMenuItem();
-        jmiGetFromWeb = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JSeparator();
         jmiOptions = new javax.swing.JMenuItem();
         jmHelp = new javax.swing.JMenu();
@@ -496,20 +493,6 @@ public class KCookBGui extends javax.swing.JFrame {
             }
         });
         jtbMainBar.add(jbtNext);
-        jtbMainBar.add(jSeparator16);
-
-        jbtGetFromWeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/get-from-web.png"))); // NOI18N
-        jbtGetFromWeb.setToolTipText(bundle.getString("MAINBAR_TIP_GETFROMWEB")); // NOI18N
-        jbtGetFromWeb.setEnabled(false);
-        jbtGetFromWeb.setFocusable(false);
-        jbtGetFromWeb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtGetFromWeb.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtGetFromWeb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtGetFromWebActionPerformed(evt);
-            }
-        });
-        jtbMainBar.add(jbtGetFromWeb);
 
         jspMainSplit.setDividerLocation(150);
 
@@ -819,16 +802,6 @@ public class KCookBGui extends javax.swing.JFrame {
             }
         });
         jmiTools.add(jmiNutricionalTable);
-
-        jmiGetFromWeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/get-from-web.png"))); // NOI18N
-        jmiGetFromWeb.setText(bundle.getString("WINDOW_FILEMENU_GETFROMWEB")); // NOI18N
-        jmiGetFromWeb.setEnabled(false);
-        jmiGetFromWeb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiGetFromWebActionPerformed(evt);
-            }
-        });
-        jmiTools.add(jmiGetFromWeb);
         jmiTools.add(jSeparator8);
 
         jmiOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/preferences.png"))); // NOI18N
@@ -1113,14 +1086,6 @@ public class KCookBGui extends javax.swing.JFrame {
         save();
     }//GEN-LAST:event_jmiSaveActionPerformed
 
-    private void jmiGetFromWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGetFromWebActionPerformed
-        getFromWeb();
-    }//GEN-LAST:event_jmiGetFromWebActionPerformed
-
-    private void jbtGetFromWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtGetFromWebActionPerformed
-        getFromWeb();
-    }//GEN-LAST:event_jbtGetFromWebActionPerformed
-
     private void jmiBookInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBookInfoActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1161,7 +1126,6 @@ public class KCookBGui extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator13;
     private javax.swing.JToolBar.Separator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
-    private javax.swing.JToolBar.Separator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1173,7 +1137,6 @@ public class KCookBGui extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JButton jbtDeleteRecipe;
     private javax.swing.JButton jbtEditRecipe;
-    private javax.swing.JButton jbtGetFromWeb;
     private javax.swing.JButton jbtNewBook;
     private javax.swing.JButton jbtNewRecipe;
     private javax.swing.JButton jbtNext;
@@ -1202,7 +1165,6 @@ public class KCookBGui extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiExit;
     private javax.swing.JMenuItem jmiExport;
     private javax.swing.JMenuItem jmiExportTemplates;
-    private javax.swing.JMenuItem jmiGetFromWeb;
     private javax.swing.JMenuItem jmiHelpContents;
     private javax.swing.JMenuItem jmiHome;
     private javax.swing.JMenuItem jmiImport;
