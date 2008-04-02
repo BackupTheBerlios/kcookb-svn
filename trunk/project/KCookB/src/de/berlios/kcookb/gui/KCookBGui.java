@@ -537,6 +537,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpExtras.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jbtNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/notes.png"))); // NOI18N
+        jbtNotes.setToolTipText(bundle.getString("SECONDBAR_TIP_NOTES")); // NOI18N
         jbtNotes.setEnabled(false);
         jbtNotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -544,7 +545,8 @@ public class KCookBGui extends javax.swing.JFrame {
             }
         });
 
-        jbtNutricionalTable.setText("14");
+        jbtNutricionalTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/table.png"))); // NOI18N
+        jbtNutricionalTable.setToolTipText(bundle.getString("SECONDBAR_TIP_TABLE")); // NOI18N
         jbtNutricionalTable.setEnabled(false);
         jbtNutricionalTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -553,6 +555,8 @@ public class KCookBGui extends javax.swing.JFrame {
         });
 
         jbtTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tips.png"))); // NOI18N
+        jbtTips.setText(bundle.getString("SECONDBAR_TIP_TIPS")); // NOI18N
+        jbtTips.setToolTipText(bundle.getString("SECONDBAR_TIP_TIPS")); // NOI18N
         jbtTips.setEnabled(false);
         jbtTips.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -565,7 +569,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpExtrasLayout.setHorizontalGroup(
             jpExtrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpExtrasLayout.createSequentialGroup()
-                .addContainerGap(412, Short.MAX_VALUE)
+                .addContainerGap(400, Short.MAX_VALUE)
                 .addComponent(jbtTips)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtNutricionalTable)
@@ -590,7 +594,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpMainRightPanelLayout.setVerticalGroup(
             jpMainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMainRightPanelLayout.createSequentialGroup()
-                .addComponent(jscpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addComponent(jscpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpExtras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
