@@ -548,6 +548,9 @@ public class KCookBGui extends javax.swing.JFrame {
         jbtNutricionalTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/table.png"))); // NOI18N
         jbtNutricionalTable.setToolTipText(bundle.getString("SECONDBAR_TIP_TABLE")); // NOI18N
         jbtNutricionalTable.setEnabled(false);
+        jbtNutricionalTable.setMaximumSize(new java.awt.Dimension(55, 31));
+        jbtNutricionalTable.setMinimumSize(new java.awt.Dimension(55, 31));
+        jbtNutricionalTable.setPreferredSize(new java.awt.Dimension(55, 31));
         jbtNutricionalTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtNutricionalTableActionPerformed(evt);
@@ -569,10 +572,10 @@ public class KCookBGui extends javax.swing.JFrame {
         jpExtrasLayout.setHorizontalGroup(
             jpExtrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpExtrasLayout.createSequentialGroup()
-                .addContainerGap(400, Short.MAX_VALUE)
+                .addContainerGap(402, Short.MAX_VALUE)
                 .addComponent(jbtTips)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtNutricionalTable)
+                .addComponent(jbtNutricionalTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtNotes))
         );
@@ -580,7 +583,7 @@ public class KCookBGui extends javax.swing.JFrame {
             jpExtrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpExtrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jbtNotes)
-                .addComponent(jbtNutricionalTable)
+                .addComponent(jbtNutricionalTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jbtTips))
         );
 
@@ -594,7 +597,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpMainRightPanelLayout.setVerticalGroup(
             jpMainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMainRightPanelLayout.createSequentialGroup()
-                .addComponent(jscpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addComponent(jscpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpExtras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

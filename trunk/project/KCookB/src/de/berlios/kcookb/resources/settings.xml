@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : settings.xml
+    Created on : 2 de Abril de 2008, 13:38
+    Author     : ei10635
+    Description:
+        Store program settings. This document is a template.
+-->
+
+<settings>
+    <!-- name and email of the user that owns the catalog -->
+    <user>
+        <name></name>
+        <email></email>
+    </user>
+    
+    <!-- yes/no values 
+        Specifies if the catalog creation date is to be stored.
+    -->
+    <store-date>yes</store-date>
+    
+    <!-- network related settings -->
+    <network>
+        <!-- yes/no values 
+            If this property has a "no" value all other elements are ignored.
+        -->
+        <use-proxy></use-proxy>
+        <proxy-address></proxy-address>
+        <proxy-port></proxy-port>
+        <proxy-user></proxy-user>
+        <proxy-user-pass></proxy-user-pass>
+        <proxy-type></proxy-type>
+    </network>
+</settings>
