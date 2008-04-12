@@ -346,7 +346,6 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jbtSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-save.png"))); // NOI18N
         jbtSave.setToolTipText(bundle.getString("MAINBAR_TIP_SAVE")); // NOI18N
-        jbtSave.setEnabled(false);
         jbtSave.setFocusable(false);
         jbtSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -360,7 +359,6 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jbtNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-new-recipe.png"))); // NOI18N
         jbtNewRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_NEWRECIPE")); // NOI18N
-        jbtNewRecipe.setEnabled(false);
         jbtNewRecipe.setFocusable(false);
         jbtNewRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtNewRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -373,7 +371,6 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jbtEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-edit.png"))); // NOI18N
         jbtEditRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_EDITRECIPE")); // NOI18N
-        jbtEditRecipe.setEnabled(false);
         jbtEditRecipe.setFocusable(false);
         jbtEditRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtEditRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -386,7 +383,6 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jbtDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-delete.png"))); // NOI18N
         jbtDeleteRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_DELETERECIPE")); // NOI18N
-        jbtDeleteRecipe.setEnabled(false);
         jbtDeleteRecipe.setFocusable(false);
         jbtDeleteRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtDeleteRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -399,7 +395,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jSeparator11);
 
         jbtUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-undo.png"))); // NOI18N
-        jbtUndo.setEnabled(false);
         jbtUndo.setFocusable(false);
         jbtUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -411,7 +406,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtUndo);
 
         jbtRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-redo.png"))); // NOI18N
-        jbtRedo.setEnabled(false);
         jbtRedo.setFocusable(false);
         jbtRedo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtRedo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -424,7 +418,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jSeparator12);
 
         jbtPrintRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-print-recipe.png"))); // NOI18N
-        jbtPrintRecipe.setEnabled(false);
         jbtPrintRecipe.setFocusable(false);
         jbtPrintRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtPrintRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -436,7 +429,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtPrintRecipe);
         jtbMainBar.add(jSeparator13);
 
-        jtfQuickSearch.setEnabled(false);
         jtfQuickSearch.setMaximumSize(new java.awt.Dimension(150, 20));
         jtfQuickSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,7 +438,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jtfQuickSearch);
 
         jbtQuickSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-find.png"))); // NOI18N
-        jbtQuickSearch.setEnabled(false);
         jbtQuickSearch.setFocusable(false);
         jbtQuickSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtQuickSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -459,7 +450,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jSeparator14);
 
         jbtPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-previous.png"))); // NOI18N
-        jbtPrevious.setEnabled(false);
         jbtPrevious.setFocusable(false);
         jbtPrevious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtPrevious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -471,7 +461,6 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtPrevious);
 
         jbtNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-next.png"))); // NOI18N
-        jbtNext.setEnabled(false);
         jbtNext.setFocusable(false);
         jbtNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -511,45 +500,45 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jscpTreeTypeScroll.setViewportView(jtreeType);
 
-        javax.swing.GroupLayout jpTabTypeLayout = new javax.swing.GroupLayout(jpTabType);
+        org.jdesktop.layout.GroupLayout jpTabTypeLayout = new org.jdesktop.layout.GroupLayout(jpTabType);
         jpTabType.setLayout(jpTabTypeLayout);
         jpTabTypeLayout.setHorizontalGroup(
-            jpTabTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpTreeTypeScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+            jpTabTypeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
         );
         jpTabTypeLayout.setVerticalGroup(
-            jpTabTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpTreeTypeScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            jpTabTypeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
         );
 
         jtpTreeTabs.addTab(bundle.getString("WINDOW_TABCATEGORIES"), jpTabType); // NOI18N
 
         jscpTreeLabelScroll.setViewportView(jtreeLabel);
 
-        javax.swing.GroupLayout jpTabLabelLayout = new javax.swing.GroupLayout(jpTabLabel);
+        org.jdesktop.layout.GroupLayout jpTabLabelLayout = new org.jdesktop.layout.GroupLayout(jpTabLabel);
         jpTabLabel.setLayout(jpTabLabelLayout);
         jpTabLabelLayout.setHorizontalGroup(
-            jpTabLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpTreeLabelScroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+            jpTabLabelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
         );
         jpTabLabelLayout.setVerticalGroup(
-            jpTabLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpTreeLabelScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            jpTabLabelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
         );
 
         jtpTreeTabs.addTab(bundle.getString("WINDOW_LABELTAB"), jpTabLabel); // NOI18N
 
         jScrollPane1.setViewportView(jTree1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
         );
 
         jtpTreeTabs.addTab("", new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/tabbed-stared.png")), jPanel1); // NOI18N
@@ -560,15 +549,15 @@ public class KCookBGui extends javax.swing.JFrame {
         jepRecipe.setEditable(false);
         jscpEditor.setViewportView(jepRecipe);
 
-        javax.swing.GroupLayout jpMainRightPanelLayout = new javax.swing.GroupLayout(jpMainRightPanel);
+        org.jdesktop.layout.GroupLayout jpMainRightPanelLayout = new org.jdesktop.layout.GroupLayout(jpMainRightPanel);
         jpMainRightPanel.setLayout(jpMainRightPanelLayout);
         jpMainRightPanelLayout.setHorizontalGroup(
-            jpMainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpEditor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            jpMainRightPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpEditor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
         jpMainRightPanelLayout.setVerticalGroup(
-            jpMainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            jpMainRightPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jscpEditor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
         );
 
         jspMainSplit.setRightComponent(jpMainRightPanel);
@@ -821,19 +810,19 @@ public class KCookBGui extends javax.swing.JFrame {
 
         setJMenuBar(jmbMainMenu);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtbMainBar, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
-            .addComponent(jspMainSplit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jtbMainBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jspMainSplit, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jtbMainBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jspMainSplit, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(jtbMainBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jspMainSplit, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
