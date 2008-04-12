@@ -22,7 +22,6 @@ public class Recipe {
     private RecipeDificulty dificulty;
     private RecipePrice price;
     private List<Ingredient> ingredients;
-    private NutricionalTable table;
     private RecipeType type;
     private int doses;
     private List<String> sequence;
@@ -39,10 +38,10 @@ public class Recipe {
     private Vector<RecipeListener> listeners;
 
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
-            RecipePrice price, List<Ingredient> ingredients, NutricionalTable table,
-            RecipeType type, int doses, List<String> sequence, String principal,
-            List<Note> notes, List<Tip> tips, double rating, boolean stared,
-            List<RecipeTag> tags, String method, Date freazer, Date fridge) {
+            RecipePrice price, List<Ingredient> ingredients, RecipeType type, 
+            int doses, List<String> sequence, String principal, List<Note> notes, 
+            List<Tip> tips, double rating, boolean stared, List<RecipeTag> tags, 
+            String method, Date freazer, Date fridge) {
 
         this.title = title;
         this.preparation = preparation;
@@ -50,7 +49,6 @@ public class Recipe {
         this.dificulty = dificulty;
         this.price = price;
         this.ingredients = (ingredients != null ? ingredients : new LinkedList<Ingredient>());
-        this.table = table;
         this.type = type;
         this.doses = doses;
         this.sequence = (sequence != null ? sequence : new LinkedList<String>());
@@ -182,14 +180,6 @@ public class Recipe {
         if (sequence != null) {
             sequence.remove(name);
         }
-    }
-
-    public NutricionalTable getTable() {
-        return table;
-    }
-
-    public void setTable(NutricionalTable table) {
-        this.table = table;
     }
 
     public String getTitle() {

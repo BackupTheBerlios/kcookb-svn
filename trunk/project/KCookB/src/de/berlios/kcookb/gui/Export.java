@@ -6,7 +6,8 @@
 
 package de.berlios.kcookb.gui;
 
-import java.awt.Dimension;
+import java.util.Vector;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -14,9 +15,15 @@ import java.awt.Dimension;
  */
 public class Export extends javax.swing.JDialog {
     
+    private Vector exportIcons;
     /** Creates new form Export */
     public Export(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        exportIcons = new Vector();
+        
+        exportIcons.add(new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/export-csv.png")));
+        //TODO: add more icons.
+        
         initComponents();
     }
     
@@ -36,7 +43,7 @@ public class Export extends javax.swing.JDialog {
 
         jpAvailableTypes = new javax.swing.JPanel();
         jscpAvailableTypes = new javax.swing.JScrollPane();
-        jlistAvailableTypes = new javax.swing.JList();
+        jlistAvailableTypes = new javax.swing.JList(exportIcons);
         jpOptions = new javax.swing.JPanel();
         jbtHelp = new javax.swing.JButton();
         jbtCancel = new javax.swing.JButton();
@@ -44,13 +51,9 @@ public class Export extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jpAvailableTypes.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipos dispniveis"));
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
+        jpAvailableTypes.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_AVAILABLEFORMATS"))); // NOI18N
 
-        jlistAvailableTypes.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jscpAvailableTypes.setViewportView(jlistAvailableTypes);
 
         javax.swing.GroupLayout jpAvailableTypesLayout = new javax.swing.GroupLayout(jpAvailableTypes);
@@ -64,7 +67,7 @@ public class Export extends javax.swing.JDialog {
             .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
         );
 
-        jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder("dsds"));
+        jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_OPTIONS_TITLE"))); // NOI18N
 
         javax.swing.GroupLayout jpOptionsLayout = new javax.swing.GroupLayout(jpOptions);
         jpOptions.setLayout(jpOptionsLayout);
@@ -77,11 +80,26 @@ public class Export extends javax.swing.JDialog {
             .addGap(0, 292, Short.MAX_VALUE)
         );
 
-        jbtHelp.setText("jButton1");
+        jbtHelp.setText(bundle.getString("EXPORTDIALOG_HELPBUTTON")); // NOI18N
+        jbtHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtHelpActionPerformed(evt);
+            }
+        });
 
-        jbtCancel.setText("jButton2");
+        jbtCancel.setText(bundle.getString("EXPORTDIALOG_CANCELBUTTON")); // NOI18N
+        jbtCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCancelActionPerformed(evt);
+            }
+        });
 
-        jbtExport.setText("jButton3");
+        jbtExport.setText(bundle.getString("EXPORTDIALOG_EXPORTBUTTON")); // NOI18N
+        jbtExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtExportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,6 +137,18 @@ public class Export extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtCancelActionPerformed
+
+    private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtHelpActionPerformed
+
+    private void jbtExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtExportActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtCancel;

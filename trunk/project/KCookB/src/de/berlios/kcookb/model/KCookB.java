@@ -112,13 +112,13 @@ public class KCookB {
      * @param fridge
      */
     public void addRecipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
-            RecipePrice price, LinkedList<Ingredient> ingredients, NutricionalTable table,
-            RecipeType type, int doses, LinkedList<String> sequence, String principal,
+            RecipePrice price, LinkedList<Ingredient> ingredients, RecipeType type, 
+            int doses, LinkedList<String> sequence, String principal, 
             LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
             LinkedList<RecipeTag> tags, String method, Date freazer, Date fridge) {
 
         Recipe rec = new Recipe(title, preparation, cooking, dificulty, price,
-                ingredients, table, type, doses, sequence, principal, notes,
+                ingredients, type, doses, sequence, principal, notes,
                 tips, rating, stared, tags, method, freazer, fridge);
 
         db.set(rec);

@@ -36,7 +36,7 @@ public class About extends javax.swing.JDialog {
         jpLogo = new javax.swing.JPanel();
         jlblLogo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtaDetails = new javax.swing.JTextArea();
         jpLicense = new javax.swing.JPanel();
         jscpLicense = new javax.swing.JScrollPane();
         jepLicense = new javax.swing.JEditorPane();
@@ -48,10 +48,10 @@ public class About extends javax.swing.JDialog {
 
         jlblLogo.setText("jLabel1");
 
-        jTextArea1.setBackground(new java.awt.Color(236, 233, 216));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtaDetails.setBackground(new java.awt.Color(236, 233, 216));
+        jtaDetails.setColumns(20);
+        jtaDetails.setRows(5);
+        jScrollPane1.setViewportView(jtaDetails);
 
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
@@ -113,12 +113,12 @@ public class About extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JEditorPane jepLicense;
     private javax.swing.JLabel jlblLogo;
     private javax.swing.JPanel jpLicense;
     private javax.swing.JPanel jpLogo;
     private javax.swing.JScrollPane jscpLicense;
+    private javax.swing.JTextArea jtaDetails;
     private javax.swing.JTabbedPane jtbpAbout;
     // End of variables declaration//GEN-END:variables
     
