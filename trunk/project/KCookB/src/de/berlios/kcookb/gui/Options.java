@@ -335,28 +335,24 @@ public class Options extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: help for Options dialog
     }//GEN-LAST:event_jbtHelpActionPerformed
 
     private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
-        //TODO:
+        //TODO: clear all fields so that another call to the options dialog works fine
         dispose();
     }//GEN-LAST:event_jbtCancelActionPerformed
 
     private void jbtApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtApplyActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: apply chagens
 }//GEN-LAST:event_jbtApplyActionPerformed
 
     private void jbtBrowseLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseLocationActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: browse for default location
     }//GEN-LAST:event_jbtBrowseLocationActionPerformed
 
     private void jchkUseProxyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkUseProxyActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: checkbox to use proxy
     }//GEN-LAST:event_jchkUseProxyActionPerformed
 
     private void jrbtCustomLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtCustomLocationActionPerformed

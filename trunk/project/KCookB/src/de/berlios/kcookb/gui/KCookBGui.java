@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -51,7 +52,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
     public void newBook(String name) {
         //defineInterfaceOptionsEstate(true);
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: create a new book
     }
 
     private void newBook() {
@@ -63,10 +64,12 @@ public class KCookBGui extends javax.swing.JFrame {
         });
     }
 
-    private void openBook() {
-        book.openCatalog("");
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+    private void openBook() {      
+        JFileChooser jfc = new JFileChooser();
+        
+        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            //TODO: book.openCatalog("");
+        }          
     }
 
     private void save() {
@@ -121,39 +124,33 @@ public class KCookBGui extends javax.swing.JFrame {
     }
 
     private void doQuickSearch(String text) {
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        showSearchDialog(text);
     }
 
     private void undo() {
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: undo
     }
 
     private void redo() {
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: redo
     }
 
     private void print() {
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: print
     }
 
     private void previousRecipe() {
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: previous recipe
     }
 
     private void nextRecipe() {
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: next recipe
     }
 
     private void showNotes() {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {//TODO:
+            public void run() {//TODO: send recipe or notes to the dialog
                 new NoteDialog(me, true, null).showCentered();
             }
         });
@@ -168,11 +165,11 @@ public class KCookBGui extends javax.swing.JFrame {
         });
     }
 
-    private void showSearchDialog() {
+    private void showSearchDialog(final String text) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Search(me, true).showCentered();
+                new Search(me, true, text).showCentered();
             }
         });
     }
@@ -188,7 +185,7 @@ public class KCookBGui extends javax.swing.JFrame {
     }
 
     private void defineInterfaceOptionsEstate(boolean active) {
-        jmiCloseBook.setEnabled(active);
+        /*jmiCloseBook.setEnabled(active);
         //TODO:see: jmiDeleteRecipe.setEnabled(active);
         //TODO:see: jmiEditRecipe.setEnabled(active);
         jmiExport.setEnabled(active);
@@ -212,12 +209,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jbtRedo.setEnabled(active);
         jbtSave.setEnabled(active);
         jbtUndo.setEnabled(active);
-        jtfQuickSearch.setEnabled(active);
-    }
-    
-    private void getFromWeb() {
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet!");
+        jtfQuickSearch.setEnabled(active);*/
+        //TODO: hide the interface
     }
 
     /** This method is called from within the constructor to
@@ -249,6 +242,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jbtNext = new javax.swing.JButton();
         jSeparator16 = new javax.swing.JToolBar.Separator();
         jbtRecipeNotes = new javax.swing.JButton();
+        jbtTips = new javax.swing.JButton();
+        jSeparator18 = new javax.swing.JToolBar.Separator();
         jbtApplyStar = new javax.swing.JButton();
         jspMainSplit = new javax.swing.JSplitPane();
         jtpTreeTabs = new javax.swing.JTabbedPane();
@@ -482,6 +477,18 @@ public class KCookBGui extends javax.swing.JFrame {
             }
         });
         jtbMainBar.add(jbtRecipeNotes);
+
+        jbtTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-tips.png"))); // NOI18N
+        jbtTips.setFocusable(false);
+        jbtTips.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtTips.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtTips.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtTipsActionPerformed(evt);
+            }
+        });
+        jtbMainBar.add(jbtTips);
+        jtbMainBar.add(jSeparator18);
 
         jbtApplyStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-star.png"))); // NOI18N
         jbtApplyStar.setFocusable(false);
@@ -733,6 +740,11 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmiTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-tips.png"))); // NOI18N
         jmiTips.setText(bundle.getString("WINDOW_TOOLSMENU_TIPS")); // NOI18N
+        jmiTips.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiTipsActionPerformed(evt);
+            }
+        });
         jmiTools.add(jmiTips);
 
         jmiSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-calendar.png"))); // NOI18N
@@ -840,7 +852,6 @@ public class KCookBGui extends javax.swing.JFrame {
     private void jmiHelpContentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHelpContentsActionPerformed
         //TODO: Create and add help system
         //use threads
-        throw new UnsupportedOperationException("Not implemented yet");
     }//GEN-LAST:event_jmiHelpContentsActionPerformed
 
     private void jbtNewBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNewBookActionPerformed
@@ -919,7 +930,7 @@ public class KCookBGui extends javax.swing.JFrame {
     private void jmiCloseBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCloseBookActionPerformed
         book.closeCatalog();
         book = null;
-        defineInterfaceOptionsEstate(false);
+        //TODO: defineInterfaceOptionsEstate(false);
     }//GEN-LAST:event_jmiCloseBookActionPerformed
 
     private void jmiImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImportActionPerformed
@@ -950,8 +961,11 @@ public class KCookBGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiTemplatedBookActionPerformed
 
     private void jmiZipBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiZipBookActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("not implemented yet");
+        JFileChooser jfc = new JFileChooser();
+        
+        if(jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            //TODO: create zip file of all project folder.
+        }        
     }//GEN-LAST:event_jmiZipBookActionPerformed
 
     private void jmiExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiExitActionPerformed
@@ -979,17 +993,25 @@ public class KCookBGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiDeleteRecipeActionPerformed
 
     private void jmiSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSearchActionPerformed
-        showSearchDialog();
+        showSearchDialog(null);
     }//GEN-LAST:event_jmiSearchActionPerformed
 
     private void jmiMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMealActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new MealDialog(me, true).setVisible(true);
+            }
+        });        
     }//GEN-LAST:event_jmiMealActionPerformed
 
     private void jmiScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiScheduleActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new ScheduleJDialog(me, true).setVisible(true);
+            }
+        });
     }//GEN-LAST:event_jmiScheduleActionPerformed
 
     private void jmiHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHomeActionPerformed
@@ -1025,6 +1047,14 @@ public class KCookBGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtApplyStarActionPerformed
 
+    private void jbtTipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTipsActionPerformed
+        showTips();
+    }//GEN-LAST:event_jbtTipsActionPerformed
+
+    private void jmiTipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTipsActionPerformed
+        showTips();
+    }//GEN-LAST:event_jmiTipsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1058,6 +1088,7 @@ public class KCookBGui extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JToolBar.Separator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
+    private javax.swing.JToolBar.Separator jSeparator18;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -1080,6 +1111,7 @@ public class KCookBGui extends javax.swing.JFrame {
     private javax.swing.JButton jbtRecipeNotes;
     private javax.swing.JButton jbtRedo;
     private javax.swing.JButton jbtSave;
+    private javax.swing.JButton jbtTips;
     private javax.swing.JButton jbtUndo;
     private javax.swing.JEditorPane jepRecipe;
     private javax.swing.JMenu jmFile;

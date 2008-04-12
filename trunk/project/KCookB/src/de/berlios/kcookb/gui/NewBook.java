@@ -147,8 +147,7 @@ public class NewBook extends javax.swing.JDialog {
 
     private void jbtBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseActionPerformed
         //JFileChooser jfc = new JFileChooser();
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: browse for the location of the new book, should start at the default location
     }//GEN-LAST:event_jbtBrowseActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

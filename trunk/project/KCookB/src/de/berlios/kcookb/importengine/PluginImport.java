@@ -9,6 +9,6 @@ package de.berlios.kcookb.importengine;
  *
  * @author Knitter
  */
-public class PluginImport {
+public class PluginImport implements ImportEngine {
 
 }

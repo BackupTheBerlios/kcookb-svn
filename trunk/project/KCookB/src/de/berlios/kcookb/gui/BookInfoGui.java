@@ -155,17 +155,16 @@ public class BookInfoGui extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet!");
+        //TODO: help for book info dialog
     }//GEN-LAST:event_jbtHelpActionPerformed
 
     private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
+        //TODO: clear fields for proper dispose
         dispose();
     }//GEN-LAST:event_jbtCancelActionPerformed
 
     private void jbtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSaveActionPerformed
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet!");
+        //TODO: save catalog info changes
     }//GEN-LAST:event_jbtSaveActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

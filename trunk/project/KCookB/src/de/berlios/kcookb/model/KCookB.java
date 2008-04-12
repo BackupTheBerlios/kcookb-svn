@@ -81,7 +81,7 @@ public class KCookB {
     }
     
     public boolean hasChanges() {
-        //TODO:
+        //TODO: return correct value for dirty bit checking
         return false;
     }
     

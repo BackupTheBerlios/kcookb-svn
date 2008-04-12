@@ -205,25 +205,24 @@ public class TemplateExport extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseActionPerformed
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: browse for destination
     }//GEN-LAST:event_jbtBrowseActionPerformed
 
     private void jbtExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExportActionPerformed
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: export, open destination and save
     }//GEN-LAST:event_jbtExportActionPerformed
 
     private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
-        //TODO:
+        //TODO: proper dispose for this dialog
         dispose();
     }//GEN-LAST:event_jbtCancelActionPerformed
 
     private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: help for template export dialog
     }//GEN-LAST:event_jbtHelpActionPerformed
 
     private void jlstTemplatesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlstTemplatesValueChanged
-        //TODO:
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: change values in the details panel
     }//GEN-LAST:event_jlstTemplatesValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

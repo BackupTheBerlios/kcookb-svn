@@ -22,8 +22,9 @@ public class About extends javax.swing.JDialog {
 
     private String loadDetails() {
         //TODO: i18n
-        String text = "Versão do produto \n"
-                + "Java: " + System.getProperty("java.vm.name")  + ", "
+        String text = "Versão do produto: " 
+                + java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/config").getString("VERSION") 
+                + "\nJava: " + System.getProperty("java.vm.name")  + ", "
                 + System.getProperty("java.vm.version")
                 + "\nSistema: " + System.getProperty("os.name") + " "              
                 + System.getProperty("os.version") + " " 
@@ -68,6 +69,7 @@ public class About extends javax.swing.JDialog {
         jlblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/logo.png"))); // NOI18N
 
         jtaDetails.setColumns(20);
+        jtaDetails.setEditable(false);
         jtaDetails.setRows(5);
         jtaDetails.setBorder(null);
         jScrollPane1.setViewportView(jtaDetails);
