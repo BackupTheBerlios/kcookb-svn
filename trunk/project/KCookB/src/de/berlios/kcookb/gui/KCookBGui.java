@@ -153,8 +153,8 @@ public class KCookBGui extends javax.swing.JFrame {
     private void showNotes() {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {
-                new MealDialog(me, true).showCentered();
+            public void run() {//TODO:
+                new NoteDialog(me, true, null).showCentered();
             }
         });
     }
@@ -1031,9 +1031,7 @@ public class KCookBGui extends javax.swing.JFrame {
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
             java.awt.EventQueue.invokeLater(new Runnable() {
-
                 public void run() {
                     new KCookBGui().setVisible(true);
                 }

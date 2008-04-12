@@ -3,7 +3,6 @@
  *
  * Created on 15 de Março de 2008, 18:01
  */
-
 package de.berlios.kcookb.gui;
 
 import java.io.IOException;
@@ -14,23 +13,31 @@ import javax.swing.JEditorPane;
  * @author  Knitter
  */
 public class About extends javax.swing.JDialog {
-    
+
     /** Creates new form About */
     public About(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        loadLicense();
     }
-    
-    private void loadLicense() {
+
+    private String loadDetails() {
+        //TODO: i18n
+        String text = "Versão do produto \n"
+                + "Java: " + System.getProperty("java.vm.name")  + ", "
+                + System.getProperty("java.vm.version")
+                + "\nSistema: " + System.getProperty("os.name") + " "              
+                + System.getProperty("os.version") + " " 
+                + System.getProperty("os.arch") + "\nPasta Pessoal: " 
+                + System.getProperty("user.home");
+        return text;
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -44,6 +51,7 @@ public class About extends javax.swing.JDialog {
         jlblLogo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaDetails = new javax.swing.JTextArea();
+        jtaDetails.setText(loadDetails());
         jpLicense = new javax.swing.JPanel();
         jscpLicense = new javax.swing.JScrollPane();
         try {
@@ -57,11 +65,11 @@ public class About extends javax.swing.JDialog {
         setTitle(bundle.getString("ABOUTDIALOG_TITLE")); // NOI18N
         setResizable(false);
 
-        jlblLogo.setText("jLabel1");
+        jlblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/logo.png"))); // NOI18N
 
-        jtaDetails.setBackground(new java.awt.Color(236, 233, 216));
         jtaDetails.setColumns(20);
         jtaDetails.setRows(5);
+        jtaDetails.setBorder(null);
         jScrollPane1.setViewportView(jtaDetails);
 
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
@@ -80,8 +88,8 @@ public class About extends javax.swing.JDialog {
             .addGroup(jpLogoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -103,7 +111,7 @@ public class About extends javax.swing.JDialog {
             jpLicenseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLicenseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -117,7 +125,7 @@ public class About extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtbpAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(jtbpAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         pack();
@@ -133,5 +141,4 @@ public class About extends javax.swing.JDialog {
     private javax.swing.JTextArea jtaDetails;
     private javax.swing.JTabbedPane jtbpAbout;
     // End of variables declaration//GEN-END:variables
-    
 }
