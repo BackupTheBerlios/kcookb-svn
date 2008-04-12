@@ -45,6 +45,7 @@ public class Export extends javax.swing.JDialog {
         jscpAvailableTypes = new javax.swing.JScrollPane();
         jlistAvailableTypes = new javax.swing.JList(exportIcons);
         jpOptions = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jbtHelp = new javax.swing.JButton();
         jbtCancel = new javax.swing.JButton();
         jbtExport = new javax.swing.JButton();
@@ -69,15 +70,26 @@ public class Export extends javax.swing.JDialog {
 
         jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_OPTIONS_TITLE"))); // NOI18N
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jpOptionsLayout = new javax.swing.GroupLayout(jpOptions);
         jpOptions.setLayout(jpOptionsLayout);
         jpOptionsLayout.setHorizontalGroup(
             jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpOptionsLayout.setVerticalGroup(
             jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jbtHelp.setText(bundle.getString("EXPORTDIALOG_HELPBUTTON")); // NOI18N
@@ -151,6 +163,7 @@ public class Export extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtExportActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtCancel;
     private javax.swing.JButton jbtExport;
     private javax.swing.JButton jbtHelp;

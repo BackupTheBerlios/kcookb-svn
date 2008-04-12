@@ -69,7 +69,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title=" Modelos ">
+            <TitledBorder title="Modelos ">
               <ResourceString PropertyName="titleX" bundle="de/berlios/kcookb/resources/languages/language.properties" key="TEMPLATEEXPORTDIALOG_TEMPLATESBORDER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </TitledBorder>
           </Border>
@@ -99,14 +99,9 @@
             <Component class="javax.swing.JList" name="jlstTemplates">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                    <StringItem index="4" value="Item 5"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
+                <Property name="selectionMode" type="int" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jlstTemplatesValueChanged"/>
@@ -120,7 +115,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title=" Op&#xe7;&#xf5;es ">
+            <TitledBorder title="Op&#xe7;&#xf5;es ">
               <ResourceString PropertyName="titleX" bundle="de/berlios/kcookb/resources/languages/language.properties" key="TEMPLATEEXPORTDIALOG_OPTIONSBORDER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </TitledBorder>
           </Border>
@@ -187,7 +182,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title=" Pr&#xe9;-visualiza&#xe7;&#xe3;o ">
+                <TitledBorder title="Pr&#xe9;-visualiza&#xe7;&#xe3;o ">
                   <ResourceString PropertyName="titleX" bundle="de/berlios/kcookb/resources/languages/language.properties" key="TEMPLATEEXPORTDIALOG_PREVIEWBORDER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </TitledBorder>
               </Border>

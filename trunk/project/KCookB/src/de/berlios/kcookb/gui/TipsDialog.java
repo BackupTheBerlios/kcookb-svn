@@ -32,23 +32,152 @@ public class TipsDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jpAvailableTips = new javax.swing.JPanel();
+        jscpAvailableTips = new javax.swing.JScrollPane();
+        jlstAvailableTips = new javax.swing.JList();
+        jpText = new javax.swing.JPanel();
+        jscpText = new javax.swing.JScrollPane();
+        jtaText = new javax.swing.JTextArea();
+        jbtHelp = new javax.swing.JButton();
+        jbtClose = new javax.swing.JButton();
+        jbtNew = new javax.swing.JButton();
+        jbtDelete = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
+        setTitle(bundle.getString("TIPSDIALOG_TITLE")); // NOI18N
+
+        jpAvailableTips.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TIPSDIALOG_AVAILABLETIPSBORDERTITLE"))); // NOI18N
+
+        jlstAvailableTips.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jscpAvailableTips.setViewportView(jlstAvailableTips);
+
+        javax.swing.GroupLayout jpAvailableTipsLayout = new javax.swing.GroupLayout(jpAvailableTips);
+        jpAvailableTips.setLayout(jpAvailableTipsLayout);
+        jpAvailableTipsLayout.setHorizontalGroup(
+            jpAvailableTipsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscpAvailableTips, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+        );
+        jpAvailableTipsLayout.setVerticalGroup(
+            jpAvailableTipsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscpAvailableTips, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+        );
+
+        jpText.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TIPSDIALOG_TIPTEXTBORDERTITLE"))); // NOI18N
+
+        jtaText.setColumns(20);
+        jtaText.setEditable(false);
+        jtaText.setRows(5);
+        jscpText.setViewportView(jtaText);
+
+        javax.swing.GroupLayout jpTextLayout = new javax.swing.GroupLayout(jpText);
+        jpText.setLayout(jpTextLayout);
+        jpTextLayout.setHorizontalGroup(
+            jpTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscpText, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+        );
+        jpTextLayout.setVerticalGroup(
+            jpTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscpText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jbtHelp.setText(bundle.getString("TIPSDIALOG_HELPBUTTON")); // NOI18N
+        jbtHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtHelpActionPerformed(evt);
+            }
+        });
+
+        jbtClose.setText(bundle.getString("TIPSDIALOG_CLOSEDIALOGBUTTON")); // NOI18N
+        jbtClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCloseActionPerformed(evt);
+            }
+        });
+
+        jbtNew.setText(bundle.getString("TIPSDIALOG_NEWTIPBUTTON")); // NOI18N
+        jbtNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtNewActionPerformed(evt);
+            }
+        });
+
+        jbtDelete.setText(bundle.getString("TIPSDIALOG_DELETETIPBUTTON")); // NOI18N
+        jbtDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jpAvailableTips, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbtNew)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtDelete))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtClose)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtHelp)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpAvailableTips, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtNew)
+                    .addComponent(jbtDelete))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtHelp)
+                    .addComponent(jbtClose))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtNewActionPerformed
+
+    private void jbtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtDeleteActionPerformed
+
+    private void jbtCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCloseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtCloseActionPerformed
+
+    private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtHelpActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbtClose;
+    private javax.swing.JButton jbtDelete;
+    private javax.swing.JButton jbtHelp;
+    private javax.swing.JButton jbtNew;
+    private javax.swing.JList jlstAvailableTips;
+    private javax.swing.JPanel jpAvailableTips;
+    private javax.swing.JPanel jpText;
+    private javax.swing.JScrollPane jscpAvailableTips;
+    private javax.swing.JScrollPane jscpText;
+    private javax.swing.JTextArea jtaText;
     // End of variables declaration//GEN-END:variables
     
 }

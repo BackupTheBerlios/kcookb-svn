@@ -54,11 +54,7 @@ public class TemplateExport extends javax.swing.JDialog {
 
         jpTemplates.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TEMPLATEEXPORTDIALOG_TEMPLATESBORDER"))); // NOI18N
 
-        jlstTemplates.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jlstTemplates.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jlstTemplates.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jlstTemplatesValueChanged(evt);

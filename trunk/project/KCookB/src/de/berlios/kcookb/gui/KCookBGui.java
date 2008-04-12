@@ -159,15 +159,6 @@ public class KCookBGui extends javax.swing.JFrame {
         });
     }
 
-    private void showTable() {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new TableDialog(me, true).showCentered();
-            }
-        });
-    }
-
     private void showTips() {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -507,6 +498,11 @@ public class KCookBGui extends javax.swing.JFrame {
         jbtApplyStar.setFocusable(false);
         jbtApplyStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtApplyStar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtApplyStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtApplyStarActionPerformed(evt);
+            }
+        });
         jtbMainBar.add(jbtApplyStar);
 
         jspMainSplit.setDividerLocation(160);
@@ -1033,8 +1029,12 @@ public class KCookBGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiBookInfoActionPerformed
 
     private void jbtRecipeNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRecipeNotesActionPerformed
-        // TODO add your handling code here:
+        showNotes();
     }//GEN-LAST:event_jbtRecipeNotesActionPerformed
+
+    private void jbtApplyStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtApplyStarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtApplyStarActionPerformed
 
     /**
      * @param args the command line arguments

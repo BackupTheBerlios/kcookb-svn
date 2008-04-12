@@ -6,6 +6,9 @@
 
 package de.berlios.kcookb.gui;
 
+import java.io.IOException;
+import javax.swing.JEditorPane;
+
 /**
  *
  * @author  Knitter
@@ -16,6 +19,10 @@ public class About extends javax.swing.JDialog {
     public About(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        loadLicense();
+    }
+    
+    private void loadLicense() {
     }
     
     public void showCentered() {
@@ -39,7 +46,11 @@ public class About extends javax.swing.JDialog {
         jtaDetails = new javax.swing.JTextArea();
         jpLicense = new javax.swing.JPanel();
         jscpLicense = new javax.swing.JScrollPane();
-        jepLicense = new javax.swing.JEditorPane();
+        try {
+            jepLicense = new JEditorPane(getClass().getResource("/de/berlios/kcookb/resources/gpl-2.0.txt"));
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
@@ -60,8 +71,8 @@ public class About extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLogoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                    .addComponent(jlblLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                    .addComponent(jlblLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpLogoLayout.setVerticalGroup(
@@ -76,6 +87,7 @@ public class About extends javax.swing.JDialog {
 
         jtbpAbout.addTab(bundle.getString("ABOUTDIALOG_LOGOTAB_TITLE"), jpLogo); // NOI18N
 
+        jepLicense.setEditable(false);
         jscpLicense.setViewportView(jepLicense);
 
         javax.swing.GroupLayout jpLicenseLayout = new javax.swing.GroupLayout(jpLicense);
@@ -84,7 +96,7 @@ public class About extends javax.swing.JDialog {
             jpLicenseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLicenseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpLicenseLayout.setVerticalGroup(
@@ -101,7 +113,7 @@ public class About extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtbpAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+            .addComponent(jtbpAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

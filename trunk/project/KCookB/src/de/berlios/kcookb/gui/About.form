@@ -25,7 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jtbpAbout" alignment="0" pref="467" max="32767" attributes="0"/>
+          <Component id="jtbpAbout" alignment="0" pref="489" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -56,8 +56,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="442" max="32767" attributes="0"/>
-                          <Component id="jlblLogo" alignment="0" pref="442" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="464" max="32767" attributes="0"/>
+                          <Component id="jlblLogo" alignment="0" pref="464" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -117,7 +117,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jscpLicense" pref="442" max="32767" attributes="0"/>
+                      <Component id="jscpLicense" pref="464" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -141,6 +141,14 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JEditorPane" name="jepLicense">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JEditorPane(getClass().getResource(&quot;/de/berlios/kcookb/resources/gpl-2.0.txt&quot;));"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="} catch(IOException ex) {&#xd;&#xa;    ex.printStackTrace();&#xd;&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try {"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
