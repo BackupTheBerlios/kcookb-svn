@@ -997,21 +997,11 @@ public class KCookBGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiSearchActionPerformed
 
     private void jmiMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMealActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new MealDialog(me, true).setVisible(true);
-            }
-        });        
+        //TODO: create GUI for meal data
     }//GEN-LAST:event_jmiMealActionPerformed
 
     private void jmiScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiScheduleActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new ScheduleJDialog(me, true).setVisible(true);
-            }
-        });
+        //TODO: create GUI for schedule tool
     }//GEN-LAST:event_jmiScheduleActionPerformed
 
     private void jmiHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHomeActionPerformed
