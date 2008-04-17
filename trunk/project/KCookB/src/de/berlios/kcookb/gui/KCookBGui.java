@@ -1049,14 +1049,14 @@ public class KCookBGui extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        //try {
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new KCookBGui().setVisible(true);
                 }
             });
-        } catch (ClassNotFoundException ex) {
+        /*} catch (ClassNotFoundException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
@@ -1064,7 +1064,7 @@ public class KCookBGui extends javax.swing.JFrame {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
