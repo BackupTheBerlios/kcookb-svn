@@ -3,7 +3,6 @@
  *
  * Created on 14 de Abril de 2008, 1:51
  */
-
 package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.model.Note;
@@ -13,22 +12,22 @@ import de.berlios.kcookb.model.Note;
  * @author  Knitter
  */
 public class NoteDialog extends javax.swing.JDialog {
-    
+
     private Note note;
-    
+
     /** Creates new form NoteDialog */
     public NoteDialog(java.awt.Frame parent, boolean modal, Note note) {
         super(parent, modal);
         this.note = note;
         initComponents();
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -124,7 +123,6 @@ public class NoteDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-        //TODO:
         dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
@@ -135,7 +133,6 @@ public class NoteDialog extends javax.swing.JDialog {
     private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_jbtnSaveActionPerformed
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnHelp;
@@ -144,5 +141,4 @@ public class NoteDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jscpNotes;
     private javax.swing.JTextArea jtaNotes;
     // End of variables declaration//GEN-END:variables
-    
 }

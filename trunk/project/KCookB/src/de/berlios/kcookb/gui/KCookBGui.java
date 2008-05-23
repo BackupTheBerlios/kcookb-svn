@@ -64,12 +64,12 @@ public class KCookBGui extends javax.swing.JFrame {
         });
     }
 
-    private void openBook() {      
+    private void openBook() {
         JFileChooser jfc = new JFileChooser();
-        
-        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             //TODO: book.openCatalog("");
-        }          
+        }
     }
 
     private void save() {
@@ -110,6 +110,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
             public void run() {
                 new RecipeGui(me, true, null).showCentered();//TODO: send recipe into edit dialog
+
             }
         });
     }
@@ -151,6 +152,7 @@ public class KCookBGui extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {//TODO: send recipe or notes to the dialog
+
                 new NoteDialog(me, true, null).showCentered();
             }
         });
@@ -314,7 +316,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.setFloatable(false);
         jtbMainBar.setRollover(true);
 
-        jbtNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-new-book.png"))); // NOI18N
+        jbtNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-new-book.png"))); // NOI18N
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jbtNewBook.setToolTipText(bundle.getString("MAINBAR_TIP_NEWBOOK")); // NOI18N
         jbtNewBook.setFocusable(false);
@@ -327,7 +329,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jbtNewBook);
 
-        jbtOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-open-book.png"))); // NOI18N
+        jbtOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-open-book.png"))); // NOI18N
         jbtOpenBook.setToolTipText(bundle.getString("MAINBAR_TIP_OPENBOOK")); // NOI18N
         jbtOpenBook.setFocusable(false);
         jbtOpenBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -339,7 +341,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jbtOpenBook);
 
-        jbtSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-save.png"))); // NOI18N
+        jbtSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-save.png"))); // NOI18N
         jbtSave.setToolTipText(bundle.getString("MAINBAR_TIP_SAVE")); // NOI18N
         jbtSave.setFocusable(false);
         jbtSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -352,7 +354,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtSave);
         jtbMainBar.add(jSeparator10);
 
-        jbtNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-new-recipe.png"))); // NOI18N
+        jbtNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-new-recipe.png"))); // NOI18N
         jbtNewRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_NEWRECIPE")); // NOI18N
         jbtNewRecipe.setFocusable(false);
         jbtNewRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -364,7 +366,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jbtNewRecipe);
 
-        jbtEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-edit.png"))); // NOI18N
+        jbtEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-edit.png"))); // NOI18N
         jbtEditRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_EDITRECIPE")); // NOI18N
         jbtEditRecipe.setFocusable(false);
         jbtEditRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -376,7 +378,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jbtEditRecipe);
 
-        jbtDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-delete.png"))); // NOI18N
+        jbtDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-delete.png"))); // NOI18N
         jbtDeleteRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_DELETERECIPE")); // NOI18N
         jbtDeleteRecipe.setFocusable(false);
         jbtDeleteRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -389,7 +391,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtDeleteRecipe);
         jtbMainBar.add(jSeparator11);
 
-        jbtUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-undo.png"))); // NOI18N
+        jbtUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-undo.png"))); // NOI18N
+        jbtUndo.setToolTipText(bundle.getString("KCookBGui.jbtUndo.toolTipText")); // NOI18N
         jbtUndo.setFocusable(false);
         jbtUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -400,7 +403,8 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jbtUndo);
 
-        jbtRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-redo.png"))); // NOI18N
+        jbtRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-redo.png"))); // NOI18N
+        jbtRedo.setToolTipText(bundle.getString("KCookBGui.jbtRedo.toolTipText")); // NOI18N
         jbtRedo.setFocusable(false);
         jbtRedo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtRedo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -412,7 +416,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtRedo);
         jtbMainBar.add(jSeparator12);
 
-        jbtPrintRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-print-recipe.png"))); // NOI18N
+        jbtPrintRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-print-recipe.png"))); // NOI18N
+        jbtPrintRecipe.setToolTipText(bundle.getString("KCookBGui.jbtPrintRecipe.toolTipText")); // NOI18N
         jbtPrintRecipe.setFocusable(false);
         jbtPrintRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtPrintRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -424,7 +429,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtPrintRecipe);
         jtbMainBar.add(jSeparator13);
 
-        jtfQuickSearch.setMaximumSize(new java.awt.Dimension(150, 20));
+        jtfQuickSearch.setMaximumSize(new java.awt.Dimension(150, 27));
+        jtfQuickSearch.setPreferredSize(new java.awt.Dimension(150, 27));
         jtfQuickSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfQuickSearchActionPerformed(evt);
@@ -432,7 +438,8 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jtfQuickSearch);
 
-        jbtQuickSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-find.png"))); // NOI18N
+        jbtQuickSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-find.png"))); // NOI18N
+        jbtQuickSearch.setToolTipText(bundle.getString("KCookBGui.jbtQuickSearch.toolTipText")); // NOI18N
         jbtQuickSearch.setFocusable(false);
         jbtQuickSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtQuickSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -444,7 +451,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtQuickSearch);
         jtbMainBar.add(jSeparator14);
 
-        jbtPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-previous.png"))); // NOI18N
+        jbtPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-previous.png"))); // NOI18N
+        jbtPrevious.setToolTipText(bundle.getString("KCookBGui.jbtPrevious.toolTipText")); // NOI18N
         jbtPrevious.setFocusable(false);
         jbtPrevious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtPrevious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -455,7 +463,8 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jbtPrevious);
 
-        jbtNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-next.png"))); // NOI18N
+        jbtNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-next.png"))); // NOI18N
+        jbtNext.setToolTipText(bundle.getString("KCookBGui.jbtNext.toolTipText")); // NOI18N
         jbtNext.setFocusable(false);
         jbtNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -467,7 +476,8 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtNext);
         jtbMainBar.add(jSeparator16);
 
-        jbtRecipeNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-notes.png"))); // NOI18N
+        jbtRecipeNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-notes.png"))); // NOI18N
+        jbtRecipeNotes.setToolTipText(bundle.getString("KCookBGui.jbtRecipeNotes.toolTipText")); // NOI18N
         jbtRecipeNotes.setFocusable(false);
         jbtRecipeNotes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtRecipeNotes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -478,7 +488,8 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jtbMainBar.add(jbtRecipeNotes);
 
-        jbtTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-tips.png"))); // NOI18N
+        jbtTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-tips.png"))); // NOI18N
+        jbtTips.setToolTipText(bundle.getString("KCookBGui.jbtTips.toolTipText")); // NOI18N
         jbtTips.setFocusable(false);
         jbtTips.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtTips.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -490,7 +501,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.add(jbtTips);
         jtbMainBar.add(jSeparator18);
 
-        jbtApplyStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-star.png"))); // NOI18N
+        jbtApplyStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-star.png"))); // NOI18N
         jbtApplyStar.setFocusable(false);
         jbtApplyStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtApplyStar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -511,7 +522,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpTabType.setLayout(jpTabTypeLayout);
         jpTabTypeLayout.setHorizontalGroup(
             jpTabTypeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jpTabTypeLayout.setVerticalGroup(
             jpTabTypeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -526,7 +537,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpTabLabel.setLayout(jpTabLabelLayout);
         jpTabLabelLayout.setHorizontalGroup(
             jpTabLabelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jpTabLabelLayout.setVerticalGroup(
             jpTabLabelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -541,7 +552,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -560,7 +571,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jpMainRightPanel.setLayout(jpMainRightPanelLayout);
         jpMainRightPanelLayout.setHorizontalGroup(
             jpMainRightPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpEditor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpEditor)
         );
         jpMainRightPanelLayout.setVerticalGroup(
             jpMainRightPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -571,7 +582,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmFile.setText(bundle.getString("WINDOW_FILEMENU")); // NOI18N
 
-        jmiNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-new-book.png"))); // NOI18N
+        jmiNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-new-book.png"))); // NOI18N
         jmiNewBook.setText(bundle.getString("WINDOW_FILEMENU_NEWBOOK")); // NOI18N
         jmiNewBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -581,7 +592,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmFile.add(jmiNewBook);
         jmFile.add(jSeparator2);
 
-        jmiOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-open-book.png"))); // NOI18N
+        jmiOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-open-book.png"))); // NOI18N
         jmiOpenBook.setText(bundle.getString("WINDOW_FILEMENU_OPENBOOK")); // NOI18N
         jmiOpenBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -602,7 +613,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmFile.add(jmRecentBooks);
         jmFile.add(jSeparator3);
 
-        jmiSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-save.png"))); // NOI18N
+        jmiSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-save.png"))); // NOI18N
         jmiSave.setText(bundle.getString("WINDOW_FILEMENU_SAVE")); // NOI18N
         jmiSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -621,7 +632,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmFile.add(jmiBookInfo);
         jmFile.add(jSeparator17);
 
-        jmiImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-import.png"))); // NOI18N
+        jmiImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-import.png"))); // NOI18N
         jmiImport.setText(bundle.getString("WINDOW_FILEMENU_IMPORT")); // NOI18N
         jmiImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -630,7 +641,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmFile.add(jmiImport);
 
-        jmiExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-export.png"))); // NOI18N
+        jmiExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-export.png"))); // NOI18N
         jmiExport.setText(bundle.getString("WINDOW_FILEMENU_EXPORT")); // NOI18N
         jmiExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -648,7 +659,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmFile.add(jmiTemplatedBook);
         jmFile.add(jSeparator4);
 
-        jmiZipBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-package.png"))); // NOI18N
+        jmiZipBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-package.png"))); // NOI18N
         jmiZipBook.setText(bundle.getString("WINDOW_FILEMENU_ZIP")); // NOI18N
         jmiZipBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -670,7 +681,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmRecipe.setText(bundle.getString("WINDOW_EDITMENU")); // NOI18N
 
-        jmiUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-undo.png"))); // NOI18N
+        jmiUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-undo.png"))); // NOI18N
         jmiUndo.setText(bundle.getString("WINDOW_EDITMENU_UNDO")); // NOI18N
         jmiUndo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -679,7 +690,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmRecipe.add(jmiUndo);
 
-        jmiRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-redo.png"))); // NOI18N
+        jmiRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-redo.png"))); // NOI18N
         jmiRedo.setText(bundle.getString("WINDOW_EDITMENU_REDO")); // NOI18N
         jmiRedo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -689,7 +700,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmRecipe.add(jmiRedo);
         jmRecipe.add(jSeparator5);
 
-        jmiNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-new-recipe.png"))); // NOI18N
+        jmiNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-new-recipe.png"))); // NOI18N
         jmiNewRecipe.setText(bundle.getString("WINDOW_EDITMENU_NEWRECIPE")); // NOI18N
         jmiNewRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -698,7 +709,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmRecipe.add(jmiNewRecipe);
 
-        jmiEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-edit.png"))); // NOI18N
+        jmiEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-edit.png"))); // NOI18N
         jmiEditRecipe.setText(bundle.getString("WINDOW_EDITMENU_EDITRECIPE")); // NOI18N
         jmiEditRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -707,7 +718,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmRecipe.add(jmiEditRecipe);
 
-        jmiDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-delete.png"))); // NOI18N
+        jmiDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-delete.png"))); // NOI18N
         jmiDeleteRecipe.setText(bundle.getString("WINDOW_EDITMENU_DELETERECIPE")); // NOI18N
         jmiDeleteRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -717,7 +728,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmRecipe.add(jmiDeleteRecipe);
         jmRecipe.add(jSeparator6);
 
-        jmiSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-find.png"))); // NOI18N
+        jmiSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-find.png"))); // NOI18N
         jmiSearch.setText(bundle.getString("WINDOW_EDITMENU_FIND")); // NOI18N
         jmiSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -738,7 +749,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmiTools.add(jmiMeal);
 
-        jmiTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-tips.png"))); // NOI18N
+        jmiTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-tips.png"))); // NOI18N
         jmiTips.setText(bundle.getString("WINDOW_TOOLSMENU_TIPS")); // NOI18N
         jmiTips.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -747,7 +758,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmiTools.add(jmiTips);
 
-        jmiSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-calendar.png"))); // NOI18N
+        jmiSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-calendar.png"))); // NOI18N
         jmiSchedule.setText(bundle.getString("WINDOW_TOOLSMENU_SCHEDULE")); // NOI18N
         jmiSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -757,7 +768,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmiTools.add(jmiSchedule);
         jmiTools.add(jSeparator8);
 
-        jmiOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-preferences.png"))); // NOI18N
+        jmiOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-preferences.png"))); // NOI18N
         jmiOptions.setText(bundle.getString("WINDOW_TOOLSMENU_OPTIONS")); // NOI18N
         jmiOptions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -770,7 +781,7 @@ public class KCookBGui extends javax.swing.JFrame {
 
         jmHelp.setText(bundle.getString("WINDOW_HELPMENU")); // NOI18N
 
-        jmiHelpContents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-help.png"))); // NOI18N
+        jmiHelpContents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-help.png"))); // NOI18N
         jmiHelpContents.setText(bundle.getString("WINDOW_HELPMENU_HELP")); // NOI18N
         jmiHelpContents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -779,7 +790,7 @@ public class KCookBGui extends javax.swing.JFrame {
         });
         jmHelp.add(jmiHelpContents);
 
-        jmOnlineResources.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/menu/mn-internet.png"))); // NOI18N
+        jmOnlineResources.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-internet.png"))); // NOI18N
         jmOnlineResources.setText(bundle.getString("WINDOW_HELPMENU_ONLINERESOURCES")); // NOI18N
 
         jmiHome.setText(bundle.getString("WINDOW_HELPMENU_ONLINEHOME")); // NOI18N
@@ -826,8 +837,8 @@ public class KCookBGui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jtbMainBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jspMainSplit, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+            .add(jtbMainBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jspMainSplit, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -930,7 +941,7 @@ public class KCookBGui extends javax.swing.JFrame {
     private void jmiCloseBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCloseBookActionPerformed
         book.closeCatalog();
         book = null;
-        //TODO: defineInterfaceOptionsEstate(false);
+    //TODO: defineInterfaceOptionsEstate(false);
     }//GEN-LAST:event_jmiCloseBookActionPerformed
 
     private void jmiImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImportActionPerformed
@@ -962,10 +973,10 @@ public class KCookBGui extends javax.swing.JFrame {
 
     private void jmiZipBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiZipBookActionPerformed
         JFileChooser jfc = new JFileChooser();
-        
-        if(jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+        if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             //TODO: create zip file of all project folder.
-        }        
+        }
     }//GEN-LAST:event_jmiZipBookActionPerformed
 
     private void jmiExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiExitActionPerformed
@@ -1049,14 +1060,9 @@ public class KCookBGui extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        //try {
-            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new KCookBGui().setVisible(true);
-                }
-            });
-        /*} catch (ClassNotFoundException ex) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
@@ -1064,7 +1070,15 @@ public class KCookBGui extends javax.swing.JFrame {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new KCookBGui().setVisible(true);
+            }
+        });
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

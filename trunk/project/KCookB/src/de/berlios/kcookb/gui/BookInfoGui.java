@@ -3,7 +3,6 @@
  *
  * Created on 15 de Março de 2008, 18:01
  */
-
 package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.model.BookInfo;
@@ -13,22 +12,22 @@ import de.berlios.kcookb.model.BookInfo;
  * @author  Knitter
  */
 public class BookInfoGui extends javax.swing.JDialog {
-    
+
     private BookInfo info;
-    
+
     /** Creates new form BookInfoGui */
     public BookInfoGui(java.awt.Frame parent, boolean modal, BookInfo info) {
         super(parent, modal);
         initComponents();
         this.info = info;
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
-        setVisible(true);        
+        setVisible(true);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -159,14 +158,12 @@ public class BookInfoGui extends javax.swing.JDialog {
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-        //TODO: clear fields for proper dispose
         dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
         //TODO: save catalog info changes
 }//GEN-LAST:event_jbtnSaveActionPerformed
- 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnHelp;
@@ -179,5 +176,4 @@ public class BookInfoGui extends javax.swing.JDialog {
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfName;
     // End of variables declaration//GEN-END:variables
-    
 }

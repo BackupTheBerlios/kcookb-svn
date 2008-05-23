@@ -6,6 +6,8 @@
 
 package de.berlios.kcookb.gui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author  Knitter
@@ -152,7 +154,8 @@ public class TipsDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNewActionPerformed
-        // TODO add your handling code here:
+        //TODO:
+        JOptionPane.showInputDialog("");
     }//GEN-LAST:event_jbtNewActionPerformed
 
     private void jbtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteActionPerformed
@@ -160,7 +163,7 @@ public class TipsDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtDeleteActionPerformed
 
     private void jbtCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCloseActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jbtCloseActionPerformed
 
     private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed

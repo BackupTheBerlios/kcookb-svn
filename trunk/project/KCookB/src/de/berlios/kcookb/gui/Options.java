@@ -340,7 +340,6 @@ public class Options extends javax.swing.JDialog {
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-        //TODO: clear all fields so that another call to the options dialog works fine
         dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 

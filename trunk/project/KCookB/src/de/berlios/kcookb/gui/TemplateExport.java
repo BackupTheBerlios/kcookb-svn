@@ -5,6 +5,8 @@
  */
 package de.berlios.kcookb.gui;
 
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author  Knitter
@@ -206,7 +208,12 @@ public class TemplateExport extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseActionPerformed
-        //TODO: browse for destination
+        JFileChooser jfc = new JFileChooser(System.getProperty("user.home"));
+        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            //TODO:
+        }
+        
     }//GEN-LAST:event_jbtBrowseActionPerformed
 
     private void jbtExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExportActionPerformed
@@ -214,7 +221,6 @@ public class TemplateExport extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtExportActionPerformed
 
     private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
-        //TODO: proper dispose for this dialog
         dispose();
     }//GEN-LAST:event_jbtCancelActionPerformed
 

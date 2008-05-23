@@ -34,7 +34,7 @@ public class Search extends javax.swing.JDialog {
 
         jpResults = new javax.swing.JPanel();
         jscpResults = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jlstResults = new javax.swing.JList();
         jbtnHelp = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
         jpOptions = new javax.swing.JPanel();
@@ -59,8 +59,8 @@ public class Search extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jpResults.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("Search.jpResults.border.title"))); // NOI18N
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jscpResults.setViewportView(jList1);
+        jlstResults.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jscpResults.setViewportView(jlstResults);
 
         javax.swing.GroupLayout jpResultsLayout = new javax.swing.GroupLayout(jpResults);
         jpResults.setLayout(jpResultsLayout);
@@ -74,19 +74,34 @@ public class Search extends javax.swing.JDialog {
         jpResultsLayout.setVerticalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpResultsLayout.createSequentialGroup()
-                .addComponent(jscpResults, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(jscpResults, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jbtnHelp.setText(bundle.getString("Search.jbtnHelp.text")); // NOI18N
+        jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnHelpActionPerformed(evt);
+            }
+        });
 
         jbtnCancel.setText(bundle.getString("Search.jbtnCancel.text")); // NOI18N
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCancelActionPerformed(evt);
+            }
+        });
 
         jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("Search.jpOptions.border.title"))); // NOI18N
 
         jlblText.setText(bundle.getString("Search.jlblText.text")); // NOI18N
 
         jbtnSearch.setText(bundle.getString("Search.jbtnSearch.text")); // NOI18N
+        jbtnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSearchActionPerformed(evt);
+            }
+        });
 
         jchkSearchInDescription.setText(bundle.getString("Search.jchkSearchInDescription.text")); // NOI18N
 
@@ -116,12 +131,6 @@ public class Search extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpOptionsLayout.createSequentialGroup()
-                        .addComponent(jlblText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfText, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnSearch))
-                    .addGroup(jpOptionsLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpOptionsLayout.createSequentialGroup()
@@ -149,8 +158,14 @@ public class Search extends javax.swing.JDialog {
                                         .addGap(18, 18, 18)
                                         .addComponent(jlblPrice)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jcbxPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                                        .addComponent(jcbxPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jpOptionsLayout.createSequentialGroup()
+                        .addComponent(jlblText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfText, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnSearch)))
                 .addContainerGap())
         );
         jpOptionsLayout.setVerticalGroup(
@@ -163,7 +178,7 @@ public class Search extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jlbljchkSearchIn)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jchkSearchInDescription)
@@ -181,6 +196,11 @@ public class Search extends javax.swing.JDialog {
         );
 
         jbtnShow.setText(bundle.getString("Search.jbtnShow.text")); // NOI18N
+        jbtnShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnShowActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,13 +210,13 @@ public class Search extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jpResults, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnShow)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnHelp)))
+                        .addComponent(jbtnHelp))
+                    .addComponent(jpOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,9 +236,24 @@ public class Search extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jbtnSearchActionPerformed
+
+private void jbtnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnShowActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jbtnShowActionPerformed
+
+private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jbtnHelpActionPerformed
+
+private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
+    dispose();
+}//GEN-LAST:event_jbtnCancelActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnHelp;
@@ -235,6 +270,7 @@ public class Search extends javax.swing.JDialog {
     private javax.swing.JLabel jlblPrice;
     private javax.swing.JLabel jlblText;
     private javax.swing.JLabel jlbljchkSearchIn;
+    private javax.swing.JList jlstResults;
     private javax.swing.JPanel jpOptions;
     private javax.swing.JPanel jpResults;
     private javax.swing.JScrollPane jscpResults;

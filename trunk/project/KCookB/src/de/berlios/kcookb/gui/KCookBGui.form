@@ -14,7 +14,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiNewBook">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-new-book.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-new-book.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_FILEMENU_NEWBOOK" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -29,7 +29,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiOpenBook">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-open-book.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-open-book.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_FILEMENU_OPENBOOK" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -61,7 +61,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiSave">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-save.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-save.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_FILEMENU_SAVE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -88,7 +88,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiImport">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-import.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-import.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_FILEMENU_IMPORT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -101,7 +101,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiExport">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-export.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-export.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_FILEMENU_EXPORT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -126,7 +126,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiZipBook">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-package.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-package.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_FILEMENU_ZIP" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -160,7 +160,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiUndo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-undo.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-undo.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_EDITMENU_UNDO" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -173,7 +173,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiRedo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-redo.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-redo.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_EDITMENU_REDO" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -188,7 +188,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiNewRecipe">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-new-recipe.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-new-recipe.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_EDITMENU_NEWRECIPE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -201,7 +201,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiEditRecipe">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-edit.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-edit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_EDITMENU_EDITRECIPE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -214,7 +214,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiDeleteRecipe">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-delete.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-delete.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_EDITMENU_DELETERECIPE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -229,7 +229,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiSearch">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-find.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-find.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_EDITMENU_FIND" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -261,7 +261,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiTips">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-tips.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-tips.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_TOOLSMENU_TIPS" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -274,7 +274,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiSchedule">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-calendar.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-calendar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_TOOLSMENU_SCHEDULE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -289,7 +289,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiOptions">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-preferences.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-preferences.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_TOOLSMENU_OPTIONS" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -311,7 +311,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmiHelpContents">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-help.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-help.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_HELPMENU_HELP" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -324,7 +324,7 @@
             <Menu class="javax.swing.JMenu" name="jmOnlineResources">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/menu/mn-internet.png"/>
+                  <Image iconType="3" name="/de/berlios/kcookb/resources/images/x16/mn-internet.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="WINDOW_HELPMENU_ONLINERESOURCES" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -410,8 +410,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jtbMainBar" alignment="0" pref="739" max="32767" attributes="0"/>
-          <Component id="jspMainSplit" alignment="1" pref="739" max="32767" attributes="0"/>
+          <Component id="jtbMainBar" alignment="0" pref="759" max="32767" attributes="0"/>
+          <Component id="jspMainSplit" alignment="1" pref="759" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -437,7 +437,7 @@
         <Component class="javax.swing.JButton" name="jbtNewBook">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-new-book.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-new-book.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="MAINBAR_TIP_NEWBOOK" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -453,7 +453,7 @@
         <Component class="javax.swing.JButton" name="jbtOpenBook">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-open-book.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-open-book.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="MAINBAR_TIP_OPENBOOK" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -469,7 +469,7 @@
         <Component class="javax.swing.JButton" name="jbtSave">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-save.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-save.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="MAINBAR_TIP_SAVE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -487,7 +487,7 @@
         <Component class="javax.swing.JButton" name="jbtNewRecipe">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-new-recipe.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-new-recipe.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="MAINBAR_TIP_NEWRECIPE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -503,7 +503,7 @@
         <Component class="javax.swing.JButton" name="jbtEditRecipe">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-edit.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-edit.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="MAINBAR_TIP_EDITRECIPE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -519,7 +519,7 @@
         <Component class="javax.swing.JButton" name="jbtDeleteRecipe">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-delete.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-delete.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="MAINBAR_TIP_DELETERECIPE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -537,7 +537,10 @@
         <Component class="javax.swing.JButton" name="jbtUndo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-undo.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-undo.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtUndo.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -550,7 +553,10 @@
         <Component class="javax.swing.JButton" name="jbtRedo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-redo.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-redo.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtRedo.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -565,7 +571,10 @@
         <Component class="javax.swing.JButton" name="jbtPrintRecipe">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-print-recipe.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-print-recipe.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtPrintRecipe.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -580,7 +589,10 @@
         <Component class="javax.swing.JTextField" name="jtfQuickSearch">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[150, 20]"/>
+              <Dimension value="[150, 27]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[150, 27]"/>
             </Property>
           </Properties>
           <Events>
@@ -590,7 +602,10 @@
         <Component class="javax.swing.JButton" name="jbtQuickSearch">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-find.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-find.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtQuickSearch.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -605,7 +620,10 @@
         <Component class="javax.swing.JButton" name="jbtPrevious">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-previous.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-previous.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtPrevious.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -618,7 +636,10 @@
         <Component class="javax.swing.JButton" name="jbtNext">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-next.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-next.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtNext.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -633,7 +654,10 @@
         <Component class="javax.swing.JButton" name="jbtRecipeNotes">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-notes.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-notes.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtRecipeNotes.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -646,7 +670,10 @@
         <Component class="javax.swing.JButton" name="jbtTips">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-tips.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-tips.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="KCookBGui.jbtTips.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -661,7 +688,7 @@
         <Component class="javax.swing.JButton" name="jbtApplyStar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/berlios/kcookb/resources/images/toolbar/tb-star.png"/>
+              <Image iconType="3" name="/de/berlios/kcookb/resources/images/x22/tb-star.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -711,7 +738,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jscpTreeTypeScroll" alignment="0" pref="201" max="32767" attributes="0"/>
+                      <Component id="jscpTreeTypeScroll" alignment="0" pref="156" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -748,7 +775,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jscpTreeLabelScroll" alignment="1" pref="201" max="32767" attributes="0"/>
+                      <Component id="jscpTreeLabelScroll" alignment="1" pref="156" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -788,7 +815,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="201" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="156" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -823,7 +850,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jscpEditor" alignment="1" pref="528" max="32767" attributes="0"/>
+                  <Component id="jscpEditor" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

@@ -60,11 +60,16 @@ public class Export extends javax.swing.JDialog {
         jpAvailableTypes.setLayout(jpAvailableTypesLayout);
         jpAvailableTypesLayout.setHorizontalGroup(
             jpAvailableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+            .addGroup(jpAvailableTypesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpAvailableTypesLayout.setVerticalGroup(
             jpAvailableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+            .addGroup(jpAvailableTypesLayout.createSequentialGroup()
+                .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_OPTIONS_TITLE"))); // NOI18N
@@ -130,7 +135,7 @@ public class Export extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-        // TODO add your handling code here:
+        dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
