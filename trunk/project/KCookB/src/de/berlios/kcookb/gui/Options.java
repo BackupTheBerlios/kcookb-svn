@@ -32,13 +32,13 @@ public class Options extends javax.swing.JDialog {
     private void initComponents() {
 
         btgBookLocation = new javax.swing.ButtonGroup();
-        jbtHelp = new javax.swing.JButton();
-        jbtCancel = new javax.swing.JButton();
-        jbtApply = new javax.swing.JButton();
+        jbtnHelp = new javax.swing.JButton();
+        jbtnCancel = new javax.swing.JButton();
+        jbtnApply = new javax.swing.JButton();
         jpBookLocation = new javax.swing.JPanel();
         jlblCustomLocation = new javax.swing.JLabel();
         jtfCustomLocation = new javax.swing.JTextField();
-        jbtBrowseLocation = new javax.swing.JButton();
+        jbtnBrowseLocation = new javax.swing.JButton();
         jrbtUseHome = new javax.swing.JRadioButton();
         jrbtUseMyDocuments = new javax.swing.JRadioButton();
         jrbtCustomLocation = new javax.swing.JRadioButton();
@@ -63,46 +63,49 @@ public class Options extends javax.swing.JDialog {
         jchkPopulateCategories = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
-        setTitle(bundle.getString("OPTIONSDIALOG_TITLE")); // NOI18N
+        setTitle("null");
         setResizable(false);
 
-        jbtHelp.setText(bundle.getString("OPTIONSDIALOG_HELPBUTTON")); // NOI18N
-        jbtHelp.addActionListener(new java.awt.event.ActionListener() {
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
+        jbtnHelp.setText(bundle.getString("OPTIONSDIALOG_HELPBUTTON")); // NOI18N
+        jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtHelpActionPerformed(evt);
+                jbtnHelpActionPerformed(evt);
             }
         });
 
-        jbtCancel.setText(bundle.getString("OPTIONSDIALOG_CANCELBUTTON")); // NOI18N
-        jbtCancel.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancel.setText(bundle.getString("OPTIONSDIALOG_CANCELBUTTON")); // NOI18N
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCancelActionPerformed(evt);
+                jbtnCancelActionPerformed(evt);
             }
         });
 
-        jbtApply.setText(bundle.getString("OPTIONSDIALOG_APPLYBUTTON")); // NOI18N
-        jbtApply.addActionListener(new java.awt.event.ActionListener() {
+        jbtnApply.setText(bundle.getString("OPTIONSDIALOG_APPLYBUTTON")); // NOI18N
+        jbtnApply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtApplyActionPerformed(evt);
+                jbtnApplyActionPerformed(evt);
             }
         });
 
         jpBookLocation.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("OPTIONSDIALOG_BOOKLOCATIONBORDER"))); // NOI18N
 
         jlblCustomLocation.setText(bundle.getString("OPTIONSDIALOG_LABELCUSTOMLOCATION")); // NOI18N
+        jlblCustomLocation.setEnabled(false);
 
         jtfCustomLocation.setEnabled(false);
 
-        jbtBrowseLocation.setText("...");
-        jbtBrowseLocation.setToolTipText(bundle.getString("OPTIONSDIALOG_BROWSEBUTTONTOOLTIP")); // NOI18N
-        jbtBrowseLocation.setEnabled(false);
-        jbtBrowseLocation.addActionListener(new java.awt.event.ActionListener() {
+        jbtnBrowseLocation.setText(bundle.getString("Options.jbtnBrowseLocation.text")); // NOI18N
+        jbtnBrowseLocation.setToolTipText("null");
+        jbtnBrowseLocation.setEnabled(false);
+        jbtnBrowseLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtBrowseLocationActionPerformed(evt);
+                jbtnBrowseLocationActionPerformed(evt);
             }
         });
 
+        btgBookLocation.add(jrbtUseHome);
+        jrbtUseHome.setSelected(true);
         jrbtUseHome.setText(bundle.getString("OPTIONSDIALOG_USEHOMEOPTION")); // NOI18N
         jrbtUseHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +113,7 @@ public class Options extends javax.swing.JDialog {
             }
         });
 
+        btgBookLocation.add(jrbtUseMyDocuments);
         jrbtUseMyDocuments.setText(bundle.getString("OPTIONSDIALOG_USEMYDOCUMENTSOPTION")); // NOI18N
         jrbtUseMyDocuments.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +121,7 @@ public class Options extends javax.swing.JDialog {
             }
         });
 
+        btgBookLocation.add(jrbtCustomLocation);
         jrbtCustomLocation.setText(bundle.getString("OPTIONSDIALOG_CUSTOMOPTION")); // NOI18N
         jrbtCustomLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,12 +140,12 @@ public class Options extends javax.swing.JDialog {
                         .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbtCustomLocation)
                             .addGroup(jpBookLocationLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
+                                .addGap(12, 12, 12)
                                 .addComponent(jlblCustomLocation)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfCustomLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtBrowseLocation))
+                        .addComponent(jtfCustomLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jbtnBrowseLocation))
                     .addComponent(jrbtUseHome)
                     .addComponent(jrbtUseMyDocuments))
                 .addContainerGap())
@@ -152,17 +157,13 @@ public class Options extends javax.swing.JDialog {
                 .addComponent(jrbtUseHome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jrbtUseMyDocuments)
-                .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpBookLocationLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtBrowseLocation)
-                            .addComponent(jtfCustomLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpBookLocationLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jrbtCustomLocation)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlblCustomLocation)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrbtCustomLocation)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblCustomLocation)
+                    .addComponent(jtfCustomLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnBrowseLocation))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -186,7 +187,7 @@ public class Options extends javax.swing.JDialog {
 
         jtfUsername.setEnabled(false);
 
-        jpfPassword.setText("jPasswordField1");
+        jpfPassword.setText(bundle.getString("Options.jpfPassword.text")); // NOI18N
         jpfPassword.setEnabled(false);
 
         jlblUsername.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYUSER")); // NOI18N
@@ -216,10 +217,10 @@ public class Options extends javax.swing.JDialog {
                             .addComponent(jlblProxyType))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcbxProxyType, 0, 184, Short.MAX_VALUE)
-                            .addComponent(jtfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                            .addComponent(jtfProxyAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                            .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                            .addComponent(jcbxProxyType, 0, 216, Short.MAX_VALUE)
+                            .addComponent(jtfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(jtfProxyAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlblProxyPort)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,10 +274,10 @@ public class Options extends javax.swing.JDialog {
                     .addComponent(jlblOwnerName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfOwnerName, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                    .addComponent(jtfOwnerName, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                     .addComponent(jchkSaveCreationDate)
                     .addComponent(jchkPopulateCategories)
-                    .addComponent(jtfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpNewBookOptionsLayout.setVerticalGroup(
@@ -305,11 +306,11 @@ public class Options extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpNewBookOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtApply)
+                        .addComponent(jbtnApply)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtCancel)
+                        .addComponent(jbtnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtHelp))
+                        .addComponent(jbtnHelp))
                     .addComponent(jpBookLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpInternetOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -323,33 +324,33 @@ public class Options extends javax.swing.JDialog {
                 .addComponent(jpBookLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpInternetOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtHelp)
-                    .addComponent(jbtCancel)
-                    .addComponent(jbtApply))
+                    .addComponent(jbtnHelp)
+                    .addComponent(jbtnCancel)
+                    .addComponent(jbtnApply))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
+    private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
         //TODO: help for Options dialog
-    }//GEN-LAST:event_jbtHelpActionPerformed
+}//GEN-LAST:event_jbtnHelpActionPerformed
 
-    private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
+    private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
         //TODO: clear all fields so that another call to the options dialog works fine
         dispose();
-    }//GEN-LAST:event_jbtCancelActionPerformed
+}//GEN-LAST:event_jbtnCancelActionPerformed
 
-    private void jbtApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtApplyActionPerformed
+    private void jbtnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnApplyActionPerformed
         //TODO: apply chagens
-}//GEN-LAST:event_jbtApplyActionPerformed
+}//GEN-LAST:event_jbtnApplyActionPerformed
 
-    private void jbtBrowseLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseLocationActionPerformed
+    private void jbtnBrowseLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseLocationActionPerformed
         //TODO: browse for default location
-    }//GEN-LAST:event_jbtBrowseLocationActionPerformed
+}//GEN-LAST:event_jbtnBrowseLocationActionPerformed
 
     private void jchkUseProxyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkUseProxyActionPerformed
         //TODO: checkbox to use proxy
@@ -357,25 +358,25 @@ public class Options extends javax.swing.JDialog {
 
     private void jrbtCustomLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtCustomLocationActionPerformed
         jtfCustomLocation.setEditable(true);
-        jbtBrowseLocation.setEnabled(true);
+        jbtnBrowseLocation.setEnabled(true);
     }//GEN-LAST:event_jrbtCustomLocationActionPerformed
 
     private void jrbtUseMyDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtUseMyDocumentsActionPerformed
         jtfCustomLocation.setEditable(false);
-        jbtBrowseLocation.setEnabled(false);
+        jbtnBrowseLocation.setEnabled(false);
     }//GEN-LAST:event_jrbtUseMyDocumentsActionPerformed
 
     private void jrbtUseHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtUseHomeActionPerformed
         jtfCustomLocation.setEditable(false);
-        jbtBrowseLocation.setEnabled(false);
+        jbtnBrowseLocation.setEnabled(false);
     }//GEN-LAST:event_jrbtUseHomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgBookLocation;
-    private javax.swing.JButton jbtApply;
-    private javax.swing.JButton jbtBrowseLocation;
-    private javax.swing.JButton jbtCancel;
-    private javax.swing.JButton jbtHelp;
+    private javax.swing.JButton jbtnApply;
+    private javax.swing.JButton jbtnBrowseLocation;
+    private javax.swing.JButton jbtnCancel;
+    private javax.swing.JButton jbtnHelp;
     private javax.swing.JComboBox jcbxProxyType;
     private javax.swing.JCheckBox jchkPopulateCategories;
     private javax.swing.JCheckBox jchkSaveCreationDate;

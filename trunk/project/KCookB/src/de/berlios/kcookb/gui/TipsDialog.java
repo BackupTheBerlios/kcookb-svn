@@ -44,9 +44,9 @@ public class TipsDialog extends javax.swing.JDialog {
         jbtDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
-        setTitle(bundle.getString("TIPSDIALOG_TITLE")); // NOI18N
+        setTitle("null");
 
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jpAvailableTips.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TIPSDIALOG_AVAILABLETIPSBORDERTITLE"))); // NOI18N
 
         jlstAvailableTips.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -60,7 +60,7 @@ public class TipsDialog extends javax.swing.JDialog {
         );
         jpAvailableTipsLayout.setVerticalGroup(
             jpAvailableTipsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpAvailableTips, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+            .addComponent(jscpAvailableTips, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
         );
 
         jpText.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TIPSDIALOG_TIPTEXTBORDERTITLE"))); // NOI18N
@@ -135,7 +135,7 @@ public class TipsDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpText, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                     .addComponent(jpAvailableTips, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

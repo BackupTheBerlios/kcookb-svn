@@ -45,14 +45,13 @@ public class Export extends javax.swing.JDialog {
         jscpAvailableTypes = new javax.swing.JScrollPane();
         jlistAvailableTypes = new javax.swing.JList(exportIcons);
         jpOptions = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jbtHelp = new javax.swing.JButton();
-        jbtCancel = new javax.swing.JButton();
-        jbtExport = new javax.swing.JButton();
+        jbtnHelp = new javax.swing.JButton();
+        jbtnCancel = new javax.swing.JButton();
+        jbtnExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jpAvailableTypes.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_AVAILABLEFORMATS"))); // NOI18N
 
         jscpAvailableTypes.setViewportView(jlistAvailableTypes);
@@ -65,51 +64,31 @@ public class Export extends javax.swing.JDialog {
         );
         jpAvailableTypesLayout.setVerticalGroup(
             jpAvailableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+            .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
         );
 
         jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_OPTIONS_TITLE"))); // NOI18N
+        jpOptions.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jpOptionsLayout = new javax.swing.GroupLayout(jpOptions);
-        jpOptions.setLayout(jpOptionsLayout);
-        jpOptionsLayout.setHorizontalGroup(
-            jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jpOptionsLayout.setVerticalGroup(
-            jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jbtHelp.setText(bundle.getString("EXPORTDIALOG_HELPBUTTON")); // NOI18N
-        jbtHelp.addActionListener(new java.awt.event.ActionListener() {
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("de/berlios/kcookb/gui/Bundle"); // NOI18N
+        jbtnHelp.setText(bundle1.getString("EXPORTDIALOG_HELPBUTTON")); // NOI18N
+        jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtHelpActionPerformed(evt);
+                jbtnHelpActionPerformed(evt);
             }
         });
 
-        jbtCancel.setText(bundle.getString("EXPORTDIALOG_CANCELBUTTON")); // NOI18N
-        jbtCancel.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancel.setText(bundle.getString("EXPORTDIALOG_CANCELBUTTON")); // NOI18N
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCancelActionPerformed(evt);
+                jbtnCancelActionPerformed(evt);
             }
         });
 
-        jbtExport.setText(bundle.getString("EXPORTDIALOG_EXPORTBUTTON")); // NOI18N
-        jbtExport.addActionListener(new java.awt.event.ActionListener() {
+        jbtnExport.setText(bundle.getString("EXPORTDIALOG_EXPORTBUTTON")); // NOI18N
+        jbtnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtExportActionPerformed(evt);
+                jbtnExportActionPerformed(evt);
             }
         });
 
@@ -123,13 +102,13 @@ public class Export extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpAvailableTypes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jpOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtExport)
+                        .addComponent(jbtnExport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtCancel)
+                        .addComponent(jbtnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtHelp)))
+                        .addComponent(jbtnHelp)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -138,35 +117,34 @@ public class Export extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jpAvailableTypes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtHelp)
-                    .addComponent(jbtCancel)
-                    .addComponent(jbtExport))
+                    .addComponent(jbtnHelp)
+                    .addComponent(jbtnCancel)
+                    .addComponent(jbtnExport))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
+    private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtCancelActionPerformed
+}//GEN-LAST:event_jbtnCancelActionPerformed
 
-    private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
+    private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtHelpActionPerformed
+}//GEN-LAST:event_jbtnHelpActionPerformed
 
-    private void jbtExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExportActionPerformed
+    private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtExportActionPerformed
+}//GEN-LAST:event_jbtnExportActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jbtCancel;
-    private javax.swing.JButton jbtExport;
-    private javax.swing.JButton jbtHelp;
+    private javax.swing.JButton jbtnCancel;
+    private javax.swing.JButton jbtnExport;
+    private javax.swing.JButton jbtnHelp;
     private javax.swing.JList jlistAvailableTypes;
     private javax.swing.JPanel jpAvailableTypes;
     private javax.swing.JPanel jpOptions;

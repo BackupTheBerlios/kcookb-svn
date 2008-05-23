@@ -38,20 +38,20 @@ public class NewBook extends javax.swing.JDialog {
         jlblNewBook = new javax.swing.JLabel();
         jtfNewBookName = new javax.swing.JTextField();
         jbtBrowse = new javax.swing.JButton();
-        jbtHelp = new javax.swing.JButton();
-        jbtCancel = new javax.swing.JButton();
-        jbtOK = new javax.swing.JButton();
+        jbtnHelp = new javax.swing.JButton();
+        jbtnCancel = new javax.swing.JButton();
+        jbtnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setUndecorated(true);
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jpNewbook.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("NEWBOOKDIALOG_BOXTITLE"))); // NOI18N
 
         jlblNewBook.setText(bundle.getString("NEWBOOKDIALOG_NAME_LABEL")); // NOI18N
 
-        jbtBrowse.setText("...");
+        jbtBrowse.setText(bundle.getString("NewBook.jbtBrowse.text")); // NOI18N
         jbtBrowse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtBrowseActionPerformed(evt);
@@ -63,9 +63,10 @@ public class NewBook extends javax.swing.JDialog {
         jpNewbookLayout.setHorizontalGroup(
             jpNewbookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpNewbookLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jlblNewBook)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfNewBookName, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                .addComponent(jtfNewBookName, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtBrowse))
         );
@@ -73,30 +74,30 @@ public class NewBook extends javax.swing.JDialog {
             jpNewbookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpNewbookLayout.createSequentialGroup()
                 .addGroup(jpNewbookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblNewBook)
                     .addComponent(jbtBrowse)
-                    .addComponent(jtfNewBookName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNewBookName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblNewBook))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jbtHelp.setText(bundle.getString("NEWBOOKDIALOG_HELPBUTTON")); // NOI18N
-        jbtHelp.addActionListener(new java.awt.event.ActionListener() {
+        jbtnHelp.setText(bundle.getString("NEWBOOKDIALOG_HELPBUTTON")); // NOI18N
+        jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtHelpActionPerformed(evt);
+                jbtnHelpActionPerformed(evt);
             }
         });
 
-        jbtCancel.setText(bundle.getString("NEWBOOKDIALOG_CANCELBUTTON")); // NOI18N
-        jbtCancel.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancel.setText(bundle.getString("NEWBOOKDIALOG_CANCELBUTTON")); // NOI18N
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCancelActionPerformed(evt);
+                jbtnCancelActionPerformed(evt);
             }
         });
 
-        jbtOK.setText(bundle.getString("NEWBOOKDIALOG_CREATEBUTTON")); // NOI18N
-        jbtOK.addActionListener(new java.awt.event.ActionListener() {
+        jbtnOK.setText(bundle.getString("NEWBOOKDIALOG_CREATEBUTTON")); // NOI18N
+        jbtnOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtOKActionPerformed(evt);
+                jbtnOKActionPerformed(evt);
             }
         });
 
@@ -106,44 +107,47 @@ public class NewBook extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpNewbook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtOK)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtnOK)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtCancel)
+                        .addComponent(jbtnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtHelp)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbtnHelp))
+                    .addComponent(jpNewbook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtnCancel, jbtnHelp, jbtnOK});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpNewbook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpNewbook, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtHelp)
-                    .addComponent(jbtCancel)
-                    .addComponent(jbtOK))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtnHelp)
+                    .addComponent(jbtnCancel)
+                    .addComponent(jbtnOK))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtHelpActionPerformed
+    private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
         throw new UnsupportedOperationException("Not implemented yet");
-    }//GEN-LAST:event_jbtHelpActionPerformed
+}//GEN-LAST:event_jbtnHelpActionPerformed
 
-    private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
+    private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
         jtfNewBookName.setText("");
         dispose();
-    }//GEN-LAST:event_jbtCancelActionPerformed
+}//GEN-LAST:event_jbtnCancelActionPerformed
 
-    private void jbtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtOKActionPerformed
+    private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
         ((KCookBGui)getOwner()).newBook(jtfNewBookName.getText());
-    }//GEN-LAST:event_jbtOKActionPerformed
+}//GEN-LAST:event_jbtnOKActionPerformed
 
     private void jbtBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseActionPerformed
         //JFileChooser jfc = new JFileChooser();
@@ -152,9 +156,9 @@ public class NewBook extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtBrowse;
-    private javax.swing.JButton jbtCancel;
-    private javax.swing.JButton jbtHelp;
-    private javax.swing.JButton jbtOK;
+    private javax.swing.JButton jbtnCancel;
+    private javax.swing.JButton jbtnHelp;
+    private javax.swing.JButton jbtnOK;
     private javax.swing.JLabel jlblNewBook;
     private javax.swing.JPanel jpNewbook;
     private javax.swing.JTextField jtfNewBookName;

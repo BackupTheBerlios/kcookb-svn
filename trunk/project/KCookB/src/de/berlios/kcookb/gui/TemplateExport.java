@@ -48,10 +48,10 @@ public class TemplateExport extends javax.swing.JDialog {
         jbtExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
-        setTitle(bundle.getString("TEMPLATEEXPORTDIALOG_TITLE")); // NOI18N
+        setTitle("null");
         setResizable(false);
 
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/gui/Bundle"); // NOI18N
         jpTemplates.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TEMPLATEEXPORTDIALOG_TEMPLATESBORDER"))); // NOI18N
 
         jlstTemplates.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -70,38 +70,39 @@ public class TemplateExport extends javax.swing.JDialog {
         );
         jpTemplatesLayout.setVerticalGroup(
             jpTemplatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscpTemplates, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+            .addComponent(jscpTemplates, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
-        jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TEMPLATEEXPORTDIALOG_OPTIONSBORDER"))); // NOI18N
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
+        jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle1.getString("TEMPLATEEXPORTDIALOG_OPTIONSBORDER"))); // NOI18N
 
-        jpPreview.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("TEMPLATEEXPORTDIALOG_PREVIEWBORDER"))); // NOI18N
+        jpPreview.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle1.getString("TEMPLATEEXPORTDIALOG_PREVIEWBORDER"))); // NOI18N
 
-        jlblPreview.setText("jLabel1");
+        jlblPreview.setText(bundle1.getString("TemplateExport.jlblPreview.text")); // NOI18N
 
         javax.swing.GroupLayout jpPreviewLayout = new javax.swing.GroupLayout(jpPreview);
         jpPreview.setLayout(jpPreviewLayout);
         jpPreviewLayout.setHorizontalGroup(
             jpPreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlblPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+            .addComponent(jlblPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
         );
         jpPreviewLayout.setVerticalGroup(
             jpPreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlblPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+            .addComponent(jlblPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
         );
 
-        jlblName.setText(bundle.getString("TEMPLATEEXPORTDIALOG_LABELNAME")); // NOI18N
+        jlblName.setText(bundle1.getString("TEMPLATEEXPORTDIALOG_LABELNAME")); // NOI18N
 
-        jlblExportTo.setText(bundle.getString("TEMPLATEEXPORTDIALOG_LABELEXPORTTO")); // NOI18N
+        jlblExportTo.setText(bundle1.getString("TEMPLATEEXPORTDIALOG_LABELEXPORTTO")); // NOI18N
 
-        jbtBrowse.setText("...");
+        jbtBrowse.setText(bundle1.getString("TemplateExport.jbtBrowse.text")); // NOI18N
         jbtBrowse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtBrowseActionPerformed(evt);
             }
         });
 
-        jchkOpenAfterExport.setText(bundle.getString("TEMPLATEEXPORTDIALOG_OPENAFTEREXPORT")); // NOI18N
+        jchkOpenAfterExport.setText(bundle1.getString("TEMPLATEEXPORTDIALOG_OPENAFTEREXPORT")); // NOI18N
 
         javax.swing.GroupLayout jpOptionsLayout = new javax.swing.GroupLayout(jpOptions);
         jpOptions.setLayout(jpOptionsLayout);
@@ -121,9 +122,9 @@ public class TemplateExport extends javax.swing.JDialog {
                             .addGroup(jpOptionsLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                    .addComponent(jtfName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addGroup(jpOptionsLayout.createSequentialGroup()
-                                        .addComponent(jtfExportTo, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                        .addComponent(jtfExportTo, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jbtBrowse)))))))
                 .addContainerGap())
@@ -143,24 +144,24 @@ public class TemplateExport extends javax.swing.JDialog {
                     .addComponent(jtfExportTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jchkOpenAfterExport)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jbtHelp.setText(bundle.getString("TEMPLATEEXPORTDIALOG_HELPBUTTON")); // NOI18N
+        jbtHelp.setText(bundle1.getString("TEMPLATEEXPORTDIALOG_HELPBUTTON")); // NOI18N
         jbtHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtHelpActionPerformed(evt);
             }
         });
 
-        jbtCancel.setText(bundle.getString("TEMPLATEEXPORTDIALOG_CANCELBUTTON")); // NOI18N
+        jbtCancel.setText(bundle1.getString("TEMPLATEEXPORTDIALOG_CANCELBUTTON")); // NOI18N
         jbtCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtCancelActionPerformed(evt);
             }
         });
 
-        jbtExport.setText(bundle.getString("TEMPLATEEXPORTDIALOG_EXPORTBUTTON")); // NOI18N
+        jbtExport.setText(bundle1.getString("TEMPLATEEXPORTDIALOG_EXPORTBUTTON")); // NOI18N
         jbtExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtExportActionPerformed(evt);

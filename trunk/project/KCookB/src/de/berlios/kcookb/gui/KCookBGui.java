@@ -304,8 +304,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jmiAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
-        setTitle(bundle.getString("WINDOW_TITLE")); // NOI18N
+        setTitle("null");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -316,6 +315,7 @@ public class KCookBGui extends javax.swing.JFrame {
         jtbMainBar.setRollover(true);
 
         jbtNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/toolbar/tb-new-book.png"))); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jbtNewBook.setToolTipText(bundle.getString("MAINBAR_TIP_NEWBOOK")); // NOI18N
         jbtNewBook.setFocusable(false);
         jbtNewBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -511,11 +511,11 @@ public class KCookBGui extends javax.swing.JFrame {
         jpTabType.setLayout(jpTabTypeLayout);
         jpTabTypeLayout.setHorizontalGroup(
             jpTabTypeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
         );
         jpTabTypeLayout.setVerticalGroup(
             jpTabTypeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            .add(jscpTreeTypeScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
         );
 
         jtpTreeTabs.addTab(bundle.getString("WINDOW_TABCATEGORIES"), jpTabType); // NOI18N
@@ -526,11 +526,11 @@ public class KCookBGui extends javax.swing.JFrame {
         jpTabLabel.setLayout(jpTabLabelLayout);
         jpTabLabelLayout.setHorizontalGroup(
             jpTabLabelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
         );
         jpTabLabelLayout.setVerticalGroup(
             jpTabLabelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            .add(jscpTreeLabelScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
         );
 
         jtpTreeTabs.addTab(bundle.getString("WINDOW_LABELTAB"), jpTabLabel); // NOI18N
@@ -541,17 +541,17 @@ public class KCookBGui extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
         );
 
-        jtpTreeTabs.addTab("", new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/tabbed-stared.png")), jPanel1); // NOI18N
+        jtpTreeTabs.addTab(bundle.getString("KCookBGui.jPanel1.TabConstraints.tabTitle"), new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/tabbed-stared.png")), jPanel1); // NOI18N
 
         jspMainSplit.setLeftComponent(jtpTreeTabs);
-        jtpTreeTabs.getAccessibleContext().setAccessibleName(bundle.getString("WINDOW_LABELTAB")); // NOI18N
+        jtpTreeTabs.getAccessibleContext().setAccessibleName("null");
 
         jepRecipe.setEditable(false);
         jscpEditor.setViewportView(jepRecipe);
@@ -560,11 +560,11 @@ public class KCookBGui extends javax.swing.JFrame {
         jpMainRightPanel.setLayout(jpMainRightPanelLayout);
         jpMainRightPanelLayout.setHorizontalGroup(
             jpMainRightPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpEditor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpEditor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
         );
         jpMainRightPanelLayout.setVerticalGroup(
             jpMainRightPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpEditor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .add(jscpEditor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
         );
 
         jspMainSplit.setRightComponent(jpMainRightPanel);

@@ -37,56 +37,57 @@ public class NoteDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jtbHelp = new javax.swing.JButton();
-        jtbCancel = new javax.swing.JButton();
-        jtbSave = new javax.swing.JButton();
+        jpNotes = new javax.swing.JPanel();
+        jscpNotes = new javax.swing.JScrollPane();
+        jtaNotes = new javax.swing.JTextArea();
+        jbtnHelp = new javax.swing.JButton();
+        jbtnCancel = new javax.swing.JButton();
+        jbtnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Notas para a receita "));
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
+        jpNotes.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("NoteDialog.jpNotes.border.title"))); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtaNotes.setColumns(20);
+        jtaNotes.setRows(5);
+        jscpNotes.setViewportView(jtaNotes);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpNotesLayout = new javax.swing.GroupLayout(jpNotes);
+        jpNotes.setLayout(jpNotesLayout);
+        jpNotesLayout.setHorizontalGroup(
+            jpNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNotesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(jscpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpNotesLayout.setVerticalGroup(
+            jpNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNotesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                .addComponent(jscpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jtbHelp.setText("Ajudar");
-        jtbHelp.addActionListener(new java.awt.event.ActionListener() {
+        jbtnHelp.setText(bundle.getString("NoteDialog.jbtnHelp.text")); // NOI18N
+        jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtbHelpActionPerformed(evt);
+                jbtnHelpActionPerformed(evt);
             }
         });
 
-        jtbCancel.setText("Cancelar");
-        jtbCancel.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancel.setText(bundle.getString("NoteDialog.jbtnCancel.text")); // NOI18N
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtbCancelActionPerformed(evt);
+                jbtnCancelActionPerformed(evt);
             }
         });
 
-        jtbSave.setText("Guardar");
-        jtbSave.addActionListener(new java.awt.event.ActionListener() {
+        jbtnSave.setText(bundle.getString("NoteDialog.jbtnSave.text")); // NOI18N
+        jbtnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtbSaveActionPerformed(evt);
+                jbtnSaveActionPerformed(evt);
             }
         });
 
@@ -97,51 +98,51 @@ public class NoteDialog extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpNotes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jtbSave)
+                        .addComponent(jbtnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtbCancel)
+                        .addComponent(jbtnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtbHelp)))
+                        .addComponent(jbtnHelp)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtbHelp)
-                    .addComponent(jtbCancel)
-                    .addComponent(jtbSave))
+                    .addComponent(jbtnHelp)
+                    .addComponent(jbtnCancel)
+                    .addComponent(jbtnSave))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbCancelActionPerformed
+    private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
         //TODO:
         dispose();
-    }//GEN-LAST:event_jtbCancelActionPerformed
+}//GEN-LAST:event_jbtnCancelActionPerformed
 
-    private void jtbHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbHelpActionPerformed
+    private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtbHelpActionPerformed
+}//GEN-LAST:event_jbtnHelpActionPerformed
 
-    private void jtbSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbSaveActionPerformed
+    private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtbSaveActionPerformed
+}//GEN-LAST:event_jbtnSaveActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton jtbCancel;
-    private javax.swing.JButton jtbHelp;
-    private javax.swing.JButton jtbSave;
+    private javax.swing.JButton jbtnCancel;
+    private javax.swing.JButton jbtnHelp;
+    private javax.swing.JButton jbtnSave;
+    private javax.swing.JPanel jpNotes;
+    private javax.swing.JScrollPane jscpNotes;
+    private javax.swing.JTextArea jtaNotes;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -50,7 +50,7 @@ public class About extends javax.swing.JDialog {
         jtbpAbout = new javax.swing.JTabbedPane();
         jpLogo = new javax.swing.JPanel();
         jlblLogo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jscpDetails = new javax.swing.JScrollPane();
         jtaDetails = new javax.swing.JTextArea();
         jtaDetails.setText(loadDetails());
         jpLicense = new javax.swing.JPanel();
@@ -62,8 +62,7 @@ public class About extends javax.swing.JDialog {
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/languages/language"); // NOI18N
-        setTitle(bundle.getString("ABOUTDIALOG_TITLE")); // NOI18N
+        setTitle("null");
         setResizable(false);
 
         jlblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/logo.png"))); // NOI18N
@@ -72,7 +71,7 @@ public class About extends javax.swing.JDialog {
         jtaDetails.setEditable(false);
         jtaDetails.setRows(5);
         jtaDetails.setBorder(null);
-        jScrollPane1.setViewportView(jtaDetails);
+        jscpDetails.setViewportView(jtaDetails);
 
         javax.swing.GroupLayout jpLogoLayout = new javax.swing.GroupLayout(jpLogo);
         jpLogo.setLayout(jpLogoLayout);
@@ -81,7 +80,7 @@ public class About extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLogoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                    .addComponent(jscpDetails, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addComponent(jlblLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -90,11 +89,12 @@ public class About extends javax.swing.JDialog {
             .addGroup(jpLogoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jscpDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jtbpAbout.addTab(bundle.getString("ABOUTDIALOG_LOGOTAB_TITLE"), jpLogo); // NOI18N
 
         jepLicense.setEditable(false);
@@ -106,14 +106,14 @@ public class About extends javax.swing.JDialog {
             jpLicenseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLicenseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addComponent(jscpLicense)
                 .addContainerGap())
         );
         jpLicenseLayout.setVerticalGroup(
             jpLicenseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLicenseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -134,11 +134,11 @@ public class About extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JEditorPane jepLicense;
     private javax.swing.JLabel jlblLogo;
     private javax.swing.JPanel jpLicense;
     private javax.swing.JPanel jpLogo;
+    private javax.swing.JScrollPane jscpDetails;
     private javax.swing.JScrollPane jscpLicense;
     private javax.swing.JTextArea jtaDetails;
     private javax.swing.JTabbedPane jtbpAbout;

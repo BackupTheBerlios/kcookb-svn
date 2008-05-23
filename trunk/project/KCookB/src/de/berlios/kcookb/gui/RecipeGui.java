@@ -91,13 +91,14 @@ public class RecipeGui extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("dad "));
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel5.border.title"))); // NOI18N
 
-        jLabel1.setText("Nome:");
+        jLabel1.setText(bundle.getString("RecipeGui.jLabel1.text")); // NOI18N
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText(bundle.getString("RecipeGui.jTextField1.text")); // NOI18N
 
-        jLabel4.setText("Dificuldade:");
+        jLabel4.setText(bundle.getString("RecipeGui.jLabel4.text")); // NOI18N
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -105,9 +106,9 @@ public class RecipeGui extends javax.swing.JDialog {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel5.setText("Tipo:");
+        jLabel5.setText(bundle.getString("RecipeGui.jLabel5.text")); // NOI18N
 
-        jLabel6.setText("Preço:");
+        jLabel6.setText(bundle.getString("RecipeGui.jLabel6.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -116,11 +117,11 @@ public class RecipeGui extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -156,17 +157,17 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("qweqw"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel10.border.title"))); // NOI18N
 
-        jLabel7.setText("Etiquetas:");
+        jLabel7.setText(bundle.getString("RecipeGui.jLabel7.text")); // NOI18N
 
-        jTextField4.setText("jTextField4");
+        jTextField4.setText(bundle.getString("RecipeGui.jTextField4.text")); // NOI18N
 
-        jLabel8.setText("(separe mais que uma etiqueta por virgulas)");
+        jLabel8.setText(bundle.getString("RecipeGui.jLabel8.text")); // NOI18N
 
-        jButton10.setText("Notas");
+        jButton10.setText(bundle.getString("RecipeGui.jButton10.text")); // NOI18N
 
-        jButton11.setText("Dicas");
+        jButton11.setText(bundle.getString("RecipeGui.jButton11.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -181,7 +182,7 @@ public class RecipeGui extends javax.swing.JDialog {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jButton10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,13 +204,13 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("fadfad"));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel11.border.title"))); // NOI18N
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +232,7 @@ public class RecipeGui extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,25 +241,25 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jtpMainTab.addTab("Geral", jPanel1);
+        jtpMainTab.addTab(bundle.getString("RecipeGui.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("asdas"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel6.border.title"))); // NOI18N
 
-        jLabel2.setText("Ingrediente:");
+        jLabel2.setText(bundle.getString("RecipeGui.jLabel2.text")); // NOI18N
 
-        jTextField2.setText("jTextField2");
+        jTextField2.setText(bundle.getString("RecipeGui.jTextField2.text")); // NOI18N
 
-        jButton1.setText("+");
+        jButton1.setText(bundle.getString("RecipeGui.jButton1.text")); // NOI18N
 
-        jButton7.setText("jButton7");
+        jButton7.setText(bundle.getString("RecipeGui.jButton7.text")); // NOI18N
 
-        jButton8.setText("jButton8");
+        jButton8.setText(bundle.getString("RecipeGui.jButton8.text")); // NOI18N
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane1.setViewportView(jTextArea3);
 
-        jButton9.setText("jButton9");
+        jButton9.setText(bundle.getString("RecipeGui.jButton9.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -270,8 +271,8 @@ public class RecipeGui extends javax.swing.JDialog {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +298,7 @@ public class RecipeGui extends javax.swing.JDialog {
                         .addComponent(jButton8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton9))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -318,9 +319,9 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jtpMainTab.addTab("Ingredientes", jPanel2);
+        jtpMainTab.addTab(bundle.getString("RecipeGui.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("qwqwe"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel8.border.title"))); // NOI18N
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -332,13 +333,13 @@ public class RecipeGui extends javax.swing.JDialog {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -359,15 +360,15 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jtpMainTab.addTab("Preparação", jPanel3);
+        jtpMainTab.addTab(bundle.getString("RecipeGui.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("qewqew"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel7.border.title"))); // NOI18N
 
-        jLabel3.setText("Imagem Principal:");
+        jLabel3.setText(bundle.getString("RecipeGui.jLabel3.text")); // NOI18N
 
-        jTextField3.setText("jTextField3");
+        jTextField3.setText(bundle.getString("RecipeGui.jTextField3.text")); // NOI18N
 
-        jButton5.setText("jButton5");
+        jButton5.setText(bundle.getString("RecipeGui.jButton5.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -377,7 +378,7 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
                 .addContainerGap())
@@ -392,19 +393,19 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("adasda"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel9.border.title"))); // NOI18N
 
-        jButton2.setText("jButton2");
+        jButton2.setText(bundle.getString("RecipeGui.jButton2.text")); // NOI18N
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
 
-        jButton3.setText("jButton3");
+        jButton3.setText(bundle.getString("RecipeGui.jButton3.text")); // NOI18N
 
-        jButton4.setText("jButton4");
+        jButton4.setText(bundle.getString("RecipeGui.jButton4.text")); // NOI18N
 
-        jButton6.setText("jButton6");
+        jButton6.setText(bundle.getString("RecipeGui.jButton6.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -412,7 +413,7 @@ public class RecipeGui extends javax.swing.JDialog {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,7 +435,7 @@ public class RecipeGui extends javax.swing.JDialog {
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -459,23 +460,23 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jtpMainTab.addTab("Imagens", jPanel4);
+        jtpMainTab.addTab(bundle.getString("RecipeGui.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
 
-        jbtHelp.setText("Ajuda");
+        jbtHelp.setText(bundle.getString("RecipeGui.jbtHelp.text")); // NOI18N
         jbtHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtHelpActionPerformed(evt);
             }
         });
 
-        jbtCancel.setText("Cancelar");
+        jbtCancel.setText(bundle.getString("RecipeGui.jbtCancel.text")); // NOI18N
         jbtCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtCancelActionPerformed(evt);
             }
         });
 
-        jbtSave.setText("Guardar");
+        jbtSave.setText(bundle.getString("RecipeGui.jbtSave.text")); // NOI18N
         jbtSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtSaveActionPerformed(evt);
