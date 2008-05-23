@@ -6,6 +6,7 @@
 package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.model.BookInfo;
+import de.berlios.kcookb.model.KCookB;
 
 /**
  *
@@ -13,13 +14,13 @@ import de.berlios.kcookb.model.BookInfo;
  */
 public class BookInfoGui extends javax.swing.JDialog {
 
-    private BookInfo info;
+    private KCookB book;
 
     /** Creates new form BookInfoGui */
-    public BookInfoGui(java.awt.Frame parent, boolean modal, BookInfo info) {
+    public BookInfoGui(java.awt.Frame parent, boolean modal, KCookB book) {
         super(parent, modal);
         initComponents();
-        this.info = info;
+        this.book = book;
     }
 
     public void showCentered() {
