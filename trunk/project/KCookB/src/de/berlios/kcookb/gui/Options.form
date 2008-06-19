@@ -254,10 +254,10 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jcbxProxyType" pref="216" max="32767" attributes="0"/>
-                              <Component id="jtfUsername" alignment="0" pref="216" max="32767" attributes="0"/>
-                              <Component id="jtfProxyAddress" alignment="0" pref="216" max="32767" attributes="0"/>
-                              <Component id="jpfPassword" alignment="0" pref="216" max="32767" attributes="0"/>
+                              <Component id="jcbxProxyType" pref="264" max="32767" attributes="0"/>
+                              <Component id="jtfUsername" alignment="0" pref="264" max="32767" attributes="0"/>
+                              <Component id="jtfProxyAddress" alignment="0" pref="264" max="32767" attributes="0"/>
+                              <Component id="jpfPassword" alignment="0" pref="264" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jlblProxyPort" min="-2" max="-2" attributes="0"/>
@@ -316,6 +316,7 @@
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_LABELPROXYADDRESS" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfProxyAddress">
@@ -328,6 +329,7 @@
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_LABELPROXYPORT" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jffProxyPort">
@@ -353,6 +355,7 @@
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_LABELPROXYUSER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlblPassword">
@@ -360,6 +363,7 @@
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_LABELPROXYPASSWORD" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlblProxyType">
@@ -367,6 +371,7 @@
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_LABELPROXYTYPE" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jcbxProxyType">
@@ -404,10 +409,10 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jtfOwnerName" alignment="0" pref="422" max="32767" attributes="0"/>
+                      <Component id="jtfOwnerName" alignment="0" pref="438" max="32767" attributes="0"/>
                       <Component id="jchkSaveCreationDate" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jchkPopulateCategories" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfEmail" alignment="0" pref="422" max="32767" attributes="0"/>
+                      <Component id="jtfEmail" alignment="0" pref="438" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

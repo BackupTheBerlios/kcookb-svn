@@ -178,10 +178,12 @@ public class Options extends javax.swing.JDialog {
         });
 
         jlblProxyAddress.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYADDRESS")); // NOI18N
+        jlblProxyAddress.setEnabled(false);
 
         jtfProxyAddress.setEnabled(false);
 
         jlblProxyPort.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYPORT")); // NOI18N
+        jlblProxyPort.setEnabled(false);
 
         jffProxyPort.setEnabled(false);
 
@@ -191,10 +193,13 @@ public class Options extends javax.swing.JDialog {
         jpfPassword.setEnabled(false);
 
         jlblUsername.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYUSER")); // NOI18N
+        jlblUsername.setEnabled(false);
 
         jlblPassword.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYPASSWORD")); // NOI18N
+        jlblPassword.setEnabled(false);
 
         jlblProxyType.setText(bundle.getString("OPTIONSDIALOG_LABELPROXYTYPE")); // NOI18N
+        jlblProxyType.setEnabled(false);
 
         jcbxProxyType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SOCKS 4" }));
         jcbxProxyType.setEnabled(false);
@@ -217,10 +222,10 @@ public class Options extends javax.swing.JDialog {
                             .addComponent(jlblProxyType))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpInternetOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcbxProxyType, 0, 216, Short.MAX_VALUE)
-                            .addComponent(jtfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                            .addComponent(jtfProxyAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                            .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                            .addComponent(jcbxProxyType, 0, 264, Short.MAX_VALUE)
+                            .addComponent(jtfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                            .addComponent(jtfProxyAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                            .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlblProxyPort)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -274,10 +279,10 @@ public class Options extends javax.swing.JDialog {
                     .addComponent(jlblOwnerName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpNewBookOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfOwnerName, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                    .addComponent(jtfOwnerName, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                     .addComponent(jchkSaveCreationDate)
                     .addComponent(jchkPopulateCategories)
-                    .addComponent(jtfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpNewBookOptionsLayout.setVerticalGroup(
@@ -324,7 +329,7 @@ public class Options extends javax.swing.JDialog {
                 .addComponent(jpBookLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpInternetOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnHelp)
                     .addComponent(jbtnCancel)
