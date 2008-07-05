@@ -9,6 +9,10 @@ package de.berlios.kcookb.exportengine;
  *
  * @author Knitter
  */
-public class CSVExport implements ExportEngine {
+public class CSVExport implements Runnable {
+
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }

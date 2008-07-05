@@ -9,6 +9,14 @@ package de.berlios.kcookb.exportengine;
  *
  * @author Knitter
  */
-public class SQLExport implements ExportEngine {
+public class SQLExport implements Runnable {
+    
+    public SQLExport() {
+        
+    }
+
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }

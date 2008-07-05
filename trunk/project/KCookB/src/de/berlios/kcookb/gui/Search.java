@@ -3,27 +3,43 @@
  *
  * Created on 28 de Março de 2008, 0:00
  */
-
 package de.berlios.kcookb.gui;
+
+import de.berlios.kcookb.model.Recipe;
+import de.berlios.kcookb.model.RecipeDificulty;
+import de.berlios.kcookb.model.RecipePrice;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
  * @author  Knitter
  */
 public class Search extends javax.swing.JDialog {
-    
+
+    private DefaultListModel model;
+
     /** Creates new form Search */
     public Search(java.awt.Frame parent, boolean modal, String text) {
         super(parent, modal);
         initComponents();
+        if (text != null && !text.isEmpty()) {
+            KCookBGui g = (KCookBGui) getParent();
+            List<Recipe> rs = g.getBook().searchByName(text);
+            model.clear();
+            for (Recipe r : rs) {
+                model.addElement(r);
+            }
+        }
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }    
-    
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -34,7 +50,7 @@ public class Search extends javax.swing.JDialog {
 
         jpResults = new javax.swing.JPanel();
         jscpResults = new javax.swing.JScrollPane();
-        jlstResults = new javax.swing.JList();
+        jlstResults = new JList(model = new DefaultListModel());
         jbtnHelp = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
         jpOptions = new javax.swing.JPanel();
@@ -113,13 +129,9 @@ public class Search extends javax.swing.JDialog {
 
         jlbljchkSearchIn.setText(bundle.getString("Search.jlbljchkSearchIn.text")); // NOI18N
 
-        jcbxDificulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jlblDificulty.setText(bundle.getString("Search.jlblDificulty.text")); // NOI18N
 
         jlblPrice.setText(bundle.getString("Search.jlblPrice.text")); // NOI18N
-
-        jcbxPrice.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jchkSearchInRating.setText(bundle.getString("Search.jchkSearchInRating.text")); // NOI18N
 
@@ -136,7 +148,7 @@ public class Search extends javax.swing.JDialog {
                             .addGroup(jpOptionsLayout.createSequentialGroup()
                                 .addComponent(jlbljchkSearchIn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE))
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
                             .addGroup(jpOptionsLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(jpOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +175,7 @@ public class Search extends javax.swing.JDialog {
                     .addGroup(jpOptionsLayout.createSequentialGroup()
                         .addComponent(jlblText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfText, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                        .addComponent(jtfText, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnSearch)))
                 .addContainerGap())
@@ -238,11 +250,21 @@ public class Search extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
-// TODO add your handling code here:
+    if (!jtfText.getText().trim().isEmpty()) {
+        KCookBGui g = (KCookBGui) getParent();
+        List<Recipe> rs = g.getBook().search(jtfText.getText().trim(), jchkSearchInDescription.isSelected(),
+                jchkSearchInIngredientes.isSelected(), jchkSearchInLabel.isSelected(),
+                jchkSearchInRating.isSelected(), jchkSearchInType.isSelected(),
+                (RecipeDificulty) jcbxDificulty.getSelectedItem(), (RecipePrice) jcbxPrice.getSelectedItem());
+        model.clear();
+        for (Recipe r : rs) {
+            model.addElement(r);
+        }
+    }
 }//GEN-LAST:event_jbtnSearchActionPerformed
 
 private void jbtnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnShowActionPerformed
-// TODO add your handling code here:
+    ((KCookBGui) getParent()).showRecipe((Recipe) model.getElementAt(jlstResults.getSelectedIndex()));
 }//GEN-LAST:event_jbtnShowActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
@@ -252,7 +274,6 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
     dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnCancel;
@@ -276,5 +297,4 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JScrollPane jscpResults;
     private javax.swing.JTextField jtfText;
     // End of variables declaration//GEN-END:variables
-    
 }

@@ -6,6 +6,7 @@
 
 package de.berlios.kcookb.gui;
 
+import java.io.File;
 import javax.swing.JFileChooser;
 
 /**
@@ -13,6 +14,8 @@ import javax.swing.JFileChooser;
  * @author  Knitter
  */
 public class NewBook extends javax.swing.JDialog {
+    
+    private File selected;
     
     /** Creates new form NewBook */
     public NewBook(java.awt.Frame parent, boolean modal) {
@@ -137,11 +140,10 @@ public class NewBook extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: help
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-        jtfNewBookName.setText("");
         dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
@@ -150,8 +152,12 @@ public class NewBook extends javax.swing.JDialog {
 }//GEN-LAST:event_jbtnOKActionPerformed
 
     private void jbtBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseActionPerformed
-        //JFileChooser jfc = new JFileChooser();
-        //TODO: browse for the location of the new book, should start at the default location
+        //TODO: file chooser config
+        JFileChooser jfc = new JFileChooser(System.getProperty("user.home"));
+        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            selected = jfc.getSelectedFile();
+            jtfNewBookName.setText(selected.getAbsolutePath());
+        }
     }//GEN-LAST:event_jbtBrowseActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,10 +3,14 @@
  *
  * Created on 15 de Março de 2008, 18:01
  */
-
 package de.berlios.kcookb.gui;
 
-import java.util.Vector;
+import de.berlios.kcookb.exportengine.MSExcelExport;
+import de.berlios.kcookb.exportengine.PDFExport;
+import de.berlios.kcookb.exportengine.SQLExport;
+import de.berlios.kcookb.exportengine.TemplateExport;
+import de.berlios.kcookb.exportengine.XMLExport;
+import java.awt.CardLayout;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,25 +18,27 @@ import javax.swing.ImageIcon;
  * @author  Knitter
  */
 public class Export extends javax.swing.JDialog {
-    
-    private Vector exportIcons;
+
+    private ImageIcon[] exportIcons;
+
     /** Creates new form Export */
     public Export(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        exportIcons = new Vector();
-        
-        exportIcons.add(new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/export-csv.png")));
-        //TODO: add more icons.
-        
+        exportIcons = new ImageIcon[5];
+        exportIcons[0] = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/import-export/export-icon-html.png"));
+        exportIcons[1] = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/import-export/export-icon-ms-excel.png"));
+        exportIcons[2] = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/import-export/export-icon-pdf.png"));
+        exportIcons[3] = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/import-export/export-icon-sql.png"));
+        exportIcons[4] = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/import-export/export-icon-xml.png"));
         initComponents();
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }    
-    
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -45,6 +51,19 @@ public class Export extends javax.swing.JDialog {
         jscpAvailableTypes = new javax.swing.JScrollPane();
         jlistAvailableTypes = new javax.swing.JList(exportIcons);
         jpOptions = new javax.swing.JPanel();
+        jpGeneralExport = new javax.swing.JPanel();
+        jpTemplateExport = new javax.swing.JPanel();
+        jpPreview = new javax.swing.JPanel();
+        lblPreview = new javax.swing.JLabel();
+        jlblTemplate = new javax.swing.JLabel();
+        jcbxTemplate = new javax.swing.JComboBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        jlblExportName = new javax.swing.JLabel();
+        jtfExportName = new javax.swing.JTextField();
+        jlblExportTo = new javax.swing.JLabel();
+        jtfExportTo = new javax.swing.JTextField();
+        jchkOpenAfterExport = new javax.swing.JCheckBox();
+        jbtnBrowse = new javax.swing.JButton();
         jbtnHelp = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
         jbtnExport = new javax.swing.JButton();
@@ -54,6 +73,11 @@ public class Export extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jpAvailableTypes.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_AVAILABLEFORMATS"))); // NOI18N
 
+        jlistAvailableTypes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jlistAvailableTypesValueChanged(evt);
+            }
+        });
         jscpAvailableTypes.setViewportView(jlistAvailableTypes);
 
         javax.swing.GroupLayout jpAvailableTypesLayout = new javax.swing.GroupLayout(jpAvailableTypes);
@@ -68,15 +92,109 @@ public class Export extends javax.swing.JDialog {
         jpAvailableTypesLayout.setVerticalGroup(
             jpAvailableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAvailableTypesLayout.createSequentialGroup()
-                .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addComponent(jscpAvailableTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("EXPORTDIALOG_OPTIONS_TITLE"))); // NOI18N
+        jpOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("Export.jpOptions.border.title"))); // NOI18N
         jpOptions.setLayout(new java.awt.CardLayout());
 
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("de/berlios/kcookb/gui/Bundle"); // NOI18N
-        jbtnHelp.setText(bundle1.getString("EXPORTDIALOG_HELPBUTTON")); // NOI18N
+        javax.swing.GroupLayout jpGeneralExportLayout = new javax.swing.GroupLayout(jpGeneralExport);
+        jpGeneralExport.setLayout(jpGeneralExportLayout);
+        jpGeneralExportLayout.setHorizontalGroup(
+            jpGeneralExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 335, Short.MAX_VALUE)
+        );
+        jpGeneralExportLayout.setVerticalGroup(
+            jpGeneralExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 319, Short.MAX_VALUE)
+        );
+
+        jpOptions.add(jpGeneralExport, "generalexport");
+
+        jpPreview.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("Export.jpPreview.border.title"))); // NOI18N
+
+        lblPreview.setText(bundle.getString("Export.lblPreview.text")); // NOI18N
+
+        javax.swing.GroupLayout jpPreviewLayout = new javax.swing.GroupLayout(jpPreview);
+        jpPreview.setLayout(jpPreviewLayout);
+        jpPreviewLayout.setHorizontalGroup(
+            jpPreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblPreview, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+        );
+        jpPreviewLayout.setVerticalGroup(
+            jpPreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+        );
+
+        jlblTemplate.setText(bundle.getString("Export.jlblTemplate.text")); // NOI18N
+
+        jlblExportName.setText(bundle.getString("Export.jlblExportName.text")); // NOI18N
+
+        jtfExportName.setText(bundle.getString("Export.jtfExportName.text")); // NOI18N
+
+        jlblExportTo.setText(bundle.getString("Export.jlblExportTo.text")); // NOI18N
+
+        jtfExportTo.setText(bundle.getString("Export.jtfExportTo.text")); // NOI18N
+
+        jchkOpenAfterExport.setText(bundle.getString("Export.jchkOpenAfterExport.text")); // NOI18N
+
+        jbtnBrowse.setText(bundle.getString("Export.jbtnBrowse.text")); // NOI18N
+
+        javax.swing.GroupLayout jpTemplateExportLayout = new javax.swing.GroupLayout(jpTemplateExport);
+        jpTemplateExport.setLayout(jpTemplateExportLayout);
+        jpTemplateExportLayout.setHorizontalGroup(
+            jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTemplateExportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpPreview, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpTemplateExportLayout.createSequentialGroup()
+                        .addComponent(jlblTemplate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbxTemplate, 0, 263, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpTemplateExportLayout.createSequentialGroup()
+                        .addGroup(jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblExportTo)
+                            .addComponent(jlblExportName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfExportName, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                            .addComponent(jchkOpenAfterExport)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTemplateExportLayout.createSequentialGroup()
+                                .addComponent(jtfExportTo, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnBrowse)))))
+                .addContainerGap())
+        );
+        jpTemplateExportLayout.setVerticalGroup(
+            jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTemplateExportLayout.createSequentialGroup()
+                .addComponent(jpPreview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblTemplate)
+                    .addComponent(jcbxTemplate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblExportName)
+                    .addComponent(jtfExportName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblExportTo)
+                    .addComponent(jbtnBrowse)
+                    .addComponent(jtfExportTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkOpenAfterExport)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jpOptions.add(jpTemplateExport, "templateexport");
+
+        jbtnHelp.setText("null");
         jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnHelpActionPerformed(evt);
@@ -107,7 +225,7 @@ public class Export extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpAvailableTypes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+                        .addComponent(jpOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnExport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -122,7 +240,7 @@ public class Export extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jpAvailableTypes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                    .addComponent(jpOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnHelp)
@@ -139,21 +257,53 @@ public class Export extends javax.swing.JDialog {
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-        // TODO add your handling code here:
+        // TODO: help for Export dialog
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
     private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExportActionPerformed
-        // TODO add your handling code here:
+        switch (jlistAvailableTypes.getSelectedIndex()) {
+            case 0:
+                new Thread(new TemplateExport()).start();
+            case 1:
+                new Thread(new MSExcelExport()).start();
+            case 2:
+                new Thread(new PDFExport()).start();
+            case 3:
+                new Thread(new SQLExport()).start();
+            case 4:
+                new Thread(new XMLExport("")).start();
+        }
 }//GEN-LAST:event_jbtnExportActionPerformed
 
+private void jlistAvailableTypesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlistAvailableTypesValueChanged
+    CardLayout cl = (CardLayout)jpOptions.getLayout();
+    switch (jlistAvailableTypes.getSelectedIndex()) {
+        case 0:
+            cl.show(jpOptions, "templateexport");
+        default:
+            cl.show(jpOptions, "generalexport");
+    }
+}//GEN-LAST:event_jlistAvailableTypesValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnExport;
     private javax.swing.JButton jbtnHelp;
+    private javax.swing.JComboBox jcbxTemplate;
+    private javax.swing.JCheckBox jchkOpenAfterExport;
+    private javax.swing.JLabel jlblExportName;
+    private javax.swing.JLabel jlblExportTo;
+    private javax.swing.JLabel jlblTemplate;
     private javax.swing.JList jlistAvailableTypes;
     private javax.swing.JPanel jpAvailableTypes;
+    private javax.swing.JPanel jpGeneralExport;
     private javax.swing.JPanel jpOptions;
+    private javax.swing.JPanel jpPreview;
+    private javax.swing.JPanel jpTemplateExport;
     private javax.swing.JScrollPane jscpAvailableTypes;
+    private javax.swing.JTextField jtfExportName;
+    private javax.swing.JTextField jtfExportTo;
+    private javax.swing.JLabel lblPreview;
     // End of variables declaration//GEN-END:variables
-    
 }

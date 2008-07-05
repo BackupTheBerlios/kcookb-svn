@@ -5,22 +5,74 @@
  */
 package de.berlios.kcookb.gui;
 
+import de.berlios.kcookb.gui.utils.Settings;
+import javax.swing.JFileChooser;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 /**
  *
  * @author  Knitter
  */
 public class Options extends javax.swing.JDialog {
 
+    private boolean dirty;
+
     /** Creates new form Options */
     public Options(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jtfEmail.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+        });
+
+        jtfOwnerName.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+        });
+        init();
     }
 
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
+    }
+    
+    private void init() {
+        jtfEmail.setText(Settings.getSettings().getEmail());
+        boolean flag = Settings.getSettings().isUseHome();
+        if(!flag) {
+            jrbtCustomLocation.setSelected(true);
+            jtfCustomLocation.setText(Settings.getSettings().getCustomLocation());
+        }
+        flag = Settings.getSettings().isUseProxy();
+        if(flag) {
+            //TODO: set all other fields
+        }
+        jchkPopulateCategories.setSelected(Settings.getSettings().isPopulateCategories());
+        jchkSaveCreationDate.setSelected(Settings.getSettings().isSaveCreationDate());
     }
 
     /** This method is called from within the constructor to
@@ -40,7 +92,6 @@ public class Options extends javax.swing.JDialog {
         jtfCustomLocation = new javax.swing.JTextField();
         jbtnBrowseLocation = new javax.swing.JButton();
         jrbtUseHome = new javax.swing.JRadioButton();
-        jrbtUseMyDocuments = new javax.swing.JRadioButton();
         jrbtCustomLocation = new javax.swing.JRadioButton();
         jpInternetOptions = new javax.swing.JPanel();
         jchkUseProxy = new javax.swing.JCheckBox();
@@ -113,14 +164,6 @@ public class Options extends javax.swing.JDialog {
             }
         });
 
-        btgBookLocation.add(jrbtUseMyDocuments);
-        jrbtUseMyDocuments.setText(bundle.getString("OPTIONSDIALOG_USEMYDOCUMENTSOPTION")); // NOI18N
-        jrbtUseMyDocuments.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbtUseMyDocumentsActionPerformed(evt);
-            }
-        });
-
         btgBookLocation.add(jrbtCustomLocation);
         jrbtCustomLocation.setText(bundle.getString("OPTIONSDIALOG_CUSTOMOPTION")); // NOI18N
         jrbtCustomLocation.addActionListener(new java.awt.event.ActionListener() {
@@ -136,35 +179,29 @@ public class Options extends javax.swing.JDialog {
             .addGroup(jpBookLocationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpBookLocationLayout.createSequentialGroup()
-                        .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrbtCustomLocation)
-                            .addGroup(jpBookLocationLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jlblCustomLocation)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfCustomLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jbtnBrowseLocation))
                     .addComponent(jrbtUseHome)
-                    .addComponent(jrbtUseMyDocuments))
+                    .addGroup(jpBookLocationLayout.createSequentialGroup()
+                        .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlblCustomLocation)
+                            .addComponent(jrbtCustomLocation))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfCustomLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnBrowseLocation)))
                 .addContainerGap())
         );
         jpBookLocationLayout.setVerticalGroup(
             jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpBookLocationLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jrbtUseHome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbtUseMyDocuments)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jrbtCustomLocation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addGroup(jpBookLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblCustomLocation)
-                    .addComponent(jtfCustomLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnBrowseLocation))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtnBrowseLocation)
+                    .addComponent(jtfCustomLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jpInternetOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("OPTIONSDIALOG_INTERNETBORDER"))); // NOI18N
@@ -264,9 +301,19 @@ public class Options extends javax.swing.JDialog {
 
         jchkSaveCreationDate.setSelected(true);
         jchkSaveCreationDate.setText(bundle.getString("OPTIONSDIALOG_SAVECREATIONDATEOPTION")); // NOI18N
+        jchkSaveCreationDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkSaveCreationDateActionPerformed(evt);
+            }
+        });
 
         jchkPopulateCategories.setSelected(true);
         jchkPopulateCategories.setText(bundle.getString("OPTIONSDIALOG_POPULATECATEGORIESOPTION")); // NOI18N
+        jchkPopulateCategories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkPopulateCategoriesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpNewBookOptionsLayout = new javax.swing.GroupLayout(jpNewBookOptions);
         jpNewBookOptions.setLayout(jpNewBookOptionsLayout);
@@ -309,6 +356,7 @@ public class Options extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpBookLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpNewBookOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnApply)
@@ -316,7 +364,6 @@ public class Options extends javax.swing.JDialog {
                         .addComponent(jbtnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnHelp))
-                    .addComponent(jpBookLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpInternetOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -329,7 +376,7 @@ public class Options extends javax.swing.JDialog {
                 .addComponent(jpBookLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpInternetOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnHelp)
                     .addComponent(jbtnCancel)
@@ -349,32 +396,54 @@ public class Options extends javax.swing.JDialog {
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnApplyActionPerformed
-        //TODO: apply chagens
+        if (dirty) {
+            Settings.getSettings().saveSettings();
+            dirty = false;
+        }
 }//GEN-LAST:event_jbtnApplyActionPerformed
 
     private void jbtnBrowseLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseLocationActionPerformed
-        //TODO: browse for default location
+        JFileChooser jfc = new JFileChooser(System.getProperty("user.home"));
+        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jfc.setMultiSelectionEnabled(false);
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            jtfCustomLocation.setText(jfc.getSelectedFile().getAbsolutePath().trim());
+        }
 }//GEN-LAST:event_jbtnBrowseLocationActionPerformed
 
     private void jchkUseProxyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkUseProxyActionPerformed
-        //TODO: checkbox to use proxy
+        jlblPassword.setEnabled(jchkUseProxy.isSelected());
+        jpfPassword.setEnabled(jchkUseProxy.isSelected());
+        jlblProxyAddress.setEnabled(jchkUseProxy.isSelected());
+        jtfProxyAddress.setEnabled(jchkUseProxy.isSelected());
+        jlblUsername.setEnabled(jchkUseProxy.isSelected());
+        jtfUsername.setEnabled(jchkUseProxy.isSelected());
+        jlblProxyPort.setEnabled(jchkUseProxy.isSelected());
+        jffProxyPort.setEnabled(jchkUseProxy.isSelected());
+        jlblProxyType.setEnabled(jchkUseProxy.isSelected());
+        jcbxProxyType.setEnabled(jchkUseProxy.isSelected());
+        dirty = true;
     }//GEN-LAST:event_jchkUseProxyActionPerformed
 
     private void jrbtCustomLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtCustomLocationActionPerformed
         jtfCustomLocation.setEditable(true);
         jbtnBrowseLocation.setEnabled(true);
+        dirty = true;
     }//GEN-LAST:event_jrbtCustomLocationActionPerformed
-
-    private void jrbtUseMyDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtUseMyDocumentsActionPerformed
-        jtfCustomLocation.setEditable(false);
-        jbtnBrowseLocation.setEnabled(false);
-    }//GEN-LAST:event_jrbtUseMyDocumentsActionPerformed
 
     private void jrbtUseHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbtUseHomeActionPerformed
         jtfCustomLocation.setEditable(false);
         jbtnBrowseLocation.setEnabled(false);
+        dirty = true;
     }//GEN-LAST:event_jrbtUseHomeActionPerformed
 
+private void jchkSaveCreationDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkSaveCreationDateActionPerformed
+    dirty = true;
+}//GEN-LAST:event_jchkSaveCreationDateActionPerformed
+
+private void jchkPopulateCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkPopulateCategoriesActionPerformed
+    dirty = true;
+}//GEN-LAST:event_jchkPopulateCategoriesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgBookLocation;
     private javax.swing.JButton jbtnApply;
@@ -400,7 +469,6 @@ public class Options extends javax.swing.JDialog {
     private javax.swing.JPasswordField jpfPassword;
     private javax.swing.JRadioButton jrbtCustomLocation;
     private javax.swing.JRadioButton jrbtUseHome;
-    private javax.swing.JRadioButton jrbtUseMyDocuments;
     private javax.swing.JTextField jtfCustomLocation;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfOwnerName;

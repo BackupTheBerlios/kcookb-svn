@@ -9,6 +9,12 @@ package de.berlios.kcookb.exportengine;
  *
  * @author Knitter
  */
-public interface ExportEngine {
+public class PDFExport implements Runnable {
+
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    
 
 }

@@ -26,13 +26,11 @@ public class KCookB {
     private ArrayList<Recipe> unsavedRecipes = null;
     private Vector<KCookBChangedListener> bookChandeListeners = null;
     private BookInfo info;
-    
-    
 
     public KCookB() {
         unsavedRecipes = new ArrayList<Recipe>(100);
         bookChandeListeners = new Vector<KCookBChangedListener>();
-        
+
     }
 
     public KCookB(String filename) {
@@ -49,8 +47,8 @@ public class KCookB {
      * rolled back and the file explicitly closed before atempting to open 
      * another one.
      * 
-     * Trying to open a lock file will cause a runtime exception to be throwen, 
-     * namely <code>DatabaseFileLockedException</code>.
+     * Trying to open a locked file will cause a runtime exception to be 
+     * throwen, namely <code>DatabaseFileLockedException</code>.
      * 
      * @param filename The new file to be open
      */
@@ -79,12 +77,11 @@ public class KCookB {
             db = null;
         }
     }
-    
+
     public boolean hasChanges() {
-        //TODO: return correct value for dirty bit checking
-        return false;
+        return !unsavedRecipes.isEmpty();
     }
-    
+
     public BookInfo getInfo() {
         return info;
     }
@@ -112,13 +109,13 @@ public class KCookB {
      * @param fridge
      */
     public void addRecipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
-            RecipePrice price, LinkedList<Ingredient> ingredients, RecipeType type, 
-            int doses, LinkedList<String> sequence, String principal, 
-            LinkedList<Note> notes, LinkedList<Tip> tips, double rating, boolean stared,
+            RecipePrice price, LinkedList<Ingredient> ingredients, RecipeType type,
+            int doses, LinkedList<String> sequence, String principal,
+            Note note, LinkedList<Tip> tips, double rating, boolean stared,
             LinkedList<RecipeTag> tags, String method, Date freazer, Date fridge) {
 
         Recipe rec = new Recipe(title, preparation, cooking, dificulty, price,
-                ingredients, type, doses, sequence, principal, notes,
+                ingredients, type, doses, sequence, principal, note,
                 tips, rating, stared, tags, method, freazer, fridge);
 
         db.set(rec);
@@ -146,11 +143,19 @@ public class KCookB {
      * Saves any unsave changes submited to this book.
      */
     public void save() {
-        if(unsavedRecipes != null) {
-        for (Recipe rec : unsavedRecipes) {
-            db.set(rec);
+        if (unsavedRecipes != null) {
+            for (Recipe rec : unsavedRecipes) {
+                db.set(rec);
+            }
         }
-        }
+    }
+    
+    public void undo() {
+        //TODO: undo
+    }
+    
+    public void redo() {
+        //TODO: redo
     }
 
     /**
@@ -175,17 +180,29 @@ public class KCookB {
     public List<Recipe> getAllTips() {
         return db.get(Tip.class);
     }
-    
+
     public List<Recipe> getAllTypes() {
         return db.get(RecipeType.class);
     }
-    
+
     public List<Recipe> getMeals() {
         return db.get(Meal.class);
     }
-    
+
     public List<Recipe> getAllTags() {
         return db.get(RecipeTag.class);
+    }
+
+    public List<Recipe> search(final String name, boolean inDescription, boolean inIngredients,
+            boolean inLable, boolean inRating, boolean inType, RecipeDificulty difficulty, RecipePrice price) {
+        return db.query(new Predicate<Recipe>() {
+
+            @Override
+            public boolean match(Recipe rec) {
+                //TODO: search method
+                return false;
+            }
+        });
     }
 
     /**
@@ -210,6 +227,7 @@ public class KCookB {
         });
     }
 
+    /*NOT*/
     public List<Recipe> searchByType(final RecipeType type) {
         return db.query(new Predicate<Recipe>() {
 

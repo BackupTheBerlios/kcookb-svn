@@ -44,7 +44,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jpNewbook" min="-2" pref="68" max="-2" attributes="0"/>
+              <Component id="jpNewbook" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbtnHelp" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -89,7 +89,7 @@
                       <Component id="jtfNewBookName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlblNewBook" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

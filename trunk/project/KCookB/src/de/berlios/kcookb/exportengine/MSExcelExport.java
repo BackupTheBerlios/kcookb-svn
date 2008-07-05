@@ -9,13 +9,10 @@ package de.berlios.kcookb.exportengine;
  *
  * @author Knitter
  */
-public class XMLExport implements Runnable {
-    
-    public XMLExport(String filename) {
-        
-    }
+public class MSExcelExport implements Runnable {
 
     public void run() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }

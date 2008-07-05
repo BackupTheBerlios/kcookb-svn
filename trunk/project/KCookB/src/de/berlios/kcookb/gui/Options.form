@@ -33,6 +33,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jpBookLocation" alignment="0" max="32767" attributes="0"/>
                   <Component id="jpNewBookOptions" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jbtnApply" min="-2" max="-2" attributes="0"/>
@@ -41,7 +42,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jbtnHelp" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jpBookLocation" alignment="0" max="32767" attributes="0"/>
                   <Component id="jpInternetOptions" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -57,7 +57,7 @@
               <Component id="jpBookLocation" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jpInternetOptions" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbtnHelp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbtnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -114,44 +114,37 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jrbtUseHome" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jrbtCustomLocation" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                                  <Component id="jlblCustomLocation" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jlblCustomLocation" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jrbtCustomLocation" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfCustomLocation" pref="371" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jtfCustomLocation" min="-2" pref="370" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jbtnBrowseLocation" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jrbtUseHome" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jrbtUseMyDocuments" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jrbtUseHome" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jrbtUseMyDocuments" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jrbtCustomLocation" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlblCustomLocation" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfCustomLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtnBrowseLocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfCustomLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -196,19 +189,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbtUseHomeActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="jrbtUseMyDocuments">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="btgBookLocation"/>
-            </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_USEMYDOCUMENTSOPTION" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbtUseMyDocumentsActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrbtCustomLocation">
@@ -465,6 +445,9 @@
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_SAVECREATIONDATEOPTION" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jchkSaveCreationDateActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jchkPopulateCategories">
           <Properties>
@@ -473,6 +456,9 @@
               <ResourceString bundle="de/berlios/kcookb/resources/i18n/i18n.properties" key="OPTIONSDIALOG_POPULATECATEGORIESOPTION" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jchkPopulateCategoriesActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

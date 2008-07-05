@@ -26,7 +26,7 @@ public class Recipe {
     private int doses;
     private List<String> sequence;
     private String principal;
-    private List<Note> notes;
+    private Note note;
     private List<Tip> tips;
     private double rating;
     private boolean stared;
@@ -39,7 +39,7 @@ public class Recipe {
 
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, List<Ingredient> ingredients, RecipeType type, 
-            int doses, List<String> sequence, String principal, List<Note> notes, 
+            int doses, List<String> sequence, String principal, Note note, 
             List<Tip> tips, double rating, boolean stared, List<RecipeTag> tags, 
             String method, Date freazer, Date fridge) {
 
@@ -53,7 +53,7 @@ public class Recipe {
         this.doses = doses;
         this.sequence = (sequence != null ? sequence : new LinkedList<String>());
         this.principal = principal;
-        this.notes = (notes != null ? notes : new LinkedList<Note>());
+        this.note = note;
         this.tips = (tips != null ? tips : new LinkedList<Tip>());
         this.rating = rating;
         this.stared = stared;
@@ -120,12 +120,12 @@ public class Recipe {
         this.sequence = sequence;
     }
 
-    public List<Note> getNotes() {
-        return notes;
+    public Note getNote() {
+        return note;
     }
 
-    public void setNotes(LinkedList<Note> notes) {
-        this.notes = notes;
+    public void setNote(Note note) {
+        this.note = note;
     }
 
     public List<Tip> getTips() {
@@ -196,19 +196,6 @@ public class Recipe {
 
     public void setType(RecipeType type) {
         this.type = type;
-    }
-
-    public void addNote(Note note) {
-        if (notes == null) {
-            notes = new LinkedList<Note>();
-        }
-        notes.add(note);
-    }
-
-    public void removeNote(Note note) {
-        if (notes != null) {
-            notes.remove(note);
-        }
     }
 
     public void addTip(Tip tip) {
@@ -311,9 +298,18 @@ public class Recipe {
         }
 
         Recipe other = (Recipe) obj;
-        return this.title.equalsIgnoreCase(other.title);
+        return this.title.equalsIgnoreCase(other.title) && type.equals(other.type);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + (this.title != null ? this.title.hashCode() : 0);
+        hash = 13 * hash + (this.type != null ? this.type.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return title;
     }

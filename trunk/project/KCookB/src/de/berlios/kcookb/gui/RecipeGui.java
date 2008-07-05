@@ -43,179 +43,142 @@ public class RecipeGui extends javax.swing.JDialog {
 
         jtpMainTab = new javax.swing.JTabbedPane();
         jpGeneral = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jpblName = new javax.swing.JLabel();
         jtfName = new javax.swing.JTextField();
-        jlblDifficulty = new javax.swing.JLabel();
+        jpblName = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jcbxDifficulty = new javax.swing.JComboBox();
-        jcbxType = new javax.swing.JComboBox();
-        jcbxPrice = new javax.swing.JComboBox();
+        jlblDifficulty = new javax.swing.JLabel();
         jlblType = new javax.swing.JLabel();
+        jcbxType = new javax.swing.JComboBox();
         jlblPrice = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
+        jcbxPrice = new javax.swing.JComboBox();
+        jlblDoses = new javax.swing.JLabel();
+        jspDoses = new javax.swing.JSpinner();
+        jlblRatings = new javax.swing.JLabel();
+        jspRatings = new javax.swing.JSpinner();
+        jlblAddedDate = new javax.swing.JLabel();
+        jdcAddedDate = new com.toedter.calendar.JDateChooser();
+        jSeparator2 = new javax.swing.JSeparator();
+        jlblTimes = new javax.swing.JLabel();
+        jlblPreparation = new javax.swing.JLabel();
+        jtfPreparation = new javax.swing.JTextField();
+        jlblCoocking = new javax.swing.JLabel();
+        jtfCoocking = new javax.swing.JTextField();
+        jlblTimeLabel1 = new javax.swing.JLabel();
+        jlblTimeLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jlblTimeLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jlblTimeLabel4 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jchkStared = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jtfLabels = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
-        jpIngredients = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jbtnNotes = new javax.swing.JButton();
+        jbtnTips = new javax.swing.JButton();
         jpPreparation = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jpPreparationSndPanel = new javax.swing.JPanel();
+        jscpPreparation = new javax.swing.JScrollPane();
+        jtaPreparationText = new javax.swing.JTextArea();
+        jpIngredients = new javax.swing.JPanel();
+        jpIngredientsSndPanel = new javax.swing.JPanel();
+        jbtnAddIngredient = new javax.swing.JButton();
+        jbtnRemoveIngredient = new javax.swing.JButton();
+        jbtnIngredientUp = new javax.swing.JButton();
+        jbtnIngredientDown = new javax.swing.JButton();
+        jscpIngredients = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jtfIngredientName = new javax.swing.JTextField();
+        jlblIngredientName = new javax.swing.JLabel();
+        jlblIngredientQuantity = new javax.swing.JLabel();
+        jtfIngredientQuantity = new javax.swing.JTextField();
         jpImages = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jpMainImage = new javax.swing.JPanel();
+        jlblMainImage = new javax.swing.JLabel();
+        jtfMainImage = new javax.swing.JTextField();
+        jbtnMainImage = new javax.swing.JButton();
+        jpImageSequence = new javax.swing.JPanel();
+        jbtnAddSequence = new javax.swing.JButton();
+        jscpImageSequence = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jbtnRemoveImageSequence = new javax.swing.JButton();
+        jbntImageSequenceUp = new javax.swing.JButton();
+        jbtnImageSequenceDown = new javax.swing.JButton();
         jbtHelp = new javax.swing.JButton();
         jbtCancel = new javax.swing.JButton();
         jbtSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel5.border.title"))); // NOI18N
-
-        jpblName.setText(bundle.getString("RecipeGui.jpblName.text")); // NOI18N
+        setTitle(bundle.getString("RecipeGui.title")); // NOI18N
 
         jtfName.setText(bundle.getString("RecipeGui.jtfName.text")); // NOI18N
 
+        jpblName.setText(bundle.getString("RecipeGui.jpblName.text")); // NOI18N
+
         jlblDifficulty.setText(bundle.getString("RecipeGui.jlblDifficulty.text")); // NOI18N
-
-        jcbxDifficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jcbxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jcbxPrice.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jlblType.setText(bundle.getString("RecipeGui.jlblType.text")); // NOI18N
 
         jlblPrice.setText(bundle.getString("RecipeGui.jlblPrice.text")); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jpblName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblDifficulty)
-                            .addComponent(jlblType)
-                            .addComponent(jlblPrice))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jcbxType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbxDifficulty, javax.swing.GroupLayout.Alignment.LEADING, 0, 168, Short.MAX_VALUE)
-                            .addComponent(jcbxPrice, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jpblName)
-                    .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblDifficulty)
-                    .addComponent(jcbxDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlblType))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbxPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlblPrice))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jlblDoses.setText(bundle.getString("RecipeGui.jlblDoses.text")); // NOI18N
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel10.border.title"))); // NOI18N
+        jlblRatings.setText(bundle.getString("RecipeGui.jlblRatings.text")); // NOI18N
+
+        jlblAddedDate.setText(bundle.getString("RecipeGui.jlblAddedDate.text")); // NOI18N
+
+        jlblTimes.setText(bundle.getString("RecipeGui.jlblTimes.text")); // NOI18N
+
+        jlblPreparation.setText(bundle.getString("RecipeGui.jlblPreparation.text")); // NOI18N
+
+        jtfPreparation.setText(bundle.getString("RecipeGui.jtfPreparation.text")); // NOI18N
+
+        jlblCoocking.setText(bundle.getString("RecipeGui.jlblCoocking.text")); // NOI18N
+
+        jtfCoocking.setText(bundle.getString("RecipeGui.jtfCoocking.text")); // NOI18N
+
+        jlblTimeLabel1.setText(bundle.getString("RecipeGui.jlblTimeLabel1.text")); // NOI18N
+
+        jlblTimeLabel2.setText(bundle.getString("RecipeGui.jlblTimeLabel2.text")); // NOI18N
+
+        jLabel10.setText(bundle.getString("RecipeGui.jLabel10.text")); // NOI18N
+
+        jTextField6.setText(bundle.getString("RecipeGui.jTextField6.text")); // NOI18N
+
+        jlblTimeLabel3.setText(bundle.getString("RecipeGui.jlblTimeLabel3.text")); // NOI18N
+
+        jLabel9.setText(bundle.getString("RecipeGui.jLabel9.text")); // NOI18N
+
+        jTextField7.setText(bundle.getString("RecipeGui.jTextField7.text")); // NOI18N
+
+        jlblTimeLabel4.setText(bundle.getString("RecipeGui.jlblTimeLabel4.text")); // NOI18N
+
+        jchkStared.setText(bundle.getString("RecipeGui.jchkStared.text")); // NOI18N
 
         jLabel7.setText(bundle.getString("RecipeGui.jLabel7.text")); // NOI18N
 
-        jTextField4.setText(bundle.getString("RecipeGui.jTextField4.text")); // NOI18N
+        jtfLabels.setText(bundle.getString("RecipeGui.jtfLabels.text")); // NOI18N
 
         jLabel8.setText(bundle.getString("RecipeGui.jLabel8.text")); // NOI18N
 
-        jButton10.setText(bundle.getString("RecipeGui.jButton10.text")); // NOI18N
+        jbtnNotes.setText(bundle.getString("RecipeGui.jbtnNotes.text")); // NOI18N
+        jbtnNotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnNotesActionPerformed(evt);
+            }
+        });
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-tips.png"))); // NOI18N
-        jButton11.setText(bundle.getString("RecipeGui.jButton11.text")); // NOI18N
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jButton10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)))
-                .addContainerGap())
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel11.border.title"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 143, Short.MAX_VALUE)
-        );
+        jbtnTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-tips.png"))); // NOI18N
+        jbtnTips.setText(bundle.getString("RecipeGui.jbtnTips.text")); // NOI18N
+        jbtnTips.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnTipsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpGeneralLayout = new javax.swing.GroupLayout(jpGeneral);
         jpGeneral.setLayout(jpGeneralLayout);
@@ -224,131 +187,164 @@ public class RecipeGui extends javax.swing.JDialog {
             .addGroup(jpGeneralLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpGeneralLayout.createSequentialGroup()
+                        .addComponent(jlblTimes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                    .addGroup(jpGeneralLayout.createSequentialGroup()
+                        .addComponent(jpblName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
+                    .addGroup(jpGeneralLayout.createSequentialGroup()
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblDoses)
+                            .addComponent(jlblDifficulty))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jcbxDifficulty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jspDoses, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblRatings)
+                            .addComponent(jlblType, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jcbxType, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jspRatings))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblPrice)
+                            .addComponent(jlblAddedDate))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jcbxPrice, 0, 122, Short.MAX_VALUE)
+                            .addComponent(jdcAddedDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
+                    .addGroup(jpGeneralLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpGeneralLayout.createSequentialGroup()
+                                .addComponent(jlblPreparation)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfPreparation, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlblTimeLabel1))
+                            .addGroup(jpGeneralLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlblTimeLabel3)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblCoocking)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField7)
+                            .addComponent(jtfCoocking, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblTimeLabel2)
+                            .addComponent(jlblTimeLabel4)))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                    .addGroup(jpGeneralLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfLabels, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                            .addComponent(jLabel8)
+                            .addComponent(jchkStared)))
+                    .addGroup(jpGeneralLayout.createSequentialGroup()
+                        .addComponent(jbtnNotes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnTips)))
                 .addContainerGap())
         );
         jpGeneralLayout.setVerticalGroup(
             jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpGeneralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jpblName)
+                    .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblDifficulty)
+                    .addComponent(jlblType)
+                    .addComponent(jlblPrice)
+                    .addComponent(jcbxPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbxDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jlblDoses)
+                        .addComponent(jspDoses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlblRatings)
+                        .addComponent(jspRatings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlblAddedDate))
+                    .addComponent(jdcAddedDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlblTimes)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblPreparation)
+                    .addComponent(jtfPreparation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblTimeLabel1)
+                    .addComponent(jlblCoocking)
+                    .addComponent(jtfCoocking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblTimeLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jlblTimeLabel3)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblTimeLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfLabels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkStared)
+                .addGap(18, 18, 18)
+                .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnNotes)
+                    .addComponent(jbtnTips))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jtpMainTab.addTab(bundle.getString("RecipeGui.jpGeneral.TabConstraints.tabTitle"), jpGeneral); // NOI18N
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel6.border.title"))); // NOI18N
+        jpPreparationSndPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jpPreparationSndPanel.border.title"))); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-add.png"))); // NOI18N
-        jButton1.setText(bundle.getString("RecipeGui.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jtaPreparationText.setColumns(20);
+        jtaPreparationText.setRows(5);
+        jscpPreparation.setViewportView(jtaPreparationText);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-remove.png"))); // NOI18N
-        jButton7.setText(bundle.getString("RecipeGui.jButton7.text")); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-up.png"))); // NOI18N
-        jButton8.setText(bundle.getString("RecipeGui.jButton8.text")); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-down.png"))); // NOI18N
-        jButton9.setText(bundle.getString("RecipeGui.jButton9.text")); // NOI18N
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        jScrollPane1.setViewportView(jList1);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpPreparationSndPanelLayout = new javax.swing.GroupLayout(jpPreparationSndPanel);
+        jpPreparationSndPanel.setLayout(jpPreparationSndPanelLayout);
+        jpPreparationSndPanelLayout.setHorizontalGroup(
+            jpPreparationSndPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpPreparationSndPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jscpPreparation, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jpIngredientsLayout = new javax.swing.GroupLayout(jpIngredients);
-        jpIngredients.setLayout(jpIngredientsLayout);
-        jpIngredientsLayout.setHorizontalGroup(
-            jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpIngredientsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jpIngredientsLayout.setVerticalGroup(
-            jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpIngredientsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jtpMainTab.addTab(bundle.getString("RecipeGui.jpIngredients.TabConstraints.tabTitle"), jpIngredients); // NOI18N
-
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel8.border.title"))); // NOI18N
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+        jpPreparationSndPanelLayout.setVerticalGroup(
+            jpPreparationSndPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpPreparationSndPanelLayout.createSequentialGroup()
+                .addComponent(jscpPreparation, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -358,122 +354,230 @@ public class RecipeGui extends javax.swing.JDialog {
             jpPreparationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPreparationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpPreparationSndPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpPreparationLayout.setVerticalGroup(
             jpPreparationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPreparationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpPreparationSndPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jtpMainTab.addTab(bundle.getString("RecipeGui.jpPreparation.TabConstraints.tabTitle"), jpPreparation); // NOI18N
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel7.border.title"))); // NOI18N
+        jpIngredientsSndPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jpIngredientsSndPanel.border.title"))); // NOI18N
 
-        jLabel3.setText(bundle.getString("RecipeGui.jLabel3.text")); // NOI18N
-
-        jTextField3.setText(bundle.getString("RecipeGui.jTextField3.text")); // NOI18N
-
-        jButton5.setText(bundle.getString("RecipeGui.jButton5.text")); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jbtnAddIngredient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-add.png"))); // NOI18N
+        jbtnAddIngredient.setText(bundle.getString("RecipeGui.jbtnAddIngredient.text")); // NOI18N
+        jbtnAddIngredient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jbtnAddIngredientActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap())
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jPanel9.border.title"))); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-add.png"))); // NOI18N
-        jButton2.setText(bundle.getString("RecipeGui.jButton2.text")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnRemoveIngredient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-remove.png"))); // NOI18N
+        jbtnRemoveIngredient.setText(bundle.getString("RecipeGui.jbtnRemoveIngredient.text")); // NOI18N
+        jbtnRemoveIngredient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnRemoveIngredientActionPerformed(evt);
+            }
+        });
+
+        jbtnIngredientUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-up.png"))); // NOI18N
+        jbtnIngredientUp.setText(bundle.getString("RecipeGui.jbtnIngredientUp.text")); // NOI18N
+        jbtnIngredientUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnIngredientUpActionPerformed(evt);
+            }
+        });
+
+        jbtnIngredientDown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-down.png"))); // NOI18N
+        jbtnIngredientDown.setText(bundle.getString("RecipeGui.jbtnIngredientDown.text")); // NOI18N
+        jbtnIngredientDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnIngredientDownActionPerformed(evt);
+            }
+        });
+
+        jscpIngredients.setViewportView(jList1);
+
+        jtfIngredientName.setText(bundle.getString("RecipeGui.jtfIngredientName.text")); // NOI18N
+
+        jlblIngredientName.setText(bundle.getString("RecipeGui.jlblIngredientName.text")); // NOI18N
+
+        jlblIngredientQuantity.setText(bundle.getString("RecipeGui.jlblIngredientQuantity.text")); // NOI18N
+
+        jtfIngredientQuantity.setText(bundle.getString("RecipeGui.jtfIngredientQuantity.text")); // NOI18N
+
+        javax.swing.GroupLayout jpIngredientsSndPanelLayout = new javax.swing.GroupLayout(jpIngredientsSndPanel);
+        jpIngredientsSndPanel.setLayout(jpIngredientsSndPanelLayout);
+        jpIngredientsSndPanelLayout.setHorizontalGroup(
+            jpIngredientsSndPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngredientsSndPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpIngredientsSndPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpIngredientsSndPanelLayout.createSequentialGroup()
+                        .addComponent(jlblIngredientName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfIngredientName, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlblIngredientQuantity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfIngredientQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
+                    .addComponent(jscpIngredients, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpIngredientsSndPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jbtnAddIngredient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnRemoveIngredient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnIngredientDown, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnIngredientUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jpIngredientsSndPanelLayout.setVerticalGroup(
+            jpIngredientsSndPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngredientsSndPanelLayout.createSequentialGroup()
+                .addComponent(jbtnAddIngredient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnRemoveIngredient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnIngredientUp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnIngredientDown)
+                .addContainerGap(178, Short.MAX_VALUE))
+            .addGroup(jpIngredientsSndPanelLayout.createSequentialGroup()
+                .addGroup(jpIngredientsSndPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblIngredientName)
+                    .addComponent(jtfIngredientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblIngredientQuantity)
+                    .addComponent(jtfIngredientQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpIngredients, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jpIngredientsLayout = new javax.swing.GroupLayout(jpIngredients);
+        jpIngredients.setLayout(jpIngredientsLayout);
+        jpIngredientsLayout.setHorizontalGroup(
+            jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngredientsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpIngredientsSndPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jpIngredientsLayout.setVerticalGroup(
+            jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngredientsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpIngredientsSndPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jtpMainTab.addTab(bundle.getString("RecipeGui.jpIngredients.TabConstraints.tabTitle"), jpIngredients); // NOI18N
+
+        jpMainImage.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jpMainImage.border.title"))); // NOI18N
+
+        jlblMainImage.setText(bundle.getString("RecipeGui.jlblMainImage.text")); // NOI18N
+
+        jtfMainImage.setText(bundle.getString("RecipeGui.jtfMainImage.text")); // NOI18N
+
+        jbtnMainImage.setText(bundle.getString("RecipeGui.jbtnMainImage.text")); // NOI18N
+        jbtnMainImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnMainImageActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpMainImageLayout = new javax.swing.GroupLayout(jpMainImage);
+        jpMainImage.setLayout(jpMainImageLayout);
+        jpMainImageLayout.setHorizontalGroup(
+            jpMainImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMainImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblMainImage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfMainImage, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnMainImage)
+                .addContainerGap())
+        );
+        jpMainImageLayout.setVerticalGroup(
+            jpMainImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMainImageLayout.createSequentialGroup()
+                .addGroup(jpMainImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblMainImage)
+                    .addComponent(jbtnMainImage)
+                    .addComponent(jtfMainImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jpImageSequence.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("RecipeGui.jpImageSequence.border.title"))); // NOI18N
+
+        jbtnAddSequence.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-add.png"))); // NOI18N
+        jbtnAddSequence.setText(bundle.getString("RecipeGui.jbtnAddSequence.text")); // NOI18N
+        jbtnAddSequence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAddSequenceActionPerformed(evt);
             }
         });
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        jscpImageSequence.setViewportView(jTextArea2);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-remove.png"))); // NOI18N
-        jButton3.setText(bundle.getString("RecipeGui.jButton3.text")); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbtnRemoveImageSequence.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-remove.png"))); // NOI18N
+        jbtnRemoveImageSequence.setText(bundle.getString("RecipeGui.jbtnRemoveImageSequence.text")); // NOI18N
+        jbtnRemoveImageSequence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbtnRemoveImageSequenceActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-up.png"))); // NOI18N
-        jButton4.setText(bundle.getString("RecipeGui.jButton4.text")); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbntImageSequenceUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-up.png"))); // NOI18N
+        jbntImageSequenceUp.setText(bundle.getString("RecipeGui.jbntImageSequenceUp.text")); // NOI18N
+        jbntImageSequenceUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbntImageSequenceUpActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-down.png"))); // NOI18N
-        jButton6.setText(bundle.getString("RecipeGui.jButton6.text")); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jbtnImageSequenceDown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-down.png"))); // NOI18N
+        jbtnImageSequenceDown.setText(bundle.getString("RecipeGui.jbtnImageSequenceDown.text")); // NOI18N
+        jbtnImageSequenceDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jbtnImageSequenceDownActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpImageSequenceLayout = new javax.swing.GroupLayout(jpImageSequence);
+        jpImageSequence.setLayout(jpImageSequenceLayout);
+        jpImageSequenceLayout.setHorizontalGroup(
+            jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpImageSequenceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addComponent(jscpImageSequence, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton2)
-                        .addComponent(jButton3)
-                        .addComponent(jButton4))
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jbtnAddSequence)
+                        .addComponent(jbtnRemoveImageSequence)
+                        .addComponent(jbntImageSequenceUp))
+                    .addComponent(jbtnImageSequenceDown, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+        jpImageSequenceLayout.setVerticalGroup(
+            jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpImageSequenceLayout.createSequentialGroup()
+                .addGroup(jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpImageSequenceLayout.createSequentialGroup()
+                        .addComponent(jbtnAddSequence)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jbtnRemoveImageSequence)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(jbntImageSequenceUp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
+                        .addComponent(jbtnImageSequenceDown))
+                    .addComponent(jscpImageSequence, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -484,17 +588,17 @@ public class RecipeGui extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpImagesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpMainImage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpImageSequence, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpImagesLayout.setVerticalGroup(
             jpImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpImagesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpMainImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpImageSequence, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -525,9 +629,9 @@ public class RecipeGui extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtpMainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+            .addComponent(jtpMainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(376, Short.MAX_VALUE)
+                .addContainerGap(378, Short.MAX_VALUE)
                 .addComponent(jbtSave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtCancel)
@@ -535,16 +639,19 @@ public class RecipeGui extends javax.swing.JDialog {
                 .addComponent(jbtHelp)
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtCancel, jbtHelp, jbtSave});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jtpMainTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtpMainTab, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtHelp)
                     .addComponent(jbtCancel)
                     .addComponent(jbtSave))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -562,88 +669,119 @@ public class RecipeGui extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtHelpActionPerformed
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+private void jbtnAddIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddIngredientActionPerformed
     JOptionPane.showInputDialog("");
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_jbtnAddIngredientActionPerformed
 
-private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+private void jbtnRemoveIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoveIngredientActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton7ActionPerformed
+}//GEN-LAST:event_jbtnRemoveIngredientActionPerformed
 
-private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+private void jbtnIngredientUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngredientUpActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton8ActionPerformed
+}//GEN-LAST:event_jbtnIngredientUpActionPerformed
 
-private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+private void jbtnIngredientDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngredientDownActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton9ActionPerformed
+}//GEN-LAST:event_jbtnIngredientDownActionPerformed
 
-private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+private void jbtnMainImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMainImageActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton5ActionPerformed
+}//GEN-LAST:event_jbtnMainImageActionPerformed
 
-private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+private void jbtnAddSequenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddSequenceActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton2ActionPerformed
+}//GEN-LAST:event_jbtnAddSequenceActionPerformed
 
-private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+private void jbtnRemoveImageSequenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoveImageSequenceActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton3ActionPerformed
+}//GEN-LAST:event_jbtnRemoveImageSequenceActionPerformed
 
-private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+private void jbntImageSequenceUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbntImageSequenceUpActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton4ActionPerformed
+}//GEN-LAST:event_jbntImageSequenceUpActionPerformed
 
-private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+private void jbtnImageSequenceDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImageSequenceDownActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton6ActionPerformed
+}//GEN-LAST:event_jbtnImageSequenceDownActionPerformed
+
+private void jbtnTipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTipsActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jbtnTipsActionPerformed
+
+private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNotesActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jbtnNotesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton jbntImageSequenceUp;
     private javax.swing.JButton jbtCancel;
     private javax.swing.JButton jbtHelp;
     private javax.swing.JButton jbtSave;
+    private javax.swing.JButton jbtnAddIngredient;
+    private javax.swing.JButton jbtnAddSequence;
+    private javax.swing.JButton jbtnImageSequenceDown;
+    private javax.swing.JButton jbtnIngredientDown;
+    private javax.swing.JButton jbtnIngredientUp;
+    private javax.swing.JButton jbtnMainImage;
+    private javax.swing.JButton jbtnNotes;
+    private javax.swing.JButton jbtnRemoveImageSequence;
+    private javax.swing.JButton jbtnRemoveIngredient;
+    private javax.swing.JButton jbtnTips;
     private javax.swing.JComboBox jcbxDifficulty;
     private javax.swing.JComboBox jcbxPrice;
     private javax.swing.JComboBox jcbxType;
+    private javax.swing.JCheckBox jchkStared;
+    private com.toedter.calendar.JDateChooser jdcAddedDate;
+    private javax.swing.JLabel jlblAddedDate;
+    private javax.swing.JLabel jlblCoocking;
     private javax.swing.JLabel jlblDifficulty;
+    private javax.swing.JLabel jlblDoses;
+    private javax.swing.JLabel jlblIngredientName;
+    private javax.swing.JLabel jlblIngredientQuantity;
+    private javax.swing.JLabel jlblMainImage;
+    private javax.swing.JLabel jlblPreparation;
     private javax.swing.JLabel jlblPrice;
+    private javax.swing.JLabel jlblRatings;
+    private javax.swing.JLabel jlblTimeLabel1;
+    private javax.swing.JLabel jlblTimeLabel2;
+    private javax.swing.JLabel jlblTimeLabel3;
+    private javax.swing.JLabel jlblTimeLabel4;
+    private javax.swing.JLabel jlblTimes;
     private javax.swing.JLabel jlblType;
     private javax.swing.JPanel jpGeneral;
+    private javax.swing.JPanel jpImageSequence;
     private javax.swing.JPanel jpImages;
     private javax.swing.JPanel jpIngredients;
+    private javax.swing.JPanel jpIngredientsSndPanel;
+    private javax.swing.JPanel jpMainImage;
     private javax.swing.JPanel jpPreparation;
+    private javax.swing.JPanel jpPreparationSndPanel;
     private javax.swing.JLabel jpblName;
+    private javax.swing.JScrollPane jscpImageSequence;
+    private javax.swing.JScrollPane jscpIngredients;
+    private javax.swing.JScrollPane jscpPreparation;
+    private javax.swing.JSpinner jspDoses;
+    private javax.swing.JSpinner jspRatings;
+    private javax.swing.JTextArea jtaPreparationText;
+    private javax.swing.JTextField jtfCoocking;
+    private javax.swing.JTextField jtfIngredientName;
+    private javax.swing.JTextField jtfIngredientQuantity;
+    private javax.swing.JTextField jtfLabels;
+    private javax.swing.JTextField jtfMainImage;
     private javax.swing.JTextField jtfName;
+    private javax.swing.JTextField jtfPreparation;
     private javax.swing.JTabbedPane jtpMainTab;
     // End of variables declaration//GEN-END:variables
     

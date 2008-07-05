@@ -65,7 +65,7 @@ public class NoteDialog extends javax.swing.JDialog {
             jpNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpNotesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(jscpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -106,6 +106,9 @@ public class NoteDialog extends javax.swing.JDialog {
                         .addComponent(jbtnHelp)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtnCancel, jbtnHelp, jbtnSave});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -127,11 +130,13 @@ public class NoteDialog extends javax.swing.JDialog {
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-        // TODO add your handling code here:
+        //TODO: help for NoteDialog
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
     private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
-        // TODO add your handling code here:
+        if(!jtaNotes.getText().trim().isEmpty()) {
+            note.setText(jtaNotes.getText().trim());
+        }
 }//GEN-LAST:event_jbtnSaveActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnCancel;

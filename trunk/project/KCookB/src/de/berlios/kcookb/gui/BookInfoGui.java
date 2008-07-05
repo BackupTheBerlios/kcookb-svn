@@ -7,6 +7,10 @@ package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.model.BookInfo;
 import de.berlios.kcookb.model.KCookB;
+import java.util.Date;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -15,12 +19,49 @@ import de.berlios.kcookb.model.KCookB;
 public class BookInfoGui extends javax.swing.JDialog {
 
     private KCookB book;
+    private boolean dirty;
 
     /** Creates new form BookInfoGui */
     public BookInfoGui(java.awt.Frame parent, boolean modal, KCookB book) {
         super(parent, modal);
-        initComponents();
         this.book = book;
+        initComponents();
+
+        //Listeners to changes on the interface.
+        jtfEmail.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+        });
+
+        jtfName.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                dirty = true;
+            }
+        });
+
+        //Setting initial date value.
+        //Maybe move this code to the init method.
+        Date d = this.book.getInfo().getCreated();
+        jdcCreatedOn.setDate(d != null ? d : new Date());
     }
 
     public void showCentered() {
@@ -39,12 +80,11 @@ public class BookInfoGui extends javax.swing.JDialog {
 
         jpCatalogInfo = new javax.swing.JPanel();
         jlblAuthorName = new javax.swing.JLabel();
-        jtfName = new javax.swing.JTextField();
-        jtfEmail = new javax.swing.JTextField();
+        jtfName = new JTextField(book.getInfo().getAuthor());
+        jtfEmail = new JTextField(book.getInfo().getEmail());
         jlblAuthorEmail = new javax.swing.JLabel();
         jlblCreatedOn = new javax.swing.JLabel();
         jdcCreatedOn = new com.toedter.calendar.JDateChooser();
-        jbtnHelp = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
         jbtnSave = new javax.swing.JButton();
 
@@ -60,6 +100,12 @@ public class BookInfoGui extends javax.swing.JDialog {
         jlblAuthorEmail.setText(bundle.getString("BookInfoGui.jlblAuthorEmail.text")); // NOI18N
 
         jlblCreatedOn.setText(bundle.getString("BookInfoGui.jlblCreatedOn.text")); // NOI18N
+
+        jdcCreatedOn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcCreatedOnPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpCatalogInfoLayout = new javax.swing.GroupLayout(jpCatalogInfo);
         jpCatalogInfo.setLayout(jpCatalogInfoLayout);
@@ -78,7 +124,7 @@ public class BookInfoGui extends javax.swing.JDialog {
                             .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)))
                     .addGroup(jpCatalogInfoLayout.createSequentialGroup()
                         .addComponent(jlblCreatedOn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jdcCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -99,13 +145,6 @@ public class BookInfoGui extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jbtnHelp.setText(bundle.getString("BookInfoGui.jbtnHelp.text")); // NOI18N
-        jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnHelpActionPerformed(evt);
-            }
-        });
-
         jbtnCancel.setText(bundle.getString("BookInfoGui.jbtnCancel.text")); // NOI18N
         jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,17 +164,13 @@ public class BookInfoGui extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jbtnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnHelp))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jpCatalogInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jbtnCancel))
+                    .addComponent(jpCatalogInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,7 +180,6 @@ public class BookInfoGui extends javax.swing.JDialog {
                 .addComponent(jpCatalogInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnHelp)
                     .addComponent(jbtnCancel)
                     .addComponent(jbtnSave))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -154,20 +188,27 @@ public class BookInfoGui extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-        //TODO: help for book info dialog
-}//GEN-LAST:event_jbtnHelpActionPerformed
-
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
         dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
-        //TODO: save catalog info changes
+        if (dirty) {
+            book.getInfo().setAuthor(jtfName.getText().trim());
+            book.getInfo().setEmail(jtfEmail.getText().trim());
+            book.getInfo().setCreated(jdcCreatedOn.getDate());
+            dirty = false;
+        }
+
 }//GEN-LAST:event_jbtnSaveActionPerformed
+
+private void jdcCreatedOnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcCreatedOnPropertyChange
+    if (evt.getPropertyName().equals("date")) {
+        dirty = true;
+    }
+}//GEN-LAST:event_jdcCreatedOnPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnCancel;
-    private javax.swing.JButton jbtnHelp;
     private javax.swing.JButton jbtnSave;
     private com.toedter.calendar.JDateChooser jdcCreatedOn;
     private javax.swing.JLabel jlblAuthorEmail;

@@ -7,6 +7,7 @@ package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.exceptions.NonCoerentDatabaseException;
 import de.berlios.kcookb.model.KCookB;
+import de.berlios.kcookb.model.Recipe;
 import de.berlios.kcookb.model.events.KCookBChangedListener;
 import de.berlios.kcookb.model.events.KCookBEvent;
 import de.berlios.kcookb.model.events.RecipeListener;
@@ -15,6 +16,7 @@ import edu.stanford.ejalbert.exception.BrowserLaunchingInitializingException;
 import edu.stanford.ejalbert.exception.UnsupportedOperatingSystemException;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -30,10 +32,12 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
     private KCookBGui me = this;
     private KCookB book = null;
+    private Recipe selectedRecipe;
 
     /** Creates new form KCookBGui */
     public KCookBGui() {
         initComponents();
+        defineInterfaceOptionsEstate(false);
         showCentered();
     }
 
@@ -53,9 +57,17 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
                 (scrSize.height - mySize.height) / 2);
     }
 
+    public KCookB getBook() {
+        return book;
+    }
+
+    public void showRecipe(Recipe rep) {
+        //TODO: show recipe
+    }
+
     public void newBook(String name) {
-        //defineInterfaceOptionsEstate(true);
-        //TODO: create a new book
+        book = new KCookB(name);
+        defineInterfaceOptionsEstate(true);
     }
 
     private void newBook() {
@@ -70,8 +82,9 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private void openBook() {
         JFileChooser jfc = new JFileChooser();
 
+        //TODO: config jfc
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            //TODO: book.openCatalog("");
+            book.openCatalog(jfc.getSelectedFile().getAbsolutePath());
         }
     }
 
@@ -120,8 +133,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
     private void deleteRecipe() {
         try {
-            //TODO: send recipe into
-            book.removeRecipe(null);
+            book.removeRecipe(selectedRecipe);
         } catch (NonCoerentDatabaseException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -132,11 +144,11 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     }
 
     private void undo() {
-        //TODO: undo
+        book.undo();
     }
 
     private void redo() {
-        //TODO: redo
+        book.redo();
     }
 
     private void print() {
@@ -154,9 +166,8 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private void showNotes() {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {//TODO: send recipe or notes to the dialog
-
-                new NoteDialog(me, true, null).showCentered();
+            public void run() {
+                new NoteDialog(me, true, selectedRecipe.getNote()).showCentered();
             }
         });
     }
@@ -190,33 +201,40 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     }
 
     private void defineInterfaceOptionsEstate(boolean active) {
-        /*jmiCloseBook.setEnabled(active);
-        //TODO:see: jmiDeleteRecipe.setEnabled(active);
-        //TODO:see: jmiEditRecipe.setEnabled(active);
+        //Toolbar buttons
+        jbtnApplyStar.setEnabled(active);
+        jbtnDeleteRecipe.setEnabled(active);
+        jbtnEditRecipe.setEnabled(active);
+        jbtnNewRecipe.setEnabled(active);
+        jbtnNext.setEnabled(active);
+        jbtnPrevious.setEnabled(active);
+        jbtnPrintRecipe.setEnabled(active);
+        jbtnQuickSearch.setEnabled(active);
+        jbtnRecipeNotes.setEnabled(active);
+        jbtnRedo.setEnabled(active);
+        jbtnSave.setEnabled(active);
+        jbtnTips.setEnabled(active);
+        jbtnUndo.setEnabled(active);
+        //File menu items
+        jmiBookInfo.setEnabled(active);
+        jmiCloseBook.setEnabled(active);
         jmiExport.setEnabled(active);
-        jmiMeal.setEnabled(active);
-        jmiNewRecipe.setEnabled(active);
-        jmiRedo.setEnabled(active);
-        jmiUndo.setEnabled(active);
-        //TODO:see: jmiSave.setEnabled(active);
-        jmiSchedule.setEnabled(active);
-        jmiSearch.setEnabled(active);
-        jmiTemplatedBook.setEnabled(active);
-        jmiTips.setEnabled(active);
         jmiZipBook.setEnabled(active);
-        jbtDeleteRecipe.setEnabled(active);
-        jbtEditRecipe.setEnabled(active);
-        jbtNewRecipe.setEnabled(active);
-        jbtNext.setEnabled(active);
-        jbtPrevious.setEnabled(active);
-        jbtPrintRecipe.setEnabled(active);
-        jbtQuickSearch.setEnabled(active);
-        jbtRedo.setEnabled(active);
-        jbtSave.setEnabled(active);
-        jbtUndo.setEnabled(active);
-        jtfQuickSearch.setEnabled(active);*/
-        //TODO: hide the interface
+        if (!active) {
+            jmiSave.setEnabled(false);
+        }
+        //Tools menu items
+        jmiMeal.setEnabled(active);
+        jmiSchedule.setEnabled(active);
+        jmiTips.setEnabled(active);
+
+        //Edit menu
+        jmEdit.setEnabled(active);
     }
+    
+    private void zipAll(File selectedFile) {
+        //TODO: zip contents
+    }    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -227,29 +245,29 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private void initComponents() {
 
         jtbMainBar = new javax.swing.JToolBar();
-        jbtNewBook = new javax.swing.JButton();
-        jbtOpenBook = new javax.swing.JButton();
-        jbtSave = new javax.swing.JButton();
+        jbtnNewBook = new javax.swing.JButton();
+        jbtnOpenBook = new javax.swing.JButton();
+        jbtnSave = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JToolBar.Separator();
-        jbtNewRecipe = new javax.swing.JButton();
-        jbtEditRecipe = new javax.swing.JButton();
-        jbtDeleteRecipe = new javax.swing.JButton();
+        jbtnNewRecipe = new javax.swing.JButton();
+        jbtnEditRecipe = new javax.swing.JButton();
+        jbtnDeleteRecipe = new javax.swing.JButton();
         jSeparator11 = new javax.swing.JToolBar.Separator();
-        jbtUndo = new javax.swing.JButton();
-        jbtRedo = new javax.swing.JButton();
+        jbtnUndo = new javax.swing.JButton();
+        jbtnRedo = new javax.swing.JButton();
         jSeparator12 = new javax.swing.JToolBar.Separator();
-        jbtPrintRecipe = new javax.swing.JButton();
+        jbtnPrintRecipe = new javax.swing.JButton();
         jSeparator13 = new javax.swing.JToolBar.Separator();
         jtfQuickSearch = new javax.swing.JTextField();
-        jbtQuickSearch = new javax.swing.JButton();
+        jbtnQuickSearch = new javax.swing.JButton();
         jSeparator14 = new javax.swing.JToolBar.Separator();
-        jbtPrevious = new javax.swing.JButton();
-        jbtNext = new javax.swing.JButton();
+        jbtnPrevious = new javax.swing.JButton();
+        jbtnNext = new javax.swing.JButton();
         jSeparator16 = new javax.swing.JToolBar.Separator();
-        jbtRecipeNotes = new javax.swing.JButton();
-        jbtTips = new javax.swing.JButton();
+        jbtnRecipeNotes = new javax.swing.JButton();
+        jbtnTips = new javax.swing.JButton();
         jSeparator18 = new javax.swing.JToolBar.Separator();
-        jbtApplyStar = new javax.swing.JButton();
+        jbtnApplyStar = new javax.swing.JButton();
         jspMainSplit = new javax.swing.JSplitPane();
         jtpTreeTabs = new javax.swing.JTabbedPane();
         jpTabType = new javax.swing.JPanel();
@@ -258,9 +276,9 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jpTabLabel = new javax.swing.JPanel();
         jscpTreeLabelScroll = new javax.swing.JScrollPane();
         jtreeLabel = new javax.swing.JTree();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jpStaredRecipe = new javax.swing.JPanel();
+        jscpStaredRecipe = new javax.swing.JScrollPane();
+        jtStaredRecipe = new javax.swing.JTree();
         jpMainRightPanel = new javax.swing.JPanel();
         jscpEditor = new javax.swing.JScrollPane();
         jepRecipe = new javax.swing.JEditorPane();
@@ -270,7 +288,6 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jSeparator2 = new javax.swing.JSeparator();
         jmiOpenBook = new javax.swing.JMenuItem();
         jmiCloseBook = new javax.swing.JMenuItem();
-        jmRecentBooks = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JSeparator();
         jmiSave = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JSeparator();
@@ -278,12 +295,11 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jSeparator17 = new javax.swing.JSeparator();
         jmiImport = new javax.swing.JMenuItem();
         jmiExport = new javax.swing.JMenuItem();
-        jmiTemplatedBook = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JSeparator();
         jmiZipBook = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JSeparator();
         jmiExit = new javax.swing.JMenuItem();
-        jmRecipe = new javax.swing.JMenu();
+        jmEdit = new javax.swing.JMenu();
         jmiUndo = new javax.swing.JMenuItem();
         jmiRedo = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JSeparator();
@@ -309,7 +325,8 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jmiAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("null");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
+        setTitle(bundle.getString("WINDOW_TITLE")); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -319,117 +336,116 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jtbMainBar.setFloatable(false);
         jtbMainBar.setRollover(true);
 
-        jbtNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-new-book.png"))); // NOI18N
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
-        jbtNewBook.setToolTipText(bundle.getString("MAINBAR_TIP_NEWBOOK")); // NOI18N
-        jbtNewBook.setFocusable(false);
-        jbtNewBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtNewBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtNewBook.addActionListener(new java.awt.event.ActionListener() {
+        jbtnNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-new-book.png"))); // NOI18N
+        jbtnNewBook.setToolTipText(bundle.getString("MAINBAR_TIP_NEWBOOK")); // NOI18N
+        jbtnNewBook.setFocusable(false);
+        jbtnNewBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnNewBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnNewBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtNewBookActionPerformed(evt);
+                jbtnNewBookActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtNewBook);
+        jtbMainBar.add(jbtnNewBook);
 
-        jbtOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-open-book.png"))); // NOI18N
-        jbtOpenBook.setToolTipText(bundle.getString("MAINBAR_TIP_OPENBOOK")); // NOI18N
-        jbtOpenBook.setFocusable(false);
-        jbtOpenBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtOpenBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtOpenBook.addActionListener(new java.awt.event.ActionListener() {
+        jbtnOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-open-book.png"))); // NOI18N
+        jbtnOpenBook.setToolTipText(bundle.getString("MAINBAR_TIP_OPENBOOK")); // NOI18N
+        jbtnOpenBook.setFocusable(false);
+        jbtnOpenBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnOpenBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnOpenBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtOpenBookActionPerformed(evt);
+                jbtnOpenBookActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtOpenBook);
+        jtbMainBar.add(jbtnOpenBook);
 
-        jbtSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-save.png"))); // NOI18N
-        jbtSave.setToolTipText(bundle.getString("MAINBAR_TIP_SAVE")); // NOI18N
-        jbtSave.setFocusable(false);
-        jbtSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtSave.addActionListener(new java.awt.event.ActionListener() {
+        jbtnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-save.png"))); // NOI18N
+        jbtnSave.setToolTipText(bundle.getString("MAINBAR_TIP_SAVE")); // NOI18N
+        jbtnSave.setFocusable(false);
+        jbtnSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtSaveActionPerformed(evt);
+                jbtnSaveActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtSave);
+        jtbMainBar.add(jbtnSave);
         jtbMainBar.add(jSeparator10);
 
-        jbtNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-new-recipe.png"))); // NOI18N
-        jbtNewRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_NEWRECIPE")); // NOI18N
-        jbtNewRecipe.setFocusable(false);
-        jbtNewRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtNewRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtNewRecipe.addActionListener(new java.awt.event.ActionListener() {
+        jbtnNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-new-recipe.png"))); // NOI18N
+        jbtnNewRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_NEWRECIPE")); // NOI18N
+        jbtnNewRecipe.setFocusable(false);
+        jbtnNewRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnNewRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnNewRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtNewRecipeActionPerformed(evt);
+                jbtnNewRecipeActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtNewRecipe);
+        jtbMainBar.add(jbtnNewRecipe);
 
-        jbtEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-edit.png"))); // NOI18N
-        jbtEditRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_EDITRECIPE")); // NOI18N
-        jbtEditRecipe.setFocusable(false);
-        jbtEditRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtEditRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtEditRecipe.addActionListener(new java.awt.event.ActionListener() {
+        jbtnEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-edit.png"))); // NOI18N
+        jbtnEditRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_EDITRECIPE")); // NOI18N
+        jbtnEditRecipe.setFocusable(false);
+        jbtnEditRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnEditRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnEditRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtEditRecipeActionPerformed(evt);
+                jbtnEditRecipeActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtEditRecipe);
+        jtbMainBar.add(jbtnEditRecipe);
 
-        jbtDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-delete.png"))); // NOI18N
-        jbtDeleteRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_DELETERECIPE")); // NOI18N
-        jbtDeleteRecipe.setFocusable(false);
-        jbtDeleteRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtDeleteRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtDeleteRecipe.addActionListener(new java.awt.event.ActionListener() {
+        jbtnDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-delete.png"))); // NOI18N
+        jbtnDeleteRecipe.setToolTipText(bundle.getString("MAINBAR_TIP_DELETERECIPE")); // NOI18N
+        jbtnDeleteRecipe.setFocusable(false);
+        jbtnDeleteRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnDeleteRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnDeleteRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtDeleteRecipeActionPerformed(evt);
+                jbtnDeleteRecipeActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtDeleteRecipe);
+        jtbMainBar.add(jbtnDeleteRecipe);
         jtbMainBar.add(jSeparator11);
 
-        jbtUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-undo.png"))); // NOI18N
-        jbtUndo.setToolTipText(bundle.getString("KCookBGui.jbtUndo.toolTipText")); // NOI18N
-        jbtUndo.setFocusable(false);
-        jbtUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtUndo.addActionListener(new java.awt.event.ActionListener() {
+        jbtnUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-undo.png"))); // NOI18N
+        jbtnUndo.setToolTipText(bundle.getString("KCookBGui.jbtnUndo.toolTipText")); // NOI18N
+        jbtnUndo.setFocusable(false);
+        jbtnUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnUndo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtUndoActionPerformed(evt);
+                jbtnUndoActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtUndo);
+        jtbMainBar.add(jbtnUndo);
 
-        jbtRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-redo.png"))); // NOI18N
-        jbtRedo.setToolTipText(bundle.getString("KCookBGui.jbtRedo.toolTipText")); // NOI18N
-        jbtRedo.setFocusable(false);
-        jbtRedo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtRedo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtRedo.addActionListener(new java.awt.event.ActionListener() {
+        jbtnRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-redo.png"))); // NOI18N
+        jbtnRedo.setToolTipText(bundle.getString("KCookBGui.jbtnRedo.toolTipText")); // NOI18N
+        jbtnRedo.setFocusable(false);
+        jbtnRedo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnRedo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnRedo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtRedoActionPerformed(evt);
+                jbtnRedoActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtRedo);
+        jtbMainBar.add(jbtnRedo);
         jtbMainBar.add(jSeparator12);
 
-        jbtPrintRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-print-recipe.png"))); // NOI18N
-        jbtPrintRecipe.setToolTipText(bundle.getString("KCookBGui.jbtPrintRecipe.toolTipText")); // NOI18N
-        jbtPrintRecipe.setFocusable(false);
-        jbtPrintRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtPrintRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtPrintRecipe.addActionListener(new java.awt.event.ActionListener() {
+        jbtnPrintRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-print-recipe.png"))); // NOI18N
+        jbtnPrintRecipe.setToolTipText(bundle.getString("KCookBGui.jbtnPrintRecipe.toolTipText")); // NOI18N
+        jbtnPrintRecipe.setFocusable(false);
+        jbtnPrintRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnPrintRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnPrintRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtPrintRecipeActionPerformed(evt);
+                jbtnPrintRecipeActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtPrintRecipe);
+        jtbMainBar.add(jbtnPrintRecipe);
         jtbMainBar.add(jSeparator13);
 
         jtfQuickSearch.setMaximumSize(new java.awt.Dimension(150, 27));
@@ -441,84 +457,85 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         });
         jtbMainBar.add(jtfQuickSearch);
 
-        jbtQuickSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-find.png"))); // NOI18N
-        jbtQuickSearch.setToolTipText(bundle.getString("KCookBGui.jbtQuickSearch.toolTipText")); // NOI18N
-        jbtQuickSearch.setFocusable(false);
-        jbtQuickSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtQuickSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtQuickSearch.addActionListener(new java.awt.event.ActionListener() {
+        jbtnQuickSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-find.png"))); // NOI18N
+        jbtnQuickSearch.setToolTipText(bundle.getString("KCookBGui.jbtnQuickSearch.toolTipText")); // NOI18N
+        jbtnQuickSearch.setFocusable(false);
+        jbtnQuickSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnQuickSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnQuickSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtQuickSearchActionPerformed(evt);
+                jbtnQuickSearchActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtQuickSearch);
+        jtbMainBar.add(jbtnQuickSearch);
         jtbMainBar.add(jSeparator14);
 
-        jbtPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-previous.png"))); // NOI18N
-        jbtPrevious.setToolTipText(bundle.getString("KCookBGui.jbtPrevious.toolTipText")); // NOI18N
-        jbtPrevious.setFocusable(false);
-        jbtPrevious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtPrevious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtPrevious.addActionListener(new java.awt.event.ActionListener() {
+        jbtnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-previous.png"))); // NOI18N
+        jbtnPrevious.setToolTipText(bundle.getString("KCookBGui.jbtnPrevious.toolTipText")); // NOI18N
+        jbtnPrevious.setFocusable(false);
+        jbtnPrevious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnPrevious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnPrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtPreviousActionPerformed(evt);
+                jbtnPreviousActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtPrevious);
+        jtbMainBar.add(jbtnPrevious);
 
-        jbtNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-next.png"))); // NOI18N
-        jbtNext.setToolTipText(bundle.getString("KCookBGui.jbtNext.toolTipText")); // NOI18N
-        jbtNext.setFocusable(false);
-        jbtNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtNext.addActionListener(new java.awt.event.ActionListener() {
+        jbtnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-next.png"))); // NOI18N
+        jbtnNext.setToolTipText(bundle.getString("KCookBGui.jbtnNext.toolTipText")); // NOI18N
+        jbtnNext.setFocusable(false);
+        jbtnNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtNextActionPerformed(evt);
+                jbtnNextActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtNext);
+        jtbMainBar.add(jbtnNext);
         jtbMainBar.add(jSeparator16);
 
-        jbtRecipeNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-notes.png"))); // NOI18N
-        jbtRecipeNotes.setToolTipText(bundle.getString("KCookBGui.jbtRecipeNotes.toolTipText")); // NOI18N
-        jbtRecipeNotes.setFocusable(false);
-        jbtRecipeNotes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtRecipeNotes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtRecipeNotes.addActionListener(new java.awt.event.ActionListener() {
+        jbtnRecipeNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-notes.png"))); // NOI18N
+        jbtnRecipeNotes.setToolTipText(bundle.getString("KCookBGui.jbtnRecipeNotes.toolTipText")); // NOI18N
+        jbtnRecipeNotes.setFocusable(false);
+        jbtnRecipeNotes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnRecipeNotes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnRecipeNotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtRecipeNotesActionPerformed(evt);
+                jbtnRecipeNotesActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtRecipeNotes);
+        jtbMainBar.add(jbtnRecipeNotes);
 
-        jbtTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-tips.png"))); // NOI18N
-        jbtTips.setToolTipText(bundle.getString("KCookBGui.jbtTips.toolTipText")); // NOI18N
-        jbtTips.setFocusable(false);
-        jbtTips.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtTips.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtTips.addActionListener(new java.awt.event.ActionListener() {
+        jbtnTips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-tips.png"))); // NOI18N
+        jbtnTips.setToolTipText(bundle.getString("KCookBGui.jbtnTips.toolTipText")); // NOI18N
+        jbtnTips.setFocusable(false);
+        jbtnTips.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnTips.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnTips.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtTipsActionPerformed(evt);
+                jbtnTipsActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtTips);
+        jtbMainBar.add(jbtnTips);
         jtbMainBar.add(jSeparator18);
 
-        jbtApplyStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-star.png"))); // NOI18N
-        jbtApplyStar.setFocusable(false);
-        jbtApplyStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtApplyStar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtApplyStar.addActionListener(new java.awt.event.ActionListener() {
+        jbtnApplyStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-star.png"))); // NOI18N
+        jbtnApplyStar.setFocusable(false);
+        jbtnApplyStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnApplyStar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnApplyStar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtApplyStarActionPerformed(evt);
+                jbtnApplyStarActionPerformed(evt);
             }
         });
-        jtbMainBar.add(jbtApplyStar);
+        jtbMainBar.add(jbtnApplyStar);
 
         jspMainSplit.setDividerLocation(160);
 
         jtpTreeTabs.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
+        jtreeType.setModel(null);
         jscpTreeTypeScroll.setViewportView(jtreeType);
 
         org.jdesktop.layout.GroupLayout jpTabTypeLayout = new org.jdesktop.layout.GroupLayout(jpTabType);
@@ -534,6 +551,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
         jtpTreeTabs.addTab(bundle.getString("WINDOW_TABCATEGORIES"), jpTabType); // NOI18N
 
+        jtreeLabel.setModel(null);
         jscpTreeLabelScroll.setViewportView(jtreeLabel);
 
         org.jdesktop.layout.GroupLayout jpTabLabelLayout = new org.jdesktop.layout.GroupLayout(jpTabLabel);
@@ -549,20 +567,21 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
         jtpTreeTabs.addTab(bundle.getString("WINDOW_LABELTAB"), jpTabLabel); // NOI18N
 
-        jScrollPane1.setViewportView(jTree1);
+        jtStaredRecipe.setModel(null);
+        jscpStaredRecipe.setViewportView(jtStaredRecipe);
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+        org.jdesktop.layout.GroupLayout jpStaredRecipeLayout = new org.jdesktop.layout.GroupLayout(jpStaredRecipe);
+        jpStaredRecipe.setLayout(jpStaredRecipeLayout);
+        jpStaredRecipeLayout.setHorizontalGroup(
+            jpStaredRecipeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jscpStaredRecipe, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+        jpStaredRecipeLayout.setVerticalGroup(
+            jpStaredRecipeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jscpStaredRecipe, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
         );
 
-        jtpTreeTabs.addTab(bundle.getString("KCookBGui.jPanel1.TabConstraints.tabTitle"), new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/tabbed-stared.png")), jPanel1); // NOI18N
+        jtpTreeTabs.addTab(bundle.getString("KCookBGui.jpStaredRecipe.TabConstraints.tabTitle"), new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/tabbed-stared.png")), jpStaredRecipe); // NOI18N
 
         jspMainSplit.setLeftComponent(jtpTreeTabs);
         jtpTreeTabs.getAccessibleContext().setAccessibleName("null");
@@ -611,9 +630,6 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
             }
         });
         jmFile.add(jmiCloseBook);
-
-        jmRecentBooks.setText(bundle.getString("WINDOW_FILEMENU_OPENRECENT")); // NOI18N
-        jmFile.add(jmRecentBooks);
         jmFile.add(jSeparator3);
 
         jmiSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-save.png"))); // NOI18N
@@ -652,14 +668,6 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
             }
         });
         jmFile.add(jmiExport);
-
-        jmiTemplatedBook.setText(bundle.getString("WINDOW_FILEMENU_TEMPLATEEXPORT")); // NOI18N
-        jmiTemplatedBook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiTemplatedBookActionPerformed(evt);
-            }
-        });
-        jmFile.add(jmiTemplatedBook);
         jmFile.add(jSeparator4);
 
         jmiZipBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-package.png"))); // NOI18N
@@ -682,7 +690,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
         jmbMainMenu.add(jmFile);
 
-        jmRecipe.setText(bundle.getString("WINDOW_EDITMENU")); // NOI18N
+        jmEdit.setText(bundle.getString("WINDOW_EDITMENU")); // NOI18N
 
         jmiUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-undo.png"))); // NOI18N
         jmiUndo.setText(bundle.getString("WINDOW_EDITMENU_UNDO")); // NOI18N
@@ -691,7 +699,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
                 jmiUndoActionPerformed(evt);
             }
         });
-        jmRecipe.add(jmiUndo);
+        jmEdit.add(jmiUndo);
 
         jmiRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-redo.png"))); // NOI18N
         jmiRedo.setText(bundle.getString("WINDOW_EDITMENU_REDO")); // NOI18N
@@ -700,8 +708,8 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
                 jmiRedoActionPerformed(evt);
             }
         });
-        jmRecipe.add(jmiRedo);
-        jmRecipe.add(jSeparator5);
+        jmEdit.add(jmiRedo);
+        jmEdit.add(jSeparator5);
 
         jmiNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-new-recipe.png"))); // NOI18N
         jmiNewRecipe.setText(bundle.getString("WINDOW_EDITMENU_NEWRECIPE")); // NOI18N
@@ -710,7 +718,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
                 jmiNewRecipeActionPerformed(evt);
             }
         });
-        jmRecipe.add(jmiNewRecipe);
+        jmEdit.add(jmiNewRecipe);
 
         jmiEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-edit.png"))); // NOI18N
         jmiEditRecipe.setText(bundle.getString("WINDOW_EDITMENU_EDITRECIPE")); // NOI18N
@@ -719,7 +727,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
                 jmiEditRecipeActionPerformed(evt);
             }
         });
-        jmRecipe.add(jmiEditRecipe);
+        jmEdit.add(jmiEditRecipe);
 
         jmiDeleteRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-delete.png"))); // NOI18N
         jmiDeleteRecipe.setText(bundle.getString("WINDOW_EDITMENU_DELETERECIPE")); // NOI18N
@@ -728,8 +736,8 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
                 jmiDeleteRecipeActionPerformed(evt);
             }
         });
-        jmRecipe.add(jmiDeleteRecipe);
-        jmRecipe.add(jSeparator6);
+        jmEdit.add(jmiDeleteRecipe);
+        jmEdit.add(jSeparator6);
 
         jmiSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-find.png"))); // NOI18N
         jmiSearch.setText(bundle.getString("WINDOW_EDITMENU_FIND")); // NOI18N
@@ -738,9 +746,9 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
                 jmiSearchActionPerformed(evt);
             }
         });
-        jmRecipe.add(jmiSearch);
+        jmEdit.add(jmiSearch);
 
-        jmbMainMenu.add(jmRecipe);
+        jmbMainMenu.add(jmEdit);
 
         jmiTools.setText(bundle.getString("WINDOW_TOOLSMENU")); // NOI18N
 
@@ -864,45 +872,44 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     }//GEN-LAST:event_jmiAboutActionPerformed
 
     private void jmiHelpContentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHelpContentsActionPerformed
-        //TODO: Create and add help system
-        //use threads
+        //TODO: help for main window
     }//GEN-LAST:event_jmiHelpContentsActionPerformed
 
-    private void jbtNewBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNewBookActionPerformed
+    private void jbtnNewBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNewBookActionPerformed
         newBook();
-    }//GEN-LAST:event_jbtNewBookActionPerformed
+}//GEN-LAST:event_jbtnNewBookActionPerformed
 
-    private void jbtOpenBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtOpenBookActionPerformed
+    private void jbtnOpenBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOpenBookActionPerformed
         openBook();
-    }//GEN-LAST:event_jbtOpenBookActionPerformed
+}//GEN-LAST:event_jbtnOpenBookActionPerformed
 
-    private void jbtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSaveActionPerformed
+    private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
         save();
-    }//GEN-LAST:event_jbtSaveActionPerformed
+}//GEN-LAST:event_jbtnSaveActionPerformed
 
-    private void jbtNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNewRecipeActionPerformed
+    private void jbtnNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNewRecipeActionPerformed
         addNewRecipe();
-    }//GEN-LAST:event_jbtNewRecipeActionPerformed
+}//GEN-LAST:event_jbtnNewRecipeActionPerformed
 
-    private void jbtDeleteRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteRecipeActionPerformed
+    private void jbtnDeleteRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeleteRecipeActionPerformed
         deleteRecipe();
-    }//GEN-LAST:event_jbtDeleteRecipeActionPerformed
+}//GEN-LAST:event_jbtnDeleteRecipeActionPerformed
 
-    private void jbtUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtUndoActionPerformed
+    private void jbtnUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnUndoActionPerformed
         undo();
-    }//GEN-LAST:event_jbtUndoActionPerformed
+}//GEN-LAST:event_jbtnUndoActionPerformed
 
-    private void jbtRedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRedoActionPerformed
+    private void jbtnRedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRedoActionPerformed
         redo();
-    }//GEN-LAST:event_jbtRedoActionPerformed
+}//GEN-LAST:event_jbtnRedoActionPerformed
 
-    private void jbtPrintRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPrintRecipeActionPerformed
+    private void jbtnPrintRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrintRecipeActionPerformed
         print();
-    }//GEN-LAST:event_jbtPrintRecipeActionPerformed
+}//GEN-LAST:event_jbtnPrintRecipeActionPerformed
 
-    private void jbtQuickSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtQuickSearchActionPerformed
+    private void jbtnQuickSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQuickSearchActionPerformed
         doQuickSearch(jtfQuickSearch.getText().trim());
-    }//GEN-LAST:event_jbtQuickSearchActionPerformed
+}//GEN-LAST:event_jbtnQuickSearchActionPerformed
 
     private void jtfQuickSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfQuickSearchActionPerformed
         doQuickSearch(jtfQuickSearch.getText().trim());
@@ -912,17 +919,17 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         exit();
     }//GEN-LAST:event_formWindowClosing
 
-    private void jbtEditRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEditRecipeActionPerformed
+    private void jbtnEditRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditRecipeActionPerformed
         editRecipe();
-    }//GEN-LAST:event_jbtEditRecipeActionPerformed
+}//GEN-LAST:event_jbtnEditRecipeActionPerformed
 
-    private void jbtPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPreviousActionPerformed
+    private void jbtnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPreviousActionPerformed
         previousRecipe();
-    }//GEN-LAST:event_jbtPreviousActionPerformed
+}//GEN-LAST:event_jbtnPreviousActionPerformed
 
-    private void jbtNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNextActionPerformed
+    private void jbtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNextActionPerformed
         nextRecipe();
-    }//GEN-LAST:event_jbtNextActionPerformed
+}//GEN-LAST:event_jbtnNextActionPerformed
 
     private void jmiOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOptionsActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -944,7 +951,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private void jmiCloseBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCloseBookActionPerformed
         book.closeCatalog();
         book = null;
-    //TODO: defineInterfaceOptionsEstate(false);
+        defineInterfaceOptionsEstate(false);
     }//GEN-LAST:event_jmiCloseBookActionPerformed
 
     private void jmiImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImportActionPerformed
@@ -965,20 +972,12 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         });
     }//GEN-LAST:event_jmiExportActionPerformed
 
-    private void jmiTemplatedBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTemplatedBookActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new TemplateExport(me, true).showCentered();
-            }
-        });
-    }//GEN-LAST:event_jmiTemplatedBookActionPerformed
-
     private void jmiZipBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiZipBookActionPerformed
         JFileChooser jfc = new JFileChooser();
 
+        //TODO: config jfc
         if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-            //TODO: create zip file of all project folder.
+            zipAll(jfc.getSelectedFile());
         }
     }//GEN-LAST:event_jmiZipBookActionPerformed
 
@@ -1043,30 +1042,30 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         });
     }//GEN-LAST:event_jmiBookInfoActionPerformed
 
-    private void jbtRecipeNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRecipeNotesActionPerformed
+    private void jbtnRecipeNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRecipeNotesActionPerformed
         showNotes();
-    }//GEN-LAST:event_jbtRecipeNotesActionPerformed
+}//GEN-LAST:event_jbtnRecipeNotesActionPerformed
 
-    private void jbtApplyStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtApplyStarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtApplyStarActionPerformed
+    private void jbtnApplyStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnApplyStarActionPerformed
+        selectedRecipe.setStared(!selectedRecipe.isStared());
+}//GEN-LAST:event_jbtnApplyStarActionPerformed
 
-    private void jbtTipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTipsActionPerformed
+    private void jbtnTipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTipsActionPerformed
         showTips();
-    }//GEN-LAST:event_jbtTipsActionPerformed
+}//GEN-LAST:event_jbtnTipsActionPerformed
 
     private void jmiTipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTipsActionPerformed
         showTips();
     }//GEN-LAST:event_jmiTipsActionPerformed
 
     public void recipeAdded(KCookBEvent ev) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO: added recipe
     }
 
     public void recipeDeleted(KCookBEvent ev) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO: remove recipe
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1092,8 +1091,6 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
@@ -1112,28 +1109,26 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTree jTree1;
-    private javax.swing.JButton jbtApplyStar;
-    private javax.swing.JButton jbtDeleteRecipe;
-    private javax.swing.JButton jbtEditRecipe;
-    private javax.swing.JButton jbtNewBook;
-    private javax.swing.JButton jbtNewRecipe;
-    private javax.swing.JButton jbtNext;
-    private javax.swing.JButton jbtOpenBook;
-    private javax.swing.JButton jbtPrevious;
-    private javax.swing.JButton jbtPrintRecipe;
-    private javax.swing.JButton jbtQuickSearch;
-    private javax.swing.JButton jbtRecipeNotes;
-    private javax.swing.JButton jbtRedo;
-    private javax.swing.JButton jbtSave;
-    private javax.swing.JButton jbtTips;
-    private javax.swing.JButton jbtUndo;
+    private javax.swing.JButton jbtnApplyStar;
+    private javax.swing.JButton jbtnDeleteRecipe;
+    private javax.swing.JButton jbtnEditRecipe;
+    private javax.swing.JButton jbtnNewBook;
+    private javax.swing.JButton jbtnNewRecipe;
+    private javax.swing.JButton jbtnNext;
+    private javax.swing.JButton jbtnOpenBook;
+    private javax.swing.JButton jbtnPrevious;
+    private javax.swing.JButton jbtnPrintRecipe;
+    private javax.swing.JButton jbtnQuickSearch;
+    private javax.swing.JButton jbtnRecipeNotes;
+    private javax.swing.JButton jbtnRedo;
+    private javax.swing.JButton jbtnSave;
+    private javax.swing.JButton jbtnTips;
+    private javax.swing.JButton jbtnUndo;
     private javax.swing.JEditorPane jepRecipe;
+    private javax.swing.JMenu jmEdit;
     private javax.swing.JMenu jmFile;
     private javax.swing.JMenu jmHelp;
     private javax.swing.JMenu jmOnlineResources;
-    private javax.swing.JMenu jmRecentBooks;
-    private javax.swing.JMenu jmRecipe;
     private javax.swing.JMenuBar jmbMainMenu;
     private javax.swing.JMenuItem jmiAbout;
     private javax.swing.JMenuItem jmiBookInfo;
@@ -1156,18 +1151,20 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private javax.swing.JMenuItem jmiSave;
     private javax.swing.JMenuItem jmiSchedule;
     private javax.swing.JMenuItem jmiSearch;
-    private javax.swing.JMenuItem jmiTemplatedBook;
     private javax.swing.JMenuItem jmiTips;
     private javax.swing.JMenu jmiTools;
     private javax.swing.JMenuItem jmiUndo;
     private javax.swing.JMenuItem jmiZipBook;
     private javax.swing.JPanel jpMainRightPanel;
+    private javax.swing.JPanel jpStaredRecipe;
     private javax.swing.JPanel jpTabLabel;
     private javax.swing.JPanel jpTabType;
     private javax.swing.JScrollPane jscpEditor;
+    private javax.swing.JScrollPane jscpStaredRecipe;
     private javax.swing.JScrollPane jscpTreeLabelScroll;
     private javax.swing.JScrollPane jscpTreeTypeScroll;
     private javax.swing.JSplitPane jspMainSplit;
+    private javax.swing.JTree jtStaredRecipe;
     private javax.swing.JToolBar jtbMainBar;
     private javax.swing.JTextField jtfQuickSearch;
     private javax.swing.JTabbedPane jtpTreeTabs;
