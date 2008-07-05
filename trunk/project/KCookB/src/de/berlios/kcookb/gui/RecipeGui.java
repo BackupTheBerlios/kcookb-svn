@@ -66,17 +66,17 @@ public class RecipeGui extends javax.swing.JDialog {
         jtfCoocking = new javax.swing.JTextField();
         jlblTimeLabel1 = new javax.swing.JLabel();
         jlblTimeLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jlblFreezer = new javax.swing.JLabel();
+        jtfFreezer = new javax.swing.JTextField();
         jlblTimeLabel3 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jlblFridge = new javax.swing.JLabel();
+        jtfFridge = new javax.swing.JTextField();
         jlblTimeLabel4 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jchkStared = new javax.swing.JCheckBox();
-        jLabel7 = new javax.swing.JLabel();
+        lblLabels = new javax.swing.JLabel();
         jtfLabels = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblLabelsHelp = new javax.swing.JLabel();
         jbtnNotes = new javax.swing.JButton();
         jbtnTips = new javax.swing.JButton();
         jpPreparation = new javax.swing.JPanel();
@@ -145,25 +145,25 @@ public class RecipeGui extends javax.swing.JDialog {
 
         jlblTimeLabel2.setText(bundle.getString("RecipeGui.jlblTimeLabel2.text")); // NOI18N
 
-        jLabel10.setText(bundle.getString("RecipeGui.jLabel10.text")); // NOI18N
+        jlblFreezer.setText(bundle.getString("RecipeGui.jlblFreezer.text")); // NOI18N
 
-        jTextField6.setText(bundle.getString("RecipeGui.jTextField6.text")); // NOI18N
+        jtfFreezer.setText(bundle.getString("RecipeGui.jtfFreezer.text")); // NOI18N
 
         jlblTimeLabel3.setText(bundle.getString("RecipeGui.jlblTimeLabel3.text")); // NOI18N
 
-        jLabel9.setText(bundle.getString("RecipeGui.jLabel9.text")); // NOI18N
+        jlblFridge.setText(bundle.getString("RecipeGui.jlblFridge.text")); // NOI18N
 
-        jTextField7.setText(bundle.getString("RecipeGui.jTextField7.text")); // NOI18N
+        jtfFridge.setText(bundle.getString("RecipeGui.jtfFridge.text")); // NOI18N
 
         jlblTimeLabel4.setText(bundle.getString("RecipeGui.jlblTimeLabel4.text")); // NOI18N
 
         jchkStared.setText(bundle.getString("RecipeGui.jchkStared.text")); // NOI18N
 
-        jLabel7.setText(bundle.getString("RecipeGui.jLabel7.text")); // NOI18N
+        lblLabels.setText(bundle.getString("RecipeGui.lblLabels.text")); // NOI18N
 
         jtfLabels.setText(bundle.getString("RecipeGui.jtfLabels.text")); // NOI18N
 
-        jLabel8.setText(bundle.getString("RecipeGui.jLabel8.text")); // NOI18N
+        lblLabelsHelp.setText(bundle.getString("RecipeGui.lblLabelsHelp.text")); // NOI18N
 
         jbtnNotes.setText(bundle.getString("RecipeGui.jbtnNotes.text")); // NOI18N
         jbtnNotes.addActionListener(new java.awt.event.ActionListener() {
@@ -230,18 +230,18 @@ public class RecipeGui extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jlblTimeLabel1))
                             .addGroup(jpGeneralLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
+                                .addComponent(jlblFreezer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6)
+                                .addComponent(jtfFreezer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jlblTimeLabel3)))
                         .addGap(18, 18, 18)
                         .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblCoocking)
-                            .addComponent(jLabel9))
+                            .addComponent(jlblFridge))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField7)
+                            .addComponent(jtfFridge)
                             .addComponent(jtfCoocking, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,11 +249,11 @@ public class RecipeGui extends javax.swing.JDialog {
                             .addComponent(jlblTimeLabel4)))
                     .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                     .addGroup(jpGeneralLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(lblLabels)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfLabels, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
-                            .addComponent(jLabel8)
+                            .addComponent(lblLabelsHelp)
                             .addComponent(jchkStared)))
                     .addGroup(jpGeneralLayout.createSequentialGroup()
                         .addComponent(jbtnNotes)
@@ -301,20 +301,20 @@ public class RecipeGui extends javax.swing.JDialog {
                     .addComponent(jlblTimeLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(jlblFreezer)
                     .addComponent(jlblTimeLabel3)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfFreezer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblFridge)
+                    .addComponent(jtfFridge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlblTimeLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfLabels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(lblLabels))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(lblLabelsHelp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jchkStared)
                 .addGap(18, 18, 18)
@@ -714,17 +714,11 @@ private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_jbtnNotesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton jbntImageSequenceUp;
     private javax.swing.JButton jbtCancel;
     private javax.swing.JButton jbtHelp;
@@ -748,6 +742,8 @@ private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JLabel jlblCoocking;
     private javax.swing.JLabel jlblDifficulty;
     private javax.swing.JLabel jlblDoses;
+    private javax.swing.JLabel jlblFreezer;
+    private javax.swing.JLabel jlblFridge;
     private javax.swing.JLabel jlblIngredientName;
     private javax.swing.JLabel jlblIngredientQuantity;
     private javax.swing.JLabel jlblMainImage;
@@ -776,6 +772,8 @@ private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JSpinner jspRatings;
     private javax.swing.JTextArea jtaPreparationText;
     private javax.swing.JTextField jtfCoocking;
+    private javax.swing.JTextField jtfFreezer;
+    private javax.swing.JTextField jtfFridge;
     private javax.swing.JTextField jtfIngredientName;
     private javax.swing.JTextField jtfIngredientQuantity;
     private javax.swing.JTextField jtfLabels;
@@ -783,6 +781,8 @@ private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfPreparation;
     private javax.swing.JTabbedPane jtpMainTab;
+    private javax.swing.JLabel lblLabels;
+    private javax.swing.JLabel lblLabelsHelp;
     // End of variables declaration//GEN-END:variables
     
 }
