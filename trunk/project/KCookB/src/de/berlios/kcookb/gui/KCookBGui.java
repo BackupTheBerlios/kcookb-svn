@@ -6,6 +6,8 @@
 package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.exceptions.NonCoerentDatabaseException;
+import de.berlios.kcookb.gui.utils.KCookBFilter;
+import de.berlios.kcookb.gui.utils.KCookBFileView;
 import de.berlios.kcookb.model.KCookB;
 import de.berlios.kcookb.model.Recipe;
 import de.berlios.kcookb.model.events.KCookBChangedListener;
@@ -81,10 +83,14 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
     private void openBook() {
         JFileChooser jfc = new JFileChooser();
+        jfc.setFileFilter(new KCookBFilter());
+        jfc.setFileView(new KCookBFileView());
+        jfc.setMultiSelectionEnabled(false);
 
-        //TODO: config jfc
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             book.openCatalog(jfc.getSelectedFile().getAbsolutePath());
+            defineInterfaceOptionsEstate(true);
+            createTrees();
         }
     }
 
@@ -95,10 +101,10 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private void exit() {
         if (book != null) {
             if (book.hasChanges()) {
-                //TODO: i18n
                 switch (JOptionPane.showConfirmDialog(this,
-                        "Existem alterações pendentes deseja guardá-las?",
-                        "", JOptionPane.YES_NO_CANCEL_OPTION)) {
+                        java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n").getString("KCookBGui.JOptionPane.exit.messagem"),
+                        java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n").getString("KCookBGui.JOptionPane.exit.title"),
+                        JOptionPane.YES_NO_CANCEL_OPTION)) {
                     case JOptionPane.CANCEL_OPTION:
                         return;
                     case JOptionPane.YES_OPTION:
@@ -231,10 +237,88 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         //Edit menu
         jmEdit.setEnabled(active);
     }
-    
+
     private void zipAll(File selectedFile) {
         //TODO: zip contents
-    }    
+        /*
+        import java.io.*;
+        import java.util.zip.*;
+        
+        class Zip {
+        public static void main(String args[]) throws IOException {
+        byte b[] = new byte[512];
+        ZipOutputStream zout = new ZipOutputStream(System.out);
+        for(int i = 0; i < args.length; i ++) {
+        InputStream in = new FileInputStream(args[i]);
+        ZipEntry e = new ZipEntry(args[i].replace(File.separatorChar,'/'));
+        zout.putNextEntry(e);
+        int len=0;
+        while((len=in.read(b)) != -1) {
+        zout.write(b,0,len);
+        }
+        zout.closeEntry();
+        print(e);
+        }
+        zout.close();
+        }
+        
+        public static void print(ZipEntry e){
+        PrintStream err = System.err;
+        err.print("added " + e.getName());
+        if (e.getMethod() == ZipEntry.DEFLATED) {
+        long size = e.getSize();
+        if (size > 0) {
+        long csize = e.getCompressedSize();
+        long ratio = ((size-csize)*100) / size;
+        err.println(" (deflated " + ratio + "%)");
+        }
+        else {
+        err.println(" (deflated 0%)");
+        }
+        }
+        else {
+        err.println(" (stored 0%)");
+        }
+        }
+        }*/
+        /*
+         * // These are the files to include in the ZIP file
+        String[] filenames = new String[]{"filename1", "filename2"};
+        
+        // Create a buffer for reading the files
+        byte[] buf = new byte[1024];
+        
+        try {
+        // Create the ZIP file
+        String outFilename = "outfile.zip";
+        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outFilename));
+        
+        // Compress the files
+        for (int i=0; i<filenames.length; i++) {
+        FileInputStream in = new FileInputStream(filenames[i]);
+        
+        // Add ZIP entry to output stream.
+        out.putNextEntry(new ZipEntry(filenames[i]));
+        
+        // Transfer bytes from the file to the ZIP file
+        int len;
+        while ((len = in.read(buf)) > 0) {
+        out.write(buf, 0, len);
+        }
+        
+        // Complete the entry
+        out.closeEntry();
+        in.close();
+        }
+        
+        // Complete the ZIP file
+        out.close();
+        } catch (IOException e) {
+        }*/
+    }
+
+    private void createTrees() {
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -950,7 +1034,6 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
     private void jmiCloseBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCloseBookActionPerformed
         book.closeCatalog();
-        book = null;
         defineInterfaceOptionsEstate(false);
     }//GEN-LAST:event_jmiCloseBookActionPerformed
 

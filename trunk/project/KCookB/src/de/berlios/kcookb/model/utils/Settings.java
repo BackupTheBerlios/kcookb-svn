@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.berlios.kcookb.gui.utils;
+package de.berlios.kcookb.model.utils;
 
 import java.io.File;
 import java.io.FileReader;

@@ -3,32 +3,29 @@
  *
  * Created on 27 de Março de 2008, 23:55
  */
-
 package de.berlios.kcookb.gui;
 
+import de.berlios.kcookb.gui.utils.KCookBFileView;
+import de.berlios.kcookb.gui.utils.KCookBFilter;
 import java.io.File;
 import javax.swing.JFileChooser;
 
-/**
- *
- * @author  Knitter
- */
 public class NewBook extends javax.swing.JDialog {
-    
+
     private File selected;
-    
+
     /** Creates new form NewBook */
     public NewBook(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }    
-    
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -140,7 +137,7 @@ public class NewBook extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-        //TODO: help
+        //TODO: help for new book
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -148,18 +145,21 @@ public class NewBook extends javax.swing.JDialog {
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
-        ((KCookBGui)getOwner()).newBook(jtfNewBookName.getText());
+        ((KCookBGui) getOwner()).newBook(jtfNewBookName.getText());
+        dispose();
 }//GEN-LAST:event_jbtnOKActionPerformed
 
     private void jbtBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBrowseActionPerformed
-        //TODO: file chooser config
         JFileChooser jfc = new JFileChooser(System.getProperty("user.home"));
-        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        jfc.setFileFilter(new KCookBFilter());
+        jfc.setFileView(new KCookBFileView());
+        jfc.setMultiSelectionEnabled(false);
+
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             selected = jfc.getSelectedFile();
             jtfNewBookName.setText(selected.getAbsolutePath());
         }
     }//GEN-LAST:event_jbtBrowseActionPerformed
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtBrowse;
     private javax.swing.JButton jbtnCancel;
@@ -169,5 +169,4 @@ public class NewBook extends javax.swing.JDialog {
     private javax.swing.JPanel jpNewbook;
     private javax.swing.JTextField jtfNewBookName;
     // End of variables declaration//GEN-END:variables
-    
 }

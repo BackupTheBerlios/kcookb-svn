@@ -8,6 +8,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
 import de.berlios.kcookb.exceptions.NonCoerentDatabaseException;
+import de.berlios.kcookb.model.utils.Settings;
 import de.berlios.kcookb.model.events.KCookBChangedListener;
 import de.berlios.kcookb.model.events.KCookBEvent;
 import java.util.ArrayList;
@@ -26,8 +27,10 @@ public class KCookB {
     private ArrayList<Recipe> unsavedRecipes = null;
     private Vector<KCookBChangedListener> bookChandeListeners = null;
     private BookInfo info;
+    private String baseFolder;
 
     public KCookB() {
+        info = new BookInfo(Settings.getSettings().getOwner(), Settings.getSettings().getEmail());
         unsavedRecipes = new ArrayList<Recipe>(100);
         bookChandeListeners = new Vector<KCookBChangedListener>();
 
@@ -36,8 +39,6 @@ public class KCookB {
     public KCookB(String filename) {
         this();
         openDB(filename);
-        List rs = db.get(BookInfo.class);
-        info = (BookInfo) rs.get(0);
     }
 
     /**
@@ -65,6 +66,8 @@ public class KCookB {
      */
     public void openCatalog(String name) {
         openDB(name);
+        List rs = db.get(BookInfo.class);
+        info = (BookInfo) rs.get(0);
     }
 
     /**
@@ -82,6 +85,10 @@ public class KCookB {
         return !unsavedRecipes.isEmpty();
     }
 
+    /**
+     * Return the object containing basic info on the opened book
+     * @return
+     */
     public BookInfo getInfo() {
         return info;
     }
@@ -149,11 +156,11 @@ public class KCookB {
             }
         }
     }
-    
+
     public void undo() {
         //TODO: undo
     }
-    
+
     public void redo() {
         //TODO: redo
     }

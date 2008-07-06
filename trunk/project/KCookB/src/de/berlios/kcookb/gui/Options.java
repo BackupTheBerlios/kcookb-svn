@@ -5,7 +5,7 @@
  */
 package de.berlios.kcookb.gui;
 
-import de.berlios.kcookb.gui.utils.Settings;
+import de.berlios.kcookb.model.utils.Settings;
 import javax.swing.JFileChooser;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
