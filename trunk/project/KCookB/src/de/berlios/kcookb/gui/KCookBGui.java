@@ -39,6 +39,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     /** Creates new form KCookBGui */
     public KCookBGui() {
         initComponents();
+        jepRecipe.setContentType("text/plain");
         defineInterfaceOptionsEstate(false);
         showCentered();
     }
@@ -64,7 +65,8 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     }
 
     public void showRecipe(Recipe rep) {
-        //TODO: show recipe
+        jepRecipe.setText(rep.getTitle());
+        selectedRecipe = rep;
     }
 
     public void newBook(String name) {
@@ -218,7 +220,6 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jbtnQuickSearch.setEnabled(active);
         jbtnRecipeNotes.setEnabled(active);
         jbtnRedo.setEnabled(active);
-        jbtnSave.setEnabled(active);
         jbtnTips.setEnabled(active);
         jbtnUndo.setEnabled(active);
         //File menu items
@@ -227,6 +228,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jmiExport.setEnabled(active);
         jmiZipBook.setEnabled(active);
         if (!active) {
+            jbtnSave.setEnabled(false);
             jmiSave.setEnabled(false);
         }
         //Tools menu items
@@ -318,6 +320,9 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     }
 
     private void createTrees() {
+        //jtStaredRecipe
+        //jtreeLabel
+                //jtreeType
     }
 
     /** This method is called from within the constructor to
