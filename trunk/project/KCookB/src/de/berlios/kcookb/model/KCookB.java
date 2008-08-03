@@ -23,7 +23,7 @@ import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
 import de.berlios.kcookb.exceptions.NonCoerentDatabaseException;
 import de.berlios.kcookb.utils.Settings;
-import de.berlios.kcookb.model.events.KCookBChangedListener;
+import de.berlios.kcookb.model.events.KCookBListener;
 import de.berlios.kcookb.model.events.KCookBEvent;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,14 +39,15 @@ public class KCookB {
 
     private ObjectContainer db = null;
     private ArrayList<Recipe> unsavedRecipes = null;
-    private Vector<KCookBChangedListener> listeners = null;
+    private Vector<KCookBListener> listeners = null;
     private BookInfo info;
     private String baseFolder;
 
     public KCookB() {
-        info = new BookInfo(Settings.getSettings().getOwner(), Settings.getSettings().getEmail());
+        //info = new BookInfo(Settings.getSettings().getOwner(), Settings.getSettings().getEmail());
+        info = new BookInfo("owner", "email");
         unsavedRecipes = new ArrayList<Recipe>(100);
-        listeners = new Vector<KCookBChangedListener>();
+        listeners = new Vector<KCookBListener>();
 
     }
 
@@ -91,12 +92,9 @@ public class KCookB {
     public void closeCatalog() {
         if (db != null) {
             db.close();
+            listeners.clear();
             db = null;
         }
-    }
-
-    public boolean hasChanges() {
-        return !unsavedRecipes.isEmpty();
     }
 
     /**
@@ -140,7 +138,6 @@ public class KCookB {
                 tips, rating, stared, tags, method, freazer, fridge);
 
         db.set(rec);
-
         fireRecipeAdded(new KCookBEvent(this, null, rec));
     }
 
@@ -160,9 +157,7 @@ public class KCookB {
         fireRecipeDeleted(new KCookBEvent(this, rec, null));
     }
 
-    /**
-     * Saves any unsave changes submited to this book.
-     */
+    //TODO: comment
     public void save() {
         if (unsavedRecipes != null) {
             for (Recipe rec : unsavedRecipes) {
@@ -171,6 +166,11 @@ public class KCookB {
         }
     }
 
+    //TODO: comment
+    public boolean hasChanges() {
+        return !unsavedRecipes.isEmpty();
+    }
+    
     public void undo() {
         //TODO: undo
     }
@@ -198,19 +198,19 @@ public class KCookB {
      * 
      * @return A list will all existing tips.
      */
-    public List<Recipe> getAllTips() {
+    public List<Tip> getAllTips() {
         return db.get(Tip.class);
     }
 
-    public List<Recipe> getAllTypes() {
+    public List<RecipeType> getAllTypes() {
         return db.get(RecipeType.class);
     }
 
-    public List<Recipe> getMeals() {
+    public List<Meal> getMeals() {
         return db.get(Meal.class);
     }
 
-    public List<Recipe> getAllTags() {
+    public List<RecipeTag> getAllTags() {
         return db.get(RecipeTag.class);
     }
 
@@ -248,6 +248,16 @@ public class KCookB {
         });
     }
 
+    public List<Recipe> getAllStared() {
+        return db.query(new Predicate<Recipe>() {
+
+            @Override
+            public boolean match(Recipe rec) {
+                return rec.isStared();
+            }
+        });
+    }    
+    
     /*NOT*/
     public List<Recipe> searchByType(final RecipeType type) {
         return db.query(new Predicate<Recipe>() {
@@ -338,12 +348,12 @@ public class KCookB {
      * @param l Listener to be added
      * @see Vector
      */
-    public void addKCookBChangedListener(KCookBChangedListener l) {
-        if (bookChandeListeners == null) {
-            bookChandeListeners = new Vector<KCookBChangedListener>();
+    public void addKCookBChangedListener(KCookBListener l) {
+        if (listeners == null) {
+            listeners = new Vector<KCookBListener>();
         }
 
-        bookChandeListeners.add(l);
+        listeners.add(l);
     }
 
     /**
@@ -356,9 +366,9 @@ public class KCookB {
      * @param l Listener to be removed
      * @see Vector
      */
-    public void removeKCookBChangedListener(KCookBChangedListener l) {
-        if (bookChandeListeners != null) {
-            bookChandeListeners.remove(l);
+    public void removeKCookBChangedListener(KCookBListener l) {
+        if (listeners != null) {
+            listeners.remove(l);
         }
     }
 
@@ -368,7 +378,7 @@ public class KCookB {
      * @param ev The event object that encapsulates event information
      */
     private void fireRecipeDeleted(KCookBEvent ev) {
-        for (KCookBChangedListener l : bookChandeListeners) {
+        for (KCookBListener l : listeners) {
             l.recipeAdded(ev);
         }
     }
@@ -379,7 +389,7 @@ public class KCookB {
      * @param ev The event object that encapsulates event information
      */
     private void fireRecipeAdded(KCookBEvent ev) {
-        for (KCookBChangedListener l : bookChandeListeners) {
+        for (KCookBListener l : listeners) {
             l.recipeDeleted(ev);
         }
     }

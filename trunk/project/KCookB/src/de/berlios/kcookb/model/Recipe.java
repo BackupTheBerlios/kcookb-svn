@@ -49,7 +49,7 @@ public class Recipe {
     private Date freazer;
     private Date fridge;
     private Date added;
-    private Vector<RecipeListener> listeners;
+    private transient Vector<RecipeListener> listeners;
 
     public Recipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
             RecipePrice price, List<Ingredient> ingredients, RecipeType type, 

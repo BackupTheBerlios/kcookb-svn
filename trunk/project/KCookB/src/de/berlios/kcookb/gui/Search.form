@@ -27,11 +27,11 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jpResults" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jbtnShow" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnShow" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jbtnCancel" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnCancel" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jbtnHelp" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnHelp" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jpOptions" alignment="0" max="32767" attributes="0"/>
               </Group>

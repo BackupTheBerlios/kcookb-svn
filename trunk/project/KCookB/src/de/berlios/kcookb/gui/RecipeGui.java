@@ -26,25 +26,42 @@ import javax.swing.JOptionPane;
  * @author  Knitter
  */
 public class RecipeGui extends javax.swing.JDialog {
-    
+
     private Recipe recipe;
-    
+    private RecipeGui me = this;
+
     /** Creates new form RecipeGui */
     public RecipeGui(java.awt.Frame parent, boolean modal, Recipe recipe) {
         super(parent, modal);
         initComponents();
         this.recipe = recipe;
-        if(recipe != null) {
-            //TODO: method to populate interface fields with recipe data
+        if (recipe != null) {
+            jtfName.setText(recipe.getTitle());
+            recipe.getCooking();
+            recipe.getDificulty();
+            jspDoses.setValue(recipe.getDoses());
+            recipe.getFreazer();
+            recipe.getFridge();
+            recipe.getIngredients();
+            jtaPreparationText.setText(recipe.getMethod());
+            recipe.getNote();
+            recipe.getPreparation();
+            recipe.getPrice();
+            recipe.getPrincipal();
+            recipe.getRating();
+            recipe.getSequence();
+            recipe.getTags();
+            recipe.getType();
+        //TODO: method to populate interface fields with recipe data
         }
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -102,7 +119,7 @@ public class RecipeGui extends javax.swing.JDialog {
         jbtnIngredientUp = new javax.swing.JButton();
         jbtnIngredientDown = new javax.swing.JButton();
         jscpIngredients = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jlstIngredient = new javax.swing.JList();
         jtfIngredientName = new javax.swing.JTextField();
         jlblIngredientName = new javax.swing.JLabel();
         jlblIngredientQuantity = new javax.swing.JLabel();
@@ -114,11 +131,11 @@ public class RecipeGui extends javax.swing.JDialog {
         jbtnMainImage = new javax.swing.JButton();
         jpImageSequence = new javax.swing.JPanel();
         jbtnAddSequence = new javax.swing.JButton();
-        jscpImageSequence = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jbtnRemoveImageSequence = new javax.swing.JButton();
         jbntImageSequenceUp = new javax.swing.JButton();
         jbtnImageSequenceDown = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jlstImageSequence = new javax.swing.JList();
         jbtHelp = new javax.swing.JButton();
         jbtCancel = new javax.swing.JButton();
         jbtSave = new javax.swing.JButton();
@@ -413,7 +430,7 @@ public class RecipeGui extends javax.swing.JDialog {
             }
         });
 
-        jscpIngredients.setViewportView(jList1);
+        jscpIngredients.setViewportView(jlstIngredient);
 
         jtfIngredientName.setText(bundle.getString("RecipeGui.jtfIngredientName.text")); // NOI18N
 
@@ -533,10 +550,6 @@ public class RecipeGui extends javax.swing.JDialog {
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jscpImageSequence.setViewportView(jTextArea2);
-
         jbtnRemoveImageSequence.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-remove.png"))); // NOI18N
         jbtnRemoveImageSequence.setText(bundle.getString("RecipeGui.jbtnRemoveImageSequence.text")); // NOI18N
         jbtnRemoveImageSequence.addActionListener(new java.awt.event.ActionListener() {
@@ -561,13 +574,15 @@ public class RecipeGui extends javax.swing.JDialog {
             }
         });
 
+        jScrollPane1.setViewportView(jlstImageSequence);
+
         javax.swing.GroupLayout jpImageSequenceLayout = new javax.swing.GroupLayout(jpImageSequence);
         jpImageSequence.setLayout(jpImageSequenceLayout);
         jpImageSequenceLayout.setHorizontalGroup(
             jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpImageSequenceLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpImageSequenceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscpImageSequence, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpImageSequenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -589,7 +604,7 @@ public class RecipeGui extends javax.swing.JDialog {
                         .addComponent(jbntImageSequenceUp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnImageSequenceDown))
-                    .addComponent(jscpImageSequence, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -670,7 +685,30 @@ public class RecipeGui extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSaveActionPerformed
-        // TODO add your handling code here:
+        String title = jtfName.getText().trim();
+        String method = jtaPreparationText.getText().trim();
+        String cooking = jtfCoocking.getText().trim();
+        String preparation = jtfPreparation.getText().trim();
+        /*recipe = new Recipe(
+        title, 
+        preparation, 
+        cooking, 
+        dificulty, 
+        price, 
+        ingredients, 
+        type, 
+        WIDTH, 
+        sequence, 
+        principal, 
+        note, 
+        tips, 
+        WIDTH, 
+        rootPaneCheckingEnabled, 
+        tags, 
+        method, 
+        freazer, 
+        fridge)*/
+        dispose();
     }//GEN-LAST:event_jbtSaveActionPerformed
 
     private void jbtCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelActionPerformed
@@ -722,15 +760,18 @@ private void jbtnTipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jbtnTipsActionPerformed
 
 private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNotesActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jbtnNotesActionPerformed
+    java.awt.EventQueue.invokeLater(new Runnable() {
 
+        public void run() {
+            new NoteDialog(me, true, recipe != null ? recipe.getNote() : null).showCentered();
+        }
+    });
+}//GEN-LAST:event_jbtnNotesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton jbntImageSequenceUp;
     private javax.swing.JButton jbtCancel;
     private javax.swing.JButton jbtHelp;
@@ -768,6 +809,8 @@ private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JLabel jlblTimeLabel4;
     private javax.swing.JLabel jlblTimes;
     private javax.swing.JLabel jlblType;
+    private javax.swing.JList jlstImageSequence;
+    private javax.swing.JList jlstIngredient;
     private javax.swing.JPanel jpGeneral;
     private javax.swing.JPanel jpImageSequence;
     private javax.swing.JPanel jpImages;
@@ -777,7 +820,6 @@ private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JPanel jpPreparation;
     private javax.swing.JPanel jpPreparationSndPanel;
     private javax.swing.JLabel jpblName;
-    private javax.swing.JScrollPane jscpImageSequence;
     private javax.swing.JScrollPane jscpIngredients;
     private javax.swing.JScrollPane jscpPreparation;
     private javax.swing.JSpinner jspDoses;
@@ -796,5 +838,4 @@ private void jbtnNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JLabel lblLabels;
     private javax.swing.JLabel lblLabelsHelp;
     // End of variables declaration//GEN-END:variables
-    
 }

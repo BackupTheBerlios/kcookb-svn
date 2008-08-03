@@ -24,7 +24,7 @@ import java.util.EventListener;
  *
  * @author Knitter
  */
-public interface KCookBChangedListener extends EventListener {
+public interface KCookBListener extends EventListener {
     
     void recipeAdded(KCookBEvent ev);
     void recipeDeleted(KCookBEvent ev);

@@ -19,11 +19,13 @@
 package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.exceptions.NonCoerentDatabaseException;
-import de.berlios.kcookb.gui.utils.KCookBFilter;
-import de.berlios.kcookb.gui.utils.KCookBFileView;
+import de.berlios.kcookb.utils.KCookBFilter;
+import de.berlios.kcookb.utils.KCookBFileView;
 import de.berlios.kcookb.model.KCookB;
 import de.berlios.kcookb.model.Recipe;
-import de.berlios.kcookb.model.events.KCookBChangedListener;
+import de.berlios.kcookb.model.RecipeTag;
+import de.berlios.kcookb.model.RecipeType;
+import de.berlios.kcookb.model.events.KCookBListener;
 import de.berlios.kcookb.model.events.KCookBEvent;
 import de.berlios.kcookb.model.events.RecipeListener;
 import edu.stanford.ejalbert.BrowserLauncher;
@@ -32,22 +34,35 @@ import edu.stanford.ejalbert.exception.UnsupportedOperatingSystemException;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
  * @author  Knitter
  */
-public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListener, RecipeListener {
+public class KCookBGui extends javax.swing.JFrame implements KCookBListener, RecipeListener {
 
     private KCookBGui me = this;
     private KCookB book = null;
     private Recipe selectedRecipe;
+    //
+    private DefaultTreeModel modelLabel;
+    private DefaultMutableTreeNode rootLabel;
+    //
+    private DefaultTreeModel modelStared;
+    private DefaultMutableTreeNode rootStared;
+    //
+    private DefaultTreeModel modelType;
+    private DefaultMutableTreeNode rootType;
 
     /** Creates new form KCookBGui */
     public KCookBGui() {
@@ -55,6 +70,36 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jepRecipe.setContentType("text/plain");
         defineInterfaceOptionsEstate(false);
         showCentered();
+    }
+
+    private void initNodes() {
+        jtLabel.setModel(modelLabel = new DefaultTreeModel(rootLabel = new DefaultMutableTreeNode()));
+        jtStaredRecipe.setModel(modelStared = new DefaultTreeModel(rootStared = new DefaultMutableTreeNode()));
+        jtType.setModel(modelType = new DefaultTreeModel(rootType = new DefaultMutableTreeNode()));
+
+        DefaultMutableTreeNode parentNode;
+        DefaultMutableTreeNode childNode;
+        for (RecipeType t : book.getAllTypes()) {
+            parentNode = new DefaultMutableTreeNode(t);
+            modelType.insertNodeInto(parentNode, rootType, rootType.getChildCount());
+            for (Recipe r : book.searchByType(t)) {
+                childNode = new DefaultMutableTreeNode(r);
+                modelType.insertNodeInto(childNode, parentNode, parentNode.getChildCount());
+            }
+        }
+
+        for (RecipeTag t : book.getAllTags()) {
+            parentNode = new DefaultMutableTreeNode(t);
+            modelLabel.insertNodeInto(parentNode, rootLabel, rootLabel.getChildCount());
+            for (Recipe r : book.searchByTag(t)) {
+                childNode = new DefaultMutableTreeNode(r);
+                modelLabel.insertNodeInto(childNode, parentNode, parentNode.getChildCount());
+            }
+        }
+
+        for (Recipe r : book.getAllStared()) {
+            modelStared.insertNodeInto(new DefaultMutableTreeNode(r), rootStared, rootStared.getChildCount());
+        }
     }
 
     private void showCentered() {
@@ -86,6 +131,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         book = new KCookB(name);
         book.addKCookBChangedListener(me);
         defineInterfaceOptionsEstate(true);
+        initNodes();
     }
 
     private void newBook() {
@@ -106,7 +152,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             book.openCatalog(jfc.getSelectedFile().getAbsolutePath());
             defineInterfaceOptionsEstate(true);
-            createTrees();
+            initNodes();
         }
     }
 
@@ -147,7 +193,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new RecipeGui(me, true, null).showCentered();//TODO: send recipe into edit dialog
+                new RecipeGui(me, true, selectedRecipe).showCentered();
 
             }
         });
@@ -333,12 +379,6 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         }*/
     }
 
-    private void createTrees() {
-        //jtStaredRecipe
-        //jtreeLabel
-                //jtreeType
-    }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -375,10 +415,10 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
         jtpTreeTabs = new javax.swing.JTabbedPane();
         jpTabType = new javax.swing.JPanel();
         jscpTreeTypeScroll = new javax.swing.JScrollPane();
-        jtreeType = new javax.swing.JTree();
+        jtType = new javax.swing.JTree();
         jpTabLabel = new javax.swing.JPanel();
         jscpTreeLabelScroll = new javax.swing.JScrollPane();
-        jtreeLabel = new javax.swing.JTree();
+        jtLabel = new javax.swing.JTree();
         jpStaredRecipe = new javax.swing.JPanel();
         jscpStaredRecipe = new javax.swing.JScrollPane();
         jtStaredRecipe = new javax.swing.JTree();
@@ -515,6 +555,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
         jbtnUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-undo.png"))); // NOI18N
         jbtnUndo.setToolTipText(bundle.getString("KCookBGui.jbtnUndo.toolTipText")); // NOI18N
+        jbtnUndo.setEnabled(false);
         jbtnUndo.setFocusable(false);
         jbtnUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -527,6 +568,7 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
         jbtnRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x22/tb-redo.png"))); // NOI18N
         jbtnRedo.setToolTipText(bundle.getString("KCookBGui.jbtnRedo.toolTipText")); // NOI18N
+        jbtnRedo.setEnabled(false);
         jbtnRedo.setFocusable(false);
         jbtnRedo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnRedo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -638,8 +680,8 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
         jtpTreeTabs.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
-        jtreeType.setModel(null);
-        jscpTreeTypeScroll.setViewportView(jtreeType);
+        jtType.setModel(null);
+        jscpTreeTypeScroll.setViewportView(jtType);
 
         org.jdesktop.layout.GroupLayout jpTabTypeLayout = new org.jdesktop.layout.GroupLayout(jpTabType);
         jpTabType.setLayout(jpTabTypeLayout);
@@ -654,8 +696,8 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
 
         jtpTreeTabs.addTab(bundle.getString("WINDOW_TABCATEGORIES"), jpTabType); // NOI18N
 
-        jtreeLabel.setModel(null);
-        jscpTreeLabelScroll.setViewportView(jtreeLabel);
+        jtLabel.setModel(null);
+        jscpTreeLabelScroll.setViewportView(jtLabel);
 
         org.jdesktop.layout.GroupLayout jpTabLabelLayout = new org.jdesktop.layout.GroupLayout(jpTabLabel);
         jpTabLabel.setLayout(jpTabLabelLayout);
@@ -1173,6 +1215,13 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
      */
     public static void main(String args[]) {
         try {
+            System.setProperty("java.util.logging.config.file", "logging.properties");
+            LogManager logManager = LogManager.getLogManager();
+            logManager.readConfiguration();
+        } catch (IOException e) {
+        }
+
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(KCookBGui.class.getName()).log(Level.SEVERE, null, ex);
@@ -1266,11 +1315,11 @@ public class KCookBGui extends javax.swing.JFrame implements KCookBChangedListen
     private javax.swing.JScrollPane jscpTreeLabelScroll;
     private javax.swing.JScrollPane jscpTreeTypeScroll;
     private javax.swing.JSplitPane jspMainSplit;
+    private javax.swing.JTree jtLabel;
     private javax.swing.JTree jtStaredRecipe;
+    private javax.swing.JTree jtType;
     private javax.swing.JToolBar jtbMainBar;
     private javax.swing.JTextField jtfQuickSearch;
     private javax.swing.JTabbedPane jtpTreeTabs;
-    private javax.swing.JTree jtreeLabel;
-    private javax.swing.JTree jtreeType;
     // End of variables declaration//GEN-END:variables
 }

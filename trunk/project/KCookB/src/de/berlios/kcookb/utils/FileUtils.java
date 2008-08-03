@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.kcookb.model.utils;
+package de.berlios.kcookb.utils;
 
 import java.io.File;
 

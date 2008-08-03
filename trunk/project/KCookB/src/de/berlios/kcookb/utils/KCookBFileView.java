@@ -16,9 +16,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.kcookb.gui.utils;
+package de.berlios.kcookb.utils;
 
-import de.berlios.kcookb.model.utils.FileUtils;
 import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -33,11 +32,12 @@ public class KCookBFileView extends FileView {
     private ImageIcon kcIcon;
     
     public KCookBFileView() {
-        super();
+    /*    super();
         kcIcon = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/x16/mn-new-book.png"));
-        
+        */
     }
-    @Override
+    
+    /*@Override
     public String getTypeDescription(File f) {
         String ext = FileUtils.getExtension(f);
         if (ext != null && ext.compareToIgnoreCase(FileUtils.KCOOKB_EXTENSION) == 0) {
@@ -54,5 +54,5 @@ public class KCookBFileView extends FileView {
             return kcIcon;
         }
         return icon;
-    }
+    }*/
 }

@@ -16,9 +16,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.kcookb.gui.utils;
+package de.berlios.kcookb.utils;
 
-import de.berlios.kcookb.model.utils.FileUtils;
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
 
@@ -30,7 +29,7 @@ public class KCookBFilter extends FileFilter {
     
     @Override
     public boolean accept(File f) {
-        if (f.isDirectory()) {
+    /*    if (f.isDirectory()) {
             return true;
         }
 
@@ -39,10 +38,13 @@ public class KCookBFilter extends FileFilter {
             return true;
         }
         return false;
+     * */
+        return true;
     }
 
     @Override
     public String getDescription() {
-        return FileUtils.KCOOKB_DESCRIPTION;
+        return "";
+        //return FileUtils.KCOOKB_DESCRIPTION;
     }
 }

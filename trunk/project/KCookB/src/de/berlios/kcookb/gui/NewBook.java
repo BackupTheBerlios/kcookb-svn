@@ -18,8 +18,8 @@
  */
 package de.berlios.kcookb.gui;
 
-import de.berlios.kcookb.gui.utils.KCookBFileView;
-import de.berlios.kcookb.gui.utils.KCookBFilter;
+import de.berlios.kcookb.utils.KCookBFileView;
+import de.berlios.kcookb.utils.KCookBFilter;
 import java.io.File;
 import javax.swing.JFileChooser;
 

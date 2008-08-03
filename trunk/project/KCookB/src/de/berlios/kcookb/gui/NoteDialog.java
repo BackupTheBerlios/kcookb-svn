@@ -29,8 +29,9 @@ public class NoteDialog extends javax.swing.JDialog {
     private Note note;
 
     /** Creates new form NoteDialog */
-    public NoteDialog(java.awt.Frame parent, boolean modal, Note note) {
-        super(parent, modal);
+    public NoteDialog(java.awt.Window parent, boolean modal, Note note) {
+        super(parent);
+        setModal(modal);
         this.note = note;
         initComponents();
     }

@@ -18,7 +18,6 @@
  */
 package de.berlios.kcookb.gui;
 
-import de.berlios.kcookb.model.BookInfo;
 import de.berlios.kcookb.model.KCookB;
 import java.util.Date;
 import javax.swing.JTextField;
@@ -98,6 +97,9 @@ public class BookInfoGui extends javax.swing.JDialog {
         jlblAuthorEmail = new javax.swing.JLabel();
         jlblCreatedOn = new javax.swing.JLabel();
         jdcCreatedOn = new com.toedter.calendar.JDateChooser();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jbtnCancel = new javax.swing.JButton();
         jbtnSave = new javax.swing.JButton();
 
@@ -120,6 +122,10 @@ public class BookInfoGui extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText(bundle.getString("BookInfoGui.jLabel1.text")); // NOI18N
+
+        jLabel2.setText(bundle.getString("BookInfoGui.jLabel2.text")); // NOI18N
+
         javax.swing.GroupLayout jpCatalogInfoLayout = new javax.swing.GroupLayout(jpCatalogInfo);
         jpCatalogInfo.setLayout(jpCatalogInfoLayout);
         jpCatalogInfoLayout.setHorizontalGroup(
@@ -127,6 +133,7 @@ public class BookInfoGui extends javax.swing.JDialog {
             .addGroup(jpCatalogInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpCatalogInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                     .addGroup(jpCatalogInfoLayout.createSequentialGroup()
                         .addGroup(jpCatalogInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblAuthorName)
@@ -138,7 +145,11 @@ public class BookInfoGui extends javax.swing.JDialog {
                     .addGroup(jpCatalogInfoLayout.createSequentialGroup()
                         .addComponent(jlblCreatedOn)
                         .addGap(18, 18, 18)
-                        .addComponent(jdcCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jdcCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpCatalogInfoLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
         );
         jpCatalogInfoLayout.setVerticalGroup(
@@ -155,7 +166,12 @@ public class BookInfoGui extends javax.swing.JDialog {
                 .addGroup(jpCatalogInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlblCreatedOn)
                     .addComponent(jdcCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpCatalogInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)))
         );
 
         jbtnCancel.setText(bundle.getString("BookInfoGui.jbtnCancel.text")); // NOI18N
@@ -179,13 +195,16 @@ public class BookInfoGui extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpCatalogInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnCancel))
-                    .addComponent(jpCatalogInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbtnCancel)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtnCancel, jbtnSave});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -221,6 +240,9 @@ private void jdcCreatedOnPropertyChange(java.beans.PropertyChangeEvent evt) {//G
     }
 }//GEN-LAST:event_jdcCreatedOnPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnSave;
     private com.toedter.calendar.JDateChooser jdcCreatedOn;
