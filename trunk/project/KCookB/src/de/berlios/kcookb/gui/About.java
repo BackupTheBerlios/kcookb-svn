@@ -1,7 +1,20 @@
-/*
- * About.java
+/**
+ *  Copyright (C) 2008  Sérgio Lopes
  *
- * Created on 15 de Março de 2008, 18:01
+ *  This file is part of KCookB.
+ *
+ *  KCookB is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  KCookB is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
 package de.berlios.kcookb.gui;
 
@@ -65,8 +78,6 @@ public class About extends javax.swing.JDialog {
         setTitle("null");
         setResizable(false);
 
-        jlblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/images/logo.png"))); // NOI18N
-
         jtaDetails.setColumns(20);
         jtaDetails.setEditable(false);
         jtaDetails.setRows(5);
@@ -89,7 +100,7 @@ public class About extends javax.swing.JDialog {
             .addGroup(jpLogoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jscpDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -113,7 +124,7 @@ public class About extends javax.swing.JDialog {
             jpLicenseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLicenseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                .addComponent(jscpLicense, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
