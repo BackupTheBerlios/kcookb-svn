@@ -22,7 +22,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
 import de.berlios.kcookb.exceptions.NonCoerentDatabaseException;
-import de.berlios.kcookb.model.utils.Settings;
+import de.berlios.kcookb.utils.Settings;
 import de.berlios.kcookb.model.events.KCookBChangedListener;
 import de.berlios.kcookb.model.events.KCookBEvent;
 import java.util.ArrayList;
@@ -39,14 +39,14 @@ public class KCookB {
 
     private ObjectContainer db = null;
     private ArrayList<Recipe> unsavedRecipes = null;
-    private Vector<KCookBChangedListener> bookChandeListeners = null;
+    private Vector<KCookBChangedListener> listeners = null;
     private BookInfo info;
     private String baseFolder;
 
     public KCookB() {
         info = new BookInfo(Settings.getSettings().getOwner(), Settings.getSettings().getEmail());
         unsavedRecipes = new ArrayList<Recipe>(100);
-        bookChandeListeners = new Vector<KCookBChangedListener>();
+        listeners = new Vector<KCookBChangedListener>();
 
     }
 

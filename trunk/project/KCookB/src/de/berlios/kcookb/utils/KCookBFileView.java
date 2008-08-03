@@ -18,6 +18,7 @@
  */
 package de.berlios.kcookb.gui.utils;
 
+import de.berlios.kcookb.model.utils.FileUtils;
 import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

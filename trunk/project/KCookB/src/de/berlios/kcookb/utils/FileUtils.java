@@ -16,16 +16,22 @@
  *  You should have received a copy of the GNU General Public License
  *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.kcookb.exportengine;
+package de.berlios.kcookb.model.utils;
+
+import java.io.File;
 
 /**
  *
  * @author Knitter
  */
-public class TemplateExport implements Runnable {
+public class FileUtils {
 
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public static final String KCOOKB_EXTENSION = "KCB";
+    public static final String KCOOKB_DESCRIPTION = "KCB recipe book";
+
+    public static String getExtension(File f) {
+        int x = -1;
+        String filename = f.getName();
+        return ((x = filename.lastIndexOf(".")) > 0 ? filename.substring(x + 1) : "").toLowerCase();
     }
-
 }

@@ -16,12 +16,33 @@
  *  You should have received a copy of the GNU General Public License
  *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.kcookb.importengine;
+package de.berlios.kcookb.gui.utils;
+
+import de.berlios.kcookb.model.utils.FileUtils;
+import java.io.File;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
  * @author Knitter
  */
-public class PluginImport implements ImportEngine {
+public class KCookBFilter extends FileFilter {
+    
+    @Override
+    public boolean accept(File f) {
+        if (f.isDirectory()) {
+            return true;
+        }
 
+        String ext = FileUtils.getExtension(f);
+        if (ext != null && ext.compareToIgnoreCase(FileUtils.KCOOKB_EXTENSION) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String getDescription() {
+        return FileUtils.KCOOKB_DESCRIPTION;
+    }
 }
