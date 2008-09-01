@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: de.berlios.kcookb.model
+OpenIDE-Module-Localizing-Bundle: de/berlios/kcookb/model/i18n/i18n.properties
+OpenIDE-Module-Specification-Version: 1.0
+
