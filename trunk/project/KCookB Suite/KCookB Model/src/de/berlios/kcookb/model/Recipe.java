@@ -18,8 +18,11 @@
  */
 package de.berlios.kcookb.model;
 
+import de.berlios.kcookb.model.listeners.RecipeEvent;
+import de.berlios.kcookb.model.listeners.RecipeListener;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 public class Recipe {
 
@@ -29,17 +32,45 @@ public class Recipe {
     private boolean stared;
     private String preparation;
     private Date added;
-    private String difficulty;
-    private String pricetag;
+    private int difficulty;
+    private int price;
+    private List<Ingredient> ingredients;
+    private String suggestion;
+    private RecipeType type;
     private List<Tag> tags;
-
+    private Nutricional table;
+    private Vector<RecipeListener> listeners;
     //private Date preparation;
     //private Date cooking;
-    //private List<Ingredient> ingredients;
-    //private RecipeType type;
-    //private Note note;
-    //private List<Tip> tips;
     //private Date freazer;
     //private Date fridge;
-    //private transient Vector<RecipeListener> listeners;
+
+    public void fireRecipeChanged(RecipeEvent e) {
+        Vector<RecipeListener> copy;
+        if (listeners != null) {
+
+            synchronized (this) {
+                copy = new Vector(listeners);
+            }
+
+            for (RecipeListener l : copy) {
+                l.recipeChanged(e);
+            }
+        }
+    }
+
+    public synchronized boolean addListener(RecipeListener l) {
+        if (listeners == null) {
+            listeners = new Vector<RecipeListener>();
+        }
+        return listeners.add(l);
+    }
+
+    public synchronized boolean removeListener(RecipeListener l) {
+        if (listeners != null) {
+            return listeners.remove(l);
+        }
+
+        return false;
+    }
 }

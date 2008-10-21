@@ -46,11 +46,11 @@ public class Tag {
 
     /**
      * Compares another object with this tag.
-     * The object is considered equal if all the folling conditions are met:
-     * - it is not null
-     * - it is the same as this tag
-     * - it is an instance of the Tag class
-     * - it's name is equal to this tag's name, ignoring case.
+     * The object is considered equal in the  following conditions:
+     * - it is not null and
+     * - it is the same as this tag or
+     * - it is an instance of the Tag class and it's name is equal to this
+     * tag's name, ignoring case.
      *
      * @param obj, the object to with use for comparing.
      * @return true, if the two objects are equal to one another

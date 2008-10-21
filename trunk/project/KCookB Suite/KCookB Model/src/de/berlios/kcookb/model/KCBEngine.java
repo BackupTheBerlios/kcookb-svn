@@ -23,8 +23,8 @@ import com.db4o.ObjectContainer;
 import com.db4o.ext.DatabaseClosedException;
 import com.db4o.ext.DatabaseReadOnlyException;
 import com.db4o.ext.Db4oIOException;
-import de.berlios.kcookb.model.events.KCBEngineEvent;
-import de.berlios.kcookb.model.events.KCBEngineListener;
+import de.berlios.kcookb.model.listeners.KCBEngineEvent;
+import de.berlios.kcookb.model.listeners.KCBEngineListener;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,16 +36,19 @@ public class KCBEngine {
     private ObjectContainer db;
 
     public KCBEngine() {
+        //TODO: correct constructor
         listeners = new Vector<KCBEngineListener>();
     }
 
     public void openBook(String file) {
+        //TODO: correct opening code
         db = Db4o.openFile(file);
     }
 
     public void closeBook() {
         if (db != null) {
             try {
+                //TODO: is commit really necessary?
                 db.commit();
                 db.close();
             } catch (Db4oIOException ex) {
@@ -71,12 +74,12 @@ public class KCBEngine {
         }
     }
 
-    public void removeRecipe(Recipe recipe) {
+    public void deleteRecipe(Recipe recipe) {
         if (db != null) {
             try {
                 db.delete(recipe);
                 db.commit();
-                fireRecipeAdded(new KCBEngineEvent(this));
+                fireRecipeDeleted(new KCBEngineEvent(this));
             } catch (DatabaseClosedException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.WARNING, "Unable to delete a recipe.", ex);
             } catch (DatabaseReadOnlyException ex) {
@@ -87,17 +90,29 @@ public class KCBEngine {
         }
     }
 
-    public void fireRecipeRemoved(KCBEngineEvent e) {
+    public void fireRecipeDeleted(KCBEngineEvent e) {
+        Vector<KCBEngineListener> copy;
         if (listeners != null) {
-            for (KCBEngineListener l : listeners) {
-                l.recipeAdded(e);
+
+            synchronized (this) {
+                copy = new Vector(listeners);
+            }
+
+            for (KCBEngineListener l : copy) {
+                l.recipeDeleted(e);
             }
         }
     }
 
     public void fireRecipeAdded(KCBEngineEvent e) {
+        Vector<KCBEngineListener> copy;
         if (listeners != null) {
-            for (KCBEngineListener l : listeners) {
+
+            synchronized (this) {
+                copy = new Vector(listeners);
+            }
+
+            for (KCBEngineListener l : copy) {
                 l.recipeAdded(e);
             }
         }
