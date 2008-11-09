@@ -4,8 +4,12 @@
  */
 package de.berlios.kcookb.ui.development;
 
+import de.berlios.kcookb.model.KCBEngine;
+import de.berlios.kcookb.model.Recipe;
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Logger;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -40,13 +44,13 @@ final class DevelopmentTopComponent extends TopComponent {
         jPanel1 = new javax.swing.JPanel();
         jbtnAddRecipe = new javax.swing.JButton();
         jbtnRemoveRecipe = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbtnList = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jbtnCloseBook = new javax.swing.JButton();
         jbtnOpenBook = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(DevelopmentTopComponent.class, "DevelopmentTopComponent.jPanel1.border.title"))); // NOI18N
 
@@ -64,7 +68,12 @@ final class DevelopmentTopComponent extends TopComponent {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton3, org.openide.util.NbBundle.getMessage(DevelopmentTopComponent.class, "DevelopmentTopComponent.jButton3.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jbtnList, org.openide.util.NbBundle.getMessage(DevelopmentTopComponent.class, "DevelopmentTopComponent.jbtnList.text")); // NOI18N
+        jbtnList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnListActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(jButton4, org.openide.util.NbBundle.getMessage(DevelopmentTopComponent.class, "DevelopmentTopComponent.jButton4.text")); // NOI18N
 
@@ -92,14 +101,14 @@ final class DevelopmentTopComponent extends TopComponent {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jbtnRemoveRecipe)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton3)
+                .add(jbtnList)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButton4)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jbtnCloseBook)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jbtnOpenBook)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -107,7 +116,7 @@ final class DevelopmentTopComponent extends TopComponent {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jbtnAddRecipe)
                     .add(jbtnRemoveRecipe)
-                    .add(jButton3)
+                    .add(jbtnList)
                     .add(jButton4)
                     .add(jbtnCloseBook)
                     .add(jbtnOpenBook))
@@ -116,8 +125,9 @@ final class DevelopmentTopComponent extends TopComponent {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(DevelopmentTopComponent.class, "DevelopmentTopComponent.jPanel2.border.title"))); // NOI18N
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,14 +135,14 @@ final class DevelopmentTopComponent extends TopComponent {
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -158,29 +168,46 @@ final class DevelopmentTopComponent extends TopComponent {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnAddRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddRecipeActionPerformed
-        // TODO add your handling code here:
+        KCBEngine eng = Lookup.getDefault().lookup(KCBEngine.class);
+        eng.addRecipe(new Recipe("rep1"));
+        eng.addRecipe(new Recipe("rep2"));
+        eng.addRecipe(new Recipe("rep3"));
     }//GEN-LAST:event_jbtnAddRecipeActionPerformed
 
     private void jbtnRemoveRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoveRecipeActionPerformed
-        // TODO add your handling code here:
+        KCBEngine eng = Lookup.getDefault().lookup(KCBEngine.class);
+        List<Recipe> all = eng.listAllRecipes();
+        eng.deleteRecipe(all.get(0));
     }//GEN-LAST:event_jbtnRemoveRecipeActionPerformed
 
     private void jbtnOpenBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOpenBookActionPerformed
-        // TODO add your handling code here:
+        KCBEngine eng = Lookup.getDefault().lookup(KCBEngine.class);
+        eng.openBook("c:\\test.kcb");
     }//GEN-LAST:event_jbtnOpenBookActionPerformed
 
     private void jbtnCloseBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCloseBookActionPerformed
-        // TODO add your handling code here:
+        KCBEngine eng = Lookup.getDefault().lookup(KCBEngine.class);
+        eng.closeBook();
     }//GEN-LAST:event_jbtnCloseBookActionPerformed
+
+    private void jbtnListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnListActionPerformed
+        KCBEngine eng = Lookup.getDefault().lookup(KCBEngine.class);
+        String all = "";
+        for(Recipe r : eng.listAllRecipes()) {
+            all += r.getName();
+        }
+        jTextArea1.setText(all);
+    }//GEN-LAST:event_jbtnListActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbtnAddRecipe;
     private javax.swing.JButton jbtnCloseBook;
+    private javax.swing.JButton jbtnList;
     private javax.swing.JButton jbtnOpenBook;
     private javax.swing.JButton jbtnRemoveRecipe;
     // End of variables declaration//GEN-END:variables

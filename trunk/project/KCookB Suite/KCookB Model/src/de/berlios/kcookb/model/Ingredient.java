@@ -10,48 +10,41 @@ package de.berlios.kcookb.model;
  */
 public class Ingredient {
 
-    private static final String DEFAULT_QUANTITY = "q.b.";
-    private String quantity;
-    private String name;
+    private String value;
 
-    public Ingredient(String name, String quantity) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null");
+    public Ingredient(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Ingredient cannot be null");
         }
-        this.name = name;
-        this.quantity = quantity;
+        this.value = value;
     }
 
-    public Ingredient(String name) {
-        this(name, DEFAULT_QUANTITY);
+    public String getValue() {
+        return value;
     }
 
-    public String getName() {
-        return name;
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
+    @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
+        if (obj == this) {
             return true;
         }
 
-        if(!(obj instanceof Ingredient)) {
+        if (!(obj instanceof Ingredient)) {
             return false;
         }
 
         Ingredient other = (Ingredient) obj;
-        return name.compareToIgnoreCase(other.name) == 0 && name.compareToIgnoreCase(other.quantity) == 0;
+        return value.compareToIgnoreCase(other.value) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + (this.value != null ? this.value.hashCode() : 0);
+        return hash;
     }
 }

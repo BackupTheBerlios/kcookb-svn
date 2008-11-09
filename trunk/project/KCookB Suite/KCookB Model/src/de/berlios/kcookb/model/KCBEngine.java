@@ -25,6 +25,7 @@ import com.db4o.ext.DatabaseReadOnlyException;
 import com.db4o.ext.Db4oIOException;
 import de.berlios.kcookb.model.listeners.KCBEngineEvent;
 import de.berlios.kcookb.model.listeners.KCBEngineListener;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,6 +91,10 @@ public class KCBEngine {
         }
     }
 
+    public List<Recipe> listAllRecipes() {
+        return db.query(Recipe.class);
+    }
+
     public void fireRecipeDeleted(KCBEngineEvent e) {
         Vector<KCBEngineListener> copy;
         if (listeners != null) {
@@ -118,6 +123,7 @@ public class KCBEngine {
         }
     }
 
+    //TODO: Sync not needed?
     public synchronized boolean addListener(KCBEngineListener l) {
         if (listeners == null) {
             listeners = new Vector<KCBEngineListener>();
@@ -125,6 +131,7 @@ public class KCBEngine {
         return listeners.add(l);
     }
 
+    //TODO: Sync not needed?
     public synchronized boolean removeListener(KCBEngineListener l) {
         if (listeners != null) {
             return listeners.remove(l);
