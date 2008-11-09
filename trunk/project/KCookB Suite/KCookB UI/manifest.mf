@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: de.berlios.kcookb.ui
-OpenIDE-Module-Layer: de/berlios/kcookb/ui/layer.xml
-OpenIDE-Module-Localizing-Bundle: de/berlios/kcookb/ui/i18n/i18n.properties
-OpenIDE-Module-Specification-Version: 1.0
-
