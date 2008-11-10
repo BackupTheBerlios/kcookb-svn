@@ -18,6 +18,11 @@
  */
 package de.berlios.kcookb.model;
 
+/**
+ * Represents a basic nutricional table.
+ * 
+ * @author Knitter
+ */
 public class Nutricional {
 
     private int energy;

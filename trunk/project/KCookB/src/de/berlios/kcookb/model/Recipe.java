@@ -25,6 +25,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Vector;
 
+/**
+ * The most important class of the system, this class represents a recipe and
+ * all it's details.
+ * 
+ * @author Knitter
+ */
 public class Recipe {
 
     private String name;
@@ -46,6 +52,7 @@ public class Recipe {
     private TimeUnit cooking;
     private int freazer;
     private int fridge;
+    private Photo main;
     private Vector<RecipeListener> listeners;
 
     public Recipe(String name, int servings, double rating, boolean stared,
@@ -252,6 +259,10 @@ public class Recipe {
         this.type = type;
     }
 
+    /**
+     *
+     * @param e
+     */
     //TODO: Sync not needed?
     public void fireRecipeChanged(RecipeEvent e) {
         Vector<RecipeListener> copy;
@@ -267,6 +278,11 @@ public class Recipe {
         }
     }
 
+    /**
+     *
+     * @param l
+     * @return
+     */
     //TODO: Sync not needed?
     public synchronized boolean addListener(RecipeListener l) {
         if (listeners == null) {
@@ -275,6 +291,11 @@ public class Recipe {
         return listeners.add(l);
     }
 
+    /**
+     * 
+     * @param l
+     * @return
+     */
     //TODO: Sync not needed?
     public synchronized boolean removeListener(RecipeListener l) {
         if (listeners != null) {

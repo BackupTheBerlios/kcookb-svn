@@ -18,16 +18,38 @@
  */
 package de.berlios.kcookb.model;
 
+/**
+ * This class is a wrapper for time unit defined by an hour value and a minute
+ * value. TimeUnit is used to mesure the time that take to prepare or cook a
+ * recipe.
+ *
+ * The class does not work as a clock and only stores values. There will be
+ * minimal validation, such that hours can't be negative and minutes belong to
+ * the interval [0 - 59], either than that, all values are valid.
+ *
+ * @author Knitter
+ */
 public class TimeUnit {
 
     private int minute;
     private int hour;
 
+    /**
+     * Creates a TimeUnit.
+     *
+     * @param hour hour value.
+     * @param minute minutes value.
+     */
     public TimeUnit(int hour, int minute) {
-        this.hour = hour;
-        this.minute = minute;
+        setHour(hour);
+        setMinute(minute);
     }
 
+    /**
+     * Creates a TimeUnit with the given minutes and an hour of zero.
+     *
+     * @param minute minutes value.
+     */
     public TimeUnit(int minute) {
         this(0, minute);
     }
@@ -37,7 +59,9 @@ public class TimeUnit {
     }
 
     public void setHour(int hour) {
-        this.hour = hour;
+        if (hour >= 0) {
+            this.hour = hour;
+        }
     }
 
     public int getMinute() {
@@ -45,7 +69,9 @@ public class TimeUnit {
     }
 
     public void setMinute(int minute) {
-        this.minute = minute;
+        if (minute >= 0 && minute <= 59) {
+            this.minute = minute;
+        }
     }
 
     @Override
@@ -70,6 +96,7 @@ public class TimeUnit {
         return hash;
     }
 
+    @Override
     public String toString() {
         return hour + ":" + minute;
     }

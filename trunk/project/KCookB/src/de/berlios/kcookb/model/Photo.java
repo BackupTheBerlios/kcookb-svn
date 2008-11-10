@@ -16,21 +16,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.kcookb.model.listeners;
+package de.berlios.kcookb.model;
 
-import java.util.EventObject;
-import de.berlios.kcookb.model.KCBEngine;
+import com.db4o.types.Blob;
 
 /**
- * Represents an event used by engine listeners.
- *
- * @see KCBEngineListener
+ * Wrapper for th db4o's blob type used to store images.
  * 
  * @author Knitter
  */
-public class KCBEngineEvent extends EventObject {
+public class Photo {
 
-    public KCBEngineEvent(KCBEngine source) {
-        super(source);
-    }
+    private Blob blob;
+    //TODO: complete this class.
 }

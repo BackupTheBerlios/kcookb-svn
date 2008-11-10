@@ -18,10 +18,25 @@
  */
 package de.berlios.kcookb.model;
 
+/**
+ * Wrapper class for String.
+ * Represents an ingredient.
+ *
+ * There is no validation to the value of an ingredient, and all text is
+ * acceped.
+ * 
+ * @author Knitter
+ */
 public class Ingredient {
 
     private String value;
 
+    /**
+     * Creates an ingredient object.
+     *
+     * @param value the value of this ingredient.
+     * @throws IllegalArgumentException when value is an empty or null string.
+     */
     public Ingredient(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Ingredient cannot be null");

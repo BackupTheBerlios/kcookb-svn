@@ -18,12 +18,17 @@
  */
 package de.berlios.kcookb.model;
 
+/**
+ * This is just a wrapper class around String due to db4o constraints.
+ *
+ * @author Knitter
+ */
 public class RecipeType {
 
     private String name;
 
     /**
-     * Constructor
+     * Creates a recipe type.
      *
      * @param name, the name of this tag. If the name is null an
      * IllegalArgumenteException is thrown.

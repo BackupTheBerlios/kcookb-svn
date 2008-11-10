@@ -20,6 +20,7 @@ package de.berlios.kcookb.model;
 
 /**
  * Tag is a name that can be given to a Recipe.
+ *
  * This class serves as a wrapper for the String class in order to save it onto
  * db4o engine.
  */
@@ -28,9 +29,9 @@ public class Tag {
     private String name;
 
     /**
-     * Constructor
+     * Creates a Tag.
      *
-     * @param name, the name of this tag. If the name is null an
+     * @param name the name of this tag. If the name is null an
      * IllegalArgumenteException is thrown.
      */
     public Tag(String name) {

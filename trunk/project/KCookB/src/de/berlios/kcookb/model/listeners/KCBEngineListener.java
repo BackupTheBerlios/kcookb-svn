@@ -18,15 +18,52 @@
  */
 package de.berlios.kcookb.model.listeners;
 
+import de.berlios.kcookb.model.KCBEngine;
 import java.util.EventListener;
 
+/**
+ * Interface that represents listeners to the model engine.
+ *
+ * @see KCBEngine
+ * @see KCBEngineEvent
+ * 
+ * @author Knitter
+ */
 public interface KCBEngineListener extends EventListener {
 
+    /**
+     * Notifies listeners that a book has been opened in the engine.
+     *
+     * @param e generated event
+     *
+     * @see KCBEngineEvent
+     */
     void bookOpened(KCBEngineEvent e);
 
+    /**
+     * Notifies listeners that the current book has been closed.
+     *
+     * @param e generated event
+     *
+     * @see KCBEngineEvent
+     */
     void bookClosed(KCBEngineEvent e);
 
+    /**
+     * Notifies listeners that a recipe has been removed.
+     *
+     * @param e generated event
+     *
+     * @see KCBEngineEvent
+     */
     void recipeAdded(KCBEngineEvent e);
 
+    /**
+     * Notifies listeners that a recipe has been removed from the opened book.
+     *
+     * @param e generated event
+     *
+     * @see KCBEngineEvent
+     */
     void recipeDeleted(KCBEngineEvent e);
 }

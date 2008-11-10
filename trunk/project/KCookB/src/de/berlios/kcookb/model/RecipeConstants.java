@@ -18,12 +18,35 @@
  */
 package de.berlios.kcookb.model;
 
+/**
+ * This interface contains all constant values used in the model.
+ * 
+ * @author Knitter
+ */
 public interface RecipeConstants {
 
+    /**
+     * Represents the easiest level of difficulty for a recipe
+     */
     public static final int DIFFICULTY_LEVEL_EASY = 0;
+    /**
+     * Medium level of difficulty
+     */
     public static final int DIFFICULTY_LEVEL_MEDIUM = 1;
+    /**
+     * The hardest level of difficulty
+     */
     public static final int DIFFICULTY_LEVEL_HARD = 2;
+    /**
+     * Price tag that represents the most cheap of recipes
+     */
     public static final int PRICE_LEVEL_CHEAP = 3;
+    /**
+     * Price tag for medium priced recipes
+     */
     public static final int PRICE_LEVEL_AFFORDABLE = 4;
+    /**
+     * Price tag for the most expensive recipes
+     */
     public static final int PRICE_LEVEL_EXPENSIVE = 5;
 }

@@ -21,49 +21,96 @@ package de.berlios.kcookb.model;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ext.DatabaseClosedException;
+import com.db4o.ext.DatabaseFileLockedException;
 import com.db4o.ext.DatabaseReadOnlyException;
 import com.db4o.ext.Db4oIOException;
+import com.db4o.ext.IncompatibleFileFormatException;
+import com.db4o.ext.OldFormatException;
+import com.db4o.query.Predicate;
 import de.berlios.kcookb.model.listeners.KCBEngineEvent;
 import de.berlios.kcookb.model.listeners.KCBEngineListener;
+import de.berlios.kcookb.model.listeners.RecipeEvent;
+import de.berlios.kcookb.model.listeners.RecipeListener;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
-public class KCBEngine {
+/**
+ * Controller class. Contains all methods that represent a recipe book.
+ * It's the entry point to the model.
+ * 
+ * @author Knitter
+ */
+public class KCBEngine implements RecipeListener {
 
-    //private Set<Recipe> recipes;
     private transient Vector<KCBEngineListener> listeners;
     private ObjectContainer db;
 
+    /**
+     * Creates a new KCBEngine.
+     *
+     * Doen't create any sort of link to the book. At this time, no book exists.
+     */
     public KCBEngine() {
-        //TODO: correct constructor
         listeners = new Vector<KCBEngineListener>();
     }
 
+    /**
+     * Opens a new book, if the specified file exists it is opened, else it is
+     * created.
+     *
+     * @param file the file name to open or create.
+     */
     public void openBook(String file) {
         //TODO: correct opening code
-        db = Db4o.openFile(file);
+        try {
+            db = Db4o.openFile(file);
+        } catch (Db4oIOException ex) {
+            //- I/O operation failed or was unexpectedly interrupted.
+        } catch (DatabaseFileLockedException ex) {
+            //- the required database file is locked by another process.
+        } catch (IncompatibleFileFormatException ex) {
+            //- runtime configuration is not compatible with the configuration
+            //of the database file.
+        } catch (OldFormatException ex) {
+            //- open operation failed because the database file is in old format
+            //and Configuration.allowVersionUpdates(boolean) is set to false.
+        } catch (DatabaseReadOnlyException ex) {
+            //- database was configured as read-only
+        }
     }
 
+    /**
+     * Closes any currently opened book.
+     *
+     * Closing an already closed book as no effect.
+     */
     public void closeBook() {
         if (db != null) {
             try {
-                //TODO: is commit really necessary?
-                db.commit();
                 db.close();
+                db = null;
             } catch (Db4oIOException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.WARNING, "Unable to close book.", ex);
-
+                throw ex;
             }
         }
     }
 
+    /**
+     * Adds a new recipe to the opened book, if any exists.
+     *
+     * @param recipe the new recipe to add.
+     */
     public void addRecipe(Recipe recipe) {
         if (db != null) {
             try {
                 db.store(recipe);
                 db.commit();
+                recipe.addListener(this);
                 fireRecipeAdded(new KCBEngineEvent(this));
             } catch (DatabaseClosedException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.WARNING, "Unable to add a new recipe.", ex);
@@ -75,11 +122,18 @@ public class KCBEngine {
         }
     }
 
+    /**
+     * Deletes a recipe from an opened book. If there is no opened book the
+     * method has no effect.
+     *
+     * @param recipe the recipe to delete.
+     */
     public void deleteRecipe(Recipe recipe) {
         if (db != null) {
             try {
                 db.delete(recipe);
                 db.commit();
+                recipe.removeListener(this);
                 fireRecipeDeleted(new KCBEngineEvent(this));
             } catch (DatabaseClosedException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.WARNING, "Unable to delete a recipe.", ex);
@@ -91,10 +145,267 @@ public class KCBEngine {
         }
     }
 
+    /**
+     * For the engine, when a recipe changes it should be update in the
+     * database. Therefor an engine implements RecipeListener and updates the
+     * database whenever it recieves the recipeChanged event.
+     *
+     * @param e event genereted at the source with the changed recipe.
+     * @see RecipeListener
+     */
+    public void recipeChanged(RecipeEvent e) {
+        if (db != null) {
+            db.store((Recipe) e.getSource());
+            db.commit();
+        }
+    }
+
+    /**
+     * Lists all existing recipes using the query shortcut for class instances.
+     *
+     * @return an instance of ObjectSet as a List
+     */
     public List<Recipe> listAllRecipes() {
         return db.query(Recipe.class);
     }
 
+    /**
+     *
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> getStared() {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.isStared();
+            }
+        });
+    }
+
+    /**
+     *
+     * @param name
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByName(final String name) {
+        final Pattern pat = Pattern.compile(".*" + name + ".*", Pattern.CASE_INSENSITIVE);
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return pat.matcher(rep.getName()).matches();
+            }
+        });
+    }
+
+    /**
+     *
+     * @param tag
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByTag(final String tag) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                for (Tag t : rep.getTags()) {
+                    if (t.getName().compareToIgnoreCase(tag) == 0) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param ingr
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByIngredient(final String ingr) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                for (Ingredient ig : rep.getIngredients()) {
+                    if (ig.getValue().compareToIgnoreCase(ingr) == 0) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param type
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByType(final String type) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getType().getName().compareToIgnoreCase(type) == 0;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param amount
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByServings(final int amount) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getServings() >= amount;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param rate
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByRating(final double rate) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getRating() >= rate;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param time
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchLessThan(final TimeUnit time) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                int repH = rep.getPrepTime().getHour() + rep.getCooking().getHour();
+                int repM = rep.getPrepTime().getMinute() + rep.getCooking().getMinute();
+
+                if (repH > time.getHour()) {
+                    return false;
+                }
+
+                if (repH < time.getHour()) {
+                    return true;
+                }
+
+                return (repM > time.getMinute() ? false : true);
+            }
+        });
+    }
+
+    /**
+     *
+     * @param date
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchBefore(final GregorianCalendar date) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getAdded().before(date);
+            }
+        });
+    }
+
+    /**
+     *
+     * @param date
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchAfter(final GregorianCalendar date) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getAdded().after(date);
+            }
+        });
+    }
+
+    /**
+     *
+     * @param level
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByDifficulty(final int level) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getDifficulty() == level;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param tag
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByPriceTag(final int tag) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getPriceTag() == tag;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param price
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByPrice(final double price) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getPrice() <= price;
+            }
+        });
+    }
+
+    /**
+     *
+     * @param cal
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Recipe> searchByCalories(final int cal) {
+        return db.query(new Predicate<Recipe>() {
+
+            public boolean match(Recipe rep) {
+                return rep.getCalories() <= cal;
+            }
+        });
+    }
+
+    /**
+     *
+     * @return an instance of ObjectSet as a List
+     */
+    public List<RecipeType> listAllTypes() {
+        return db.query(RecipeType.class);
+    }
+
+    /**
+     *
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Tag> listAllTags() {
+        return db.query(Tag.class);
+    }
+
+    /**
+     *
+     * @param e
+     */
     public void fireRecipeDeleted(KCBEngineEvent e) {
         Vector<KCBEngineListener> copy;
         if (listeners != null) {
@@ -109,6 +420,10 @@ public class KCBEngine {
         }
     }
 
+    /**
+     *
+     * @param e
+     */
     public void fireRecipeAdded(KCBEngineEvent e) {
         Vector<KCBEngineListener> copy;
         if (listeners != null) {
@@ -123,6 +438,11 @@ public class KCBEngine {
         }
     }
 
+    /**
+     *
+     * @param l
+     * @return
+     */
     //TODO: Sync not needed?
     public synchronized boolean addListener(KCBEngineListener l) {
         if (listeners == null) {
@@ -131,6 +451,11 @@ public class KCBEngine {
         return listeners.add(l);
     }
 
+    /**
+     * 
+     * @param l
+     * @return
+     */
     //TODO: Sync not needed?
     public synchronized boolean removeListener(KCBEngineListener l) {
         if (listeners != null) {
@@ -139,251 +464,4 @@ public class KCBEngine {
 
         return false;
     }
-    /*private ObjectContainer db = null;
-    private ArrayList<Recipe> unsavedRecipes = null;
-    private Vector<KCookBListener> listeners = null;
-    private BookInfo info;
-    private String baseFolder;
-
-    public KCookB() {
-    //info = new BookInfo(Settings.getSettings().getOwner(), Settings.getSettings().getEmail());
-    info = new BookInfo("owner", "email");
-    unsavedRecipes = new ArrayList<Recipe>(100);
-    listeners = new Vector<KCookBListener>();
-
-    }
-
-    public KCookB(String filename) {
-    this();
-    openDB(filename);
-    }
-
-    private void openDB(String filename) {
-    closeCatalog();
-    db = Db4o.openFile(filename);
-    }
-
-    public void openCatalog(String name) {
-    openDB(name);
-    List rs = db.get(BookInfo.class);
-    info = (BookInfo) rs.get(0);
-    }
-
-    public void closeCatalog() {
-    if (db != null) {
-    db.close();
-    listeners.clear();
-    db = null;
-    }
-    }
-
-    public BookInfo getInfo() {
-    return info;
-    }
-
-    public void addRecipe(String title, Date preparation, Date cooking, RecipeDificulty dificulty,
-    RecipePrice price, LinkedList<Ingredient> ingredients, RecipeType type,
-    int doses, LinkedList<String> sequence, String principal,
-    Note note, LinkedList<Tip> tips, double rating, boolean stared,
-    LinkedList<RecipeTag> tags, String method, Date freazer, Date fridge) {
-
-    Recipe rec = new Recipe(title, preparation, cooking, dificulty, price,
-    ingredients, type, doses, sequence, principal, note,
-    tips, rating, stared, tags, method, freazer, fridge);
-
-    db.set(rec);
-    fireRecipeAdded(new KCookBEvent(this, null, rec));
-    }
-
-    public void removeRecipe(Recipe recipe) throws NonCoerentDatabaseException {
-    List<Recipe> found = db.get(recipe);
-    if (found.size() != 1) {
-    throw new NonCoerentDatabaseException("Database is in an incoerent state!");
-    }
-
-    Recipe rec = found.get(0);
-    db.delete(rec);
-    fireRecipeDeleted(new KCookBEvent(this, rec, null));
-    }
-
-    //TODO: comment
-    public void save() {
-    if (unsavedRecipes != null) {
-    for (Recipe rec : unsavedRecipes) {
-    db.set(rec);
-    }
-    }
-    }
-
-    //TODO: comment
-    public boolean hasChanges() {
-    return !unsavedRecipes.isEmpty();
-    }
-
-    public void undo() {
-    //TODO: undo
-    }
-
-    public void redo() {
-    //TODO: redo
-    }
-
-    public List<Recipe> getAllRecipes() {
-    return db.get(Recipe.class);
-    }
-
-    public List<Tip> getAllTips() {
-    return db.get(Tip.class);
-    }
-
-    public List<RecipeType> getAllTypes() {
-    return db.get(RecipeType.class);
-    }
-
-    public List<Meal> getMeals() {
-    return db.get(Meal.class);
-    }
-
-    public List<RecipeTag> getAllTags() {
-    return db.get(RecipeTag.class);
-    }
-
-    public List<Recipe> search(final String name, boolean inDescription, boolean inIngredients,
-    boolean inLable, boolean inRating, boolean inType, RecipeDificulty difficulty, RecipePrice price) {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    //TODO: search method
-    return false;
-    }
-    });
-    }
-
-    public List<Recipe> searchByName(final String name) {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    return rec.getTitle().toLowerCase().matches("*" + name.toLowerCase() + "*");
-    }
-    });
-    }
-
-    public List<Recipe> getAllStared() {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    return rec.isStared();
-    }
-    });
-    }
-
-    public List<Recipe> searchByType(final RecipeType type) {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    return rec.getType().equals(type);
-    }
-    });
-    }
-
-    public List<Recipe> searchByTag(final RecipeTag tag) {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    return rec.getTags().contains(tag);
-    }
-    });
-    }
-
-    public List<Recipe> searchWithTags(final List<RecipeTag> tags) {
-    List<Recipe> temp = getAllRecipes();
-    ArrayList<Recipe> rs = new ArrayList<Recipe>();
-
-    for (RecipeTag t : tags) {
-    for (Recipe r : temp) {
-    if (r.getTags().contains(t)) {
-    rs.add(r);
-    }
-    }
-    }
-
-    return rs;
-    }
-
-    public List<Recipe> searchWithIngredients(List<Ingredient> ingredients) {
-    List<Recipe> temp = getAllRecipes();
-    ArrayList<Recipe> rs = new ArrayList<Recipe>();
-
-    for (Ingredient i : ingredients) {
-    for (Recipe r : temp) {
-    if (r.getIngredients().contains(i)) {
-    rs.add(r);
-    }
-    }
-    }
-
-    return rs;
-    }
-
-    public List<Recipe> searchByRating(final double rating) {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    return rec.getRating() >= rating;
-    }
-    });
-    }
-
-    public List<Recipe> searchByDifficulty(final RecipeDificulty dificulty) {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    return rec.getDificulty() == dificulty;
-    }
-    });
-    }
-
-    public List<Recipe> searchByPrice(final RecipePrice price) {
-    return db.query(new Predicate<Recipe>() {
-
-    @Override
-    public boolean match(Recipe rec) {
-    return rec.getPrice() == price;
-    }
-    });
-    }
-
-    public void addKCookBChangedListener(KCookBListener l) {
-    if (listeners == null) {
-    listeners = new Vector<KCookBListener>();
-    }
-
-    listeners.add(l);
-    }
-
-    public void removeKCookBChangedListener(KCookBListener l) {
-    if (listeners != null) {
-    listeners.remove(l);
-    }
-    }
-
-    private void fireRecipeDeleted(KCookBEvent ev) {
-    for (KCookBListener l : listeners) {
-    l.recipeAdded(ev);
-    }
-    }
-
-    private void fireRecipeAdded(KCookBEvent ev) {
-    for (KCookBListener l : listeners) {
-    l.recipeDeleted(ev);
-    }
-    }
-     */
 }
