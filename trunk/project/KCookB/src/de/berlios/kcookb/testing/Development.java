@@ -1,4 +1,6 @@
-/**
+/*
+ *  Development.java
+ *
  *  Copyright (C) 2008  Sérgio Lopes
  *
  *  This file is part of KCookB.

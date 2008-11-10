@@ -1,4 +1,6 @@
-/**
+/*
+ *  KBCEngine.java
+ *
  *  Copyright (C) 2008  Sérgio Lopes
  *
  *  This file is part of KCookB.
@@ -98,6 +100,10 @@ public class KCBEngine implements RecipeListener {
                 throw ex;
             }
         }
+    }
+
+    public boolean hasOpenBook() {
+        return db != null;
     }
 
     /**
