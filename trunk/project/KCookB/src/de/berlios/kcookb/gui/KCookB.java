@@ -31,17 +31,282 @@ public class KCookB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jtbMainToolbar = new javax.swing.JToolBar();
+        jbtnNewBook = new javax.swing.JButton();
+        jbtnOpenBook = new javax.swing.JButton();
+        separator7 = new javax.swing.JToolBar.Separator();
+        jbtnNewRecipe = new javax.swing.JButton();
+        jbtEditRecipe = new javax.swing.JButton();
+        jbtnRemoveRecipe = new javax.swing.JButton();
+        separator8 = new javax.swing.JToolBar.Separator();
+        jbtnPrintCurrent = new javax.swing.JButton();
+        separator9 = new javax.swing.JToolBar.Separator();
+        jtfSearchField = new javax.swing.JTextField();
+        jbtnSearch = new javax.swing.JButton();
+        separator10 = new javax.swing.JToolBar.Separator();
+        jbtnPrevious = new javax.swing.JButton();
+        jbtnNext = new javax.swing.JButton();
+        jspMainSplit = new javax.swing.JSplitPane();
+        jtbpMainTab = new javax.swing.JTabbedPane();
+        jpAllRecipes = new javax.swing.JPanel();
+        jscAllRecipes = new javax.swing.JScrollPane();
+        jtAllRecipes = new javax.swing.JTree();
+        jpTaggedRecipes = new javax.swing.JPanel();
+        jscTaggedRecipe = new javax.swing.JScrollPane();
+        jtTaggedRecipes = new javax.swing.JTree();
+        jpStaredRecipes = new javax.swing.JPanel();
+        jscStaredRecipes = new javax.swing.JScrollPane();
+        jtStaredRecipes = new javax.swing.JTree();
+        jPanel1 = new javax.swing.JPanel();
+        jmbMenuBar = new javax.swing.JMenuBar();
+        jmFile = new javax.swing.JMenu();
+        jmiNewBook = new javax.swing.JMenuItem();
+        jmiOpenBook = new javax.swing.JMenuItem();
+        jmiCloseBook = new javax.swing.JMenuItem();
+        separator2 = new javax.swing.JSeparator();
+        jmiExport = new javax.swing.JMenuItem();
+        jmiImport = new javax.swing.JMenuItem();
+        separator4 = new javax.swing.JSeparator();
+        jmiPrint = new javax.swing.JMenuItem();
+        separator3 = new javax.swing.JSeparator();
+        jmiExit = new javax.swing.JMenuItem();
+        jmEdit = new javax.swing.JMenu();
+        jmiNewRecipe = new javax.swing.JMenuItem();
+        jmiEditRecipe = new javax.swing.JMenuItem();
+        jmiDeleteRecipe = new javax.swing.JMenuItem();
+        jmTools = new javax.swing.JMenu();
+        jmiPlugins = new javax.swing.JMenuItem();
+        separator11 = new javax.swing.JSeparator();
+        jmiOptions = new javax.swing.JMenuItem();
+        jmHelp = new javax.swing.JMenu();
+        jmiHelp = new javax.swing.JMenuItem();
+        separator6 = new javax.swing.JSeparator();
+        jmiWeb = new javax.swing.JMenuItem();
+        separator5 = new javax.swing.JSeparator();
+        jmiAbout = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jtbMainToolbar.setFloatable(false);
+        jtbMainToolbar.setRollover(true);
+
+        jbtnNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/book_add.png"))); // NOI18N
+        jbtnNewBook.setFocusable(false);
+        jbtnNewBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnNewBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnNewBook);
+
+        jbtnOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/book_open.png"))); // NOI18N
+        jbtnOpenBook.setFocusable(false);
+        jbtnOpenBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnOpenBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnOpenBook);
+        jtbMainToolbar.add(separator7);
+
+        jbtnNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_add.png"))); // NOI18N
+        jbtnNewRecipe.setFocusable(false);
+        jbtnNewRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnNewRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnNewRecipe);
+
+        jbtEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_edit.png"))); // NOI18N
+        jbtEditRecipe.setFocusable(false);
+        jbtEditRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtEditRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtEditRecipe);
+
+        jbtnRemoveRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_delete.png"))); // NOI18N
+        jbtnRemoveRecipe.setFocusable(false);
+        jbtnRemoveRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnRemoveRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnRemoveRecipe);
+        jtbMainToolbar.add(separator8);
+
+        jbtnPrintCurrent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/printer.png"))); // NOI18N
+        jbtnPrintCurrent.setFocusable(false);
+        jbtnPrintCurrent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnPrintCurrent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnPrintCurrent);
+        jtbMainToolbar.add(separator9);
+
+        jtfSearchField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jtfSearchField.setText("...");
+        jtfSearchField.setMaximumSize(new java.awt.Dimension(150, 20));
+        jtbMainToolbar.add(jtfSearchField);
+
+        jbtnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/magnifier.png"))); // NOI18N
+        jbtnSearch.setFocusable(false);
+        jbtnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnSearch);
+        jtbMainToolbar.add(separator10);
+
+        jbtnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/resultset_previous.png"))); // NOI18N
+        jbtnPrevious.setFocusable(false);
+        jbtnPrevious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnPrevious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnPrevious);
+
+        jbtnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/resultset_next.png"))); // NOI18N
+        jbtnNext.setFocusable(false);
+        jbtnNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jtbMainToolbar.add(jbtnNext);
+
+        jspMainSplit.setDividerLocation(120);
+
+        jtbpMainTab.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+
+        jscAllRecipes.setViewportView(jtAllRecipes);
+
+        javax.swing.GroupLayout jpAllRecipesLayout = new javax.swing.GroupLayout(jpAllRecipes);
+        jpAllRecipes.setLayout(jpAllRecipesLayout);
+        jpAllRecipesLayout.setHorizontalGroup(
+            jpAllRecipesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscAllRecipes, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+        );
+        jpAllRecipesLayout.setVerticalGroup(
+            jpAllRecipesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscAllRecipes, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+        );
+
+        jtbpMainTab.addTab("All", null, jpAllRecipes, "All Recipes by Type");
+
+        jscTaggedRecipe.setViewportView(jtTaggedRecipes);
+
+        javax.swing.GroupLayout jpTaggedRecipesLayout = new javax.swing.GroupLayout(jpTaggedRecipes);
+        jpTaggedRecipes.setLayout(jpTaggedRecipesLayout);
+        jpTaggedRecipesLayout.setHorizontalGroup(
+            jpTaggedRecipesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscTaggedRecipe, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+        );
+        jpTaggedRecipesLayout.setVerticalGroup(
+            jpTaggedRecipesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscTaggedRecipe, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+        );
+
+        jtbpMainTab.addTab("", new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/tag_blue.png")), jpTaggedRecipes, "Tagged Recipes"); // NOI18N
+
+        jscStaredRecipes.setViewportView(jtStaredRecipes);
+
+        javax.swing.GroupLayout jpStaredRecipesLayout = new javax.swing.GroupLayout(jpStaredRecipes);
+        jpStaredRecipes.setLayout(jpStaredRecipesLayout);
+        jpStaredRecipesLayout.setHorizontalGroup(
+            jpStaredRecipesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscStaredRecipes, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+        );
+        jpStaredRecipesLayout.setVerticalGroup(
+            jpStaredRecipesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jscStaredRecipes, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+        );
+
+        jtbpMainTab.addTab("", new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/star.png")), jpStaredRecipes, "Stared Recipes"); // NOI18N
+
+        jspMainSplit.setLeftComponent(jtbpMainTab);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 664, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 525, Short.MAX_VALUE)
+        );
+
+        jspMainSplit.setRightComponent(jPanel1);
+
+        jmFile.setText("KCookB");
+
+        jmiNewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/book_add.png"))); // NOI18N
+        jmiNewBook.setText("New Book ...");
+        jmFile.add(jmiNewBook);
+
+        jmiOpenBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/book_open.png"))); // NOI18N
+        jmiOpenBook.setText("Open Book ...");
+        jmFile.add(jmiOpenBook);
+
+        jmiCloseBook.setText("Close Book");
+        jmFile.add(jmiCloseBook);
+        jmFile.add(separator2);
+
+        jmiExport.setText("Export ...");
+        jmFile.add(jmiExport);
+
+        jmiImport.setText("Import ...");
+        jmFile.add(jmiImport);
+        jmFile.add(separator4);
+
+        jmiPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/printer.png"))); // NOI18N
+        jmiPrint.setText("Print ...");
+        jmFile.add(jmiPrint);
+        jmFile.add(separator3);
+
+        jmiExit.setText("Exit");
+        jmFile.add(jmiExit);
+
+        jmbMenuBar.add(jmFile);
+
+        jmEdit.setText("Edit");
+
+        jmiNewRecipe.setText("New Recipe");
+        jmEdit.add(jmiNewRecipe);
+
+        jmiEditRecipe.setText("Edit Recipe");
+        jmEdit.add(jmiEditRecipe);
+
+        jmiDeleteRecipe.setText("Delete Recipe");
+        jmEdit.add(jmiDeleteRecipe);
+
+        jmbMenuBar.add(jmEdit);
+
+        jmTools.setText("Tools");
+
+        jmiPlugins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/plugin.png"))); // NOI18N
+        jmiPlugins.setText("Plugins");
+        jmTools.add(jmiPlugins);
+        jmTools.add(separator11);
+
+        jmiOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/cog.png"))); // NOI18N
+        jmiOptions.setText("Options");
+        jmTools.add(jmiOptions);
+
+        jmbMenuBar.add(jmTools);
+
+        jmHelp.setText("Help");
+
+        jmiHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/help.png"))); // NOI18N
+        jmiHelp.setText("Help");
+        jmHelp.add(jmiHelp);
+        jmHelp.add(separator6);
+
+        jmiWeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/world_go.png"))); // NOI18N
+        jmiWeb.setText("Website");
+        jmHelp.add(jmiWeb);
+        jmHelp.add(separator5);
+
+        jmiAbout.setText("About");
+        jmHelp.add(jmiAbout);
+
+        jmbMenuBar.add(jmHelp);
+
+        setJMenuBar(jmbMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jtbMainToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+            .addComponent(jspMainSplit, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jtbMainToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspMainSplit, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -59,6 +324,59 @@ public class KCookB extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbtEditRecipe;
+    private javax.swing.JButton jbtnNewBook;
+    private javax.swing.JButton jbtnNewRecipe;
+    private javax.swing.JButton jbtnNext;
+    private javax.swing.JButton jbtnOpenBook;
+    private javax.swing.JButton jbtnPrevious;
+    private javax.swing.JButton jbtnPrintCurrent;
+    private javax.swing.JButton jbtnRemoveRecipe;
+    private javax.swing.JButton jbtnSearch;
+    private javax.swing.JMenu jmEdit;
+    private javax.swing.JMenu jmFile;
+    private javax.swing.JMenu jmHelp;
+    private javax.swing.JMenu jmTools;
+    private javax.swing.JMenuBar jmbMenuBar;
+    private javax.swing.JMenuItem jmiAbout;
+    private javax.swing.JMenuItem jmiCloseBook;
+    private javax.swing.JMenuItem jmiDeleteRecipe;
+    private javax.swing.JMenuItem jmiEditRecipe;
+    private javax.swing.JMenuItem jmiExit;
+    private javax.swing.JMenuItem jmiExport;
+    private javax.swing.JMenuItem jmiHelp;
+    private javax.swing.JMenuItem jmiImport;
+    private javax.swing.JMenuItem jmiNewBook;
+    private javax.swing.JMenuItem jmiNewRecipe;
+    private javax.swing.JMenuItem jmiOpenBook;
+    private javax.swing.JMenuItem jmiOptions;
+    private javax.swing.JMenuItem jmiPlugins;
+    private javax.swing.JMenuItem jmiPrint;
+    private javax.swing.JMenuItem jmiWeb;
+    private javax.swing.JPanel jpAllRecipes;
+    private javax.swing.JPanel jpStaredRecipes;
+    private javax.swing.JPanel jpTaggedRecipes;
+    private javax.swing.JScrollPane jscAllRecipes;
+    private javax.swing.JScrollPane jscStaredRecipes;
+    private javax.swing.JScrollPane jscTaggedRecipe;
+    private javax.swing.JSplitPane jspMainSplit;
+    private javax.swing.JTree jtAllRecipes;
+    private javax.swing.JTree jtStaredRecipes;
+    private javax.swing.JTree jtTaggedRecipes;
+    private javax.swing.JToolBar jtbMainToolbar;
+    private javax.swing.JTabbedPane jtbpMainTab;
+    private javax.swing.JTextField jtfSearchField;
+    private javax.swing.JToolBar.Separator separator10;
+    private javax.swing.JSeparator separator11;
+    private javax.swing.JSeparator separator2;
+    private javax.swing.JSeparator separator3;
+    private javax.swing.JSeparator separator4;
+    private javax.swing.JSeparator separator5;
+    private javax.swing.JSeparator separator6;
+    private javax.swing.JToolBar.Separator separator7;
+    private javax.swing.JToolBar.Separator separator8;
+    private javax.swing.JToolBar.Separator separator9;
     // End of variables declaration//GEN-END:variables
 
 }
