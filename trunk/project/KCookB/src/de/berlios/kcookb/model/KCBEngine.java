@@ -33,6 +33,7 @@ import de.berlios.kcookb.model.listeners.KCBEngineEvent;
 import de.berlios.kcookb.model.listeners.KCBEngineListener;
 import de.berlios.kcookb.model.listeners.RecipeEvent;
 import de.berlios.kcookb.model.listeners.RecipeListener;
+import java.io.File;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Vector;
@@ -61,12 +62,36 @@ public class KCBEngine implements RecipeListener {
     }
 
     /**
+     * Creates a new book. After creation the book is opened.
+     * This method is responsible for the creation of all the needed folders.
+     *
+     * @param dir the directory where the book will be stored
+     * @param name the name of the book, used to create the database and the
+     * main directoruy
+     */
+    //TODO: validate
+    public void createBook(String dir, String name) {
+        File parent = new File(dir);
+        if (parent.exists() && parent.isDirectory()) {
+            File bookDir = new File(dir + File.separator + name);
+            if (!bookDir.exists()) {
+                bookDir.mkdir();
+                File imgsDir = new File(bookDir + File.separator + "imgs");
+                imgsDir.mkdir();
+                openBook(bookDir + File.separator + name + ".kcb");//TODO: transform in constant
+            }
+        }
+    }
+
+    /**
      * Opens a new book, if the specified file exists it is opened, else it is
      * created.
      *
      * @param file the file name to open or create.
      */
     public void openBook(String file) {
+
+
         //TODO: correct opening code
         try {
             db = Db4o.openFile(file);

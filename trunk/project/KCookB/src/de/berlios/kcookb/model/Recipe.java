@@ -54,14 +54,14 @@ public class Recipe {
     private TimeUnit cooking;
     private int freazer;
     private int fridge;
-    private Photo main;
+    private String mainImage;
     private Vector<RecipeListener> listeners;
 
     public Recipe(String name, int servings, double rating, boolean stared,
             String directions, GregorianCalendar added, int difficulty, int priceTag,
             double price, List<Ingredient> ingredients, String suggestion,
             RecipeType type, List<Tag> tags, Nutricional table, int calories,
-            TimeUnit prepTime, TimeUnit cooking, int freazer, int fridge) {
+            TimeUnit prepTime, TimeUnit cooking, int freazer, int fridge, String mainImage) {
 
         this.name = name;
         this.servings = servings;
@@ -82,13 +82,14 @@ public class Recipe {
         this.cooking = cooking;
         this.freazer = freazer;
         this.fridge = fridge;
+        this.mainImage = mainImage;
         listeners = new Vector<RecipeListener>();
     }
 
     public Recipe(String name) {
         this(name, 0, 0.0, false, "", null, RecipeConstants.DIFFICULTY_LEVEL_EASY,
                 RecipeConstants.PRICE_LEVEL_CHEAP, 0.0, null, "", null, null,
-                null, 0, null, null, 0, 0);
+                null, 0, null, null, 0, 0, "");
     }
 
     public GregorianCalendar getAdded() {
@@ -162,6 +163,14 @@ public class Recipe {
         if (ingredients != null) {
             ingredients.remove(ingredient);
         }
+    }
+
+    public String getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(String image) {
+        mainImage = image;
     }
 
     public String getName() {

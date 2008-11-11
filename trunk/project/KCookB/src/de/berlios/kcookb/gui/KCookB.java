@@ -22,11 +22,11 @@ package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.model.KCBEngine;
 import java.awt.Desktop;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,38 +35,35 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.text.html.HTMLDocument;
 
 public class KCookB extends javax.swing.JFrame {
 
     private KCBEngine engine;
     private KCookB me = this;
-    private String[] recent;
     private Properties glSettings;
 
     /** Creates new form KCookB */
     public KCookB() {
-
-        glSettings = new Properties();
-        /*try {
-        glSettings.loadFromXML(null);
-        } catch (IOException ex) {
-        Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        loadSettingsFile();
         engine = new KCBEngine();
         initComponents();
+    }
+
+    //TODO:
+    private void loadSettingsFile() {
+        glSettings = new Properties();
         try {
-            URL url = new URL("http://www.gastronomias.com/receitas/rec0117.htm");
-            jtpMain.read(url.openStream(), new HTMLDocument());
-            System.out.println(url.getContent().toString());
-        //jtpMain.
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, null, ex);
+            File home = new File(System.getProperty("user.home") + File.separator + ".kcookb");
+            if (home.exists() && home.isDirectory()) {
+                File setf = new File(home + File.separator + "settings.xml");
+                if (!setf.exists()) {
+                    setf.createNewFile();
+                }
+                glSettings.loadFromXML(new FileInputStream(setf));
+            }
         } catch (IOException ex) {
             Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    //jtpMain.
     }
 
     private void openBook() {
@@ -127,8 +124,8 @@ public class KCookB extends javax.swing.JFrame {
         jscStaredRecipes = new javax.swing.JScrollPane();
         jtStaredRecipes = new javax.swing.JTree();
         jpMainPanel = new javax.swing.JPanel();
-        jscMain = new javax.swing.JScrollPane();
-        jtpMain = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jmbMenuBar = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jmiNewBook = new javax.swing.JMenuItem();
@@ -326,19 +323,17 @@ public class KCookB extends javax.swing.JFrame {
 
         jspMainSplit.setLeftComponent(jtbpMainTab);
 
-        jtpMain.setContentType(bundle.getString("KCookB.jtpMain.contentType")); // NOI18N
-        jtpMain.setText(bundle.getString("KCookB.jtpMain.text")); // NOI18N
-        jscMain.setViewportView(jtpMain);
+        jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout jpMainPanelLayout = new javax.swing.GroupLayout(jpMainPanel);
         jpMainPanel.setLayout(jpMainPanelLayout);
         jpMainPanelLayout.setHorizontalGroup(
             jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscMain, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
         );
         jpMainPanelLayout.setVerticalGroup(
             jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscMain, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
 
         jspMainSplit.setRightComponent(jpMainPanel);
@@ -718,6 +713,8 @@ public class KCookB extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton jbtEditRecipe;
     private javax.swing.JButton jbtnNewBook;
     private javax.swing.JButton jbtnNewRecipe;
@@ -755,7 +752,6 @@ public class KCookB extends javax.swing.JFrame {
     private javax.swing.JPanel jpStaredRecipes;
     private javax.swing.JPanel jpTaggedRecipes;
     private javax.swing.JScrollPane jscAllRecipes;
-    private javax.swing.JScrollPane jscMain;
     private javax.swing.JScrollPane jscStaredRecipes;
     private javax.swing.JScrollPane jscTaggedRecipe;
     private javax.swing.JSplitPane jspMainSplit;
@@ -765,7 +761,6 @@ public class KCookB extends javax.swing.JFrame {
     private javax.swing.JToolBar jtbMainToolbar;
     private javax.swing.JTabbedPane jtbpMainTab;
     private javax.swing.JTextField jtfSearchField;
-    private javax.swing.JTextPane jtpMain;
     private javax.swing.JToolBar.Separator separator10;
     private javax.swing.JSeparator separator11;
     private javax.swing.JSeparator separator12;

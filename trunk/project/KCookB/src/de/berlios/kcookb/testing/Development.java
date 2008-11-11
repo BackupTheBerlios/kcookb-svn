@@ -22,6 +22,7 @@ package de.berlios.kcookb.testing;
 
 import de.berlios.kcookb.model.KCBEngine;
 import de.berlios.kcookb.model.Recipe;
+import java.io.File;
 
 /**
  * Class used for testing purposes only.
