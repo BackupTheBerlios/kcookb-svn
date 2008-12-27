@@ -18,7 +18,6 @@
  *  You should have received a copy of the GNU General Public License
  *  along with KCookB. If not, see <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.kcookb.gui;
 
 /**
@@ -31,6 +30,14 @@ public class About extends javax.swing.JDialog {
     public About(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
+
+        super.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -79,13 +86,15 @@ public class About extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtnCloseActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 About dialog = new About(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -98,5 +107,4 @@ public class About extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnClose;
     // End of variables declaration//GEN-END:variables
-
 }

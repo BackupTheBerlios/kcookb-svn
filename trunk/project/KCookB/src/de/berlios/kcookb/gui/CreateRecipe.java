@@ -8,8 +8,19 @@
  *
  * Created on 11/Nov/2008, 0:17:42
  */
-
 package de.berlios.kcookb.gui;
+
+import de.berlios.kcookb.model.Ingredient;
+import de.berlios.kcookb.model.KCBEngine;
+import de.berlios.kcookb.model.Recipe;
+import de.berlios.kcookb.model.RecipeConstants;
+import de.berlios.kcookb.model.RecipeType;
+import de.berlios.kcookb.model.Tag;
+import de.berlios.kcookb.model.TimeUnit;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -17,10 +28,47 @@ package de.berlios.kcookb.gui;
  */
 public class CreateRecipe extends javax.swing.JDialog {
 
+    private ResourceBundle rb;
+    private KCBEngine eng;
+
     /** Creates new form CreateRecipe */
-    public CreateRecipe(java.awt.Frame parent, boolean modal) {
+    public CreateRecipe(java.awt.Frame parent, boolean modal, boolean edit) {
         super(parent, modal);
+        rb = ResourceBundle.getBundle(KCookB.BUNDLE_PATH);
+        eng = ((KCookB) parent).getEngine();
         initComponents();
+        initValues();
+    }
+
+    private void initValues() {
+
+        jcbxType.removeAllItems();
+        for (RecipeType t : eng.listAllTypes()) {
+            jcbxType.addItem(t);
+        }
+
+        jcbxDifficulty.removeAllItems();
+        jcbxDifficulty.addItem(rb.getString("Recipe.difficulty.0"));
+        jcbxDifficulty.addItem(rb.getString("Recipe.difficulty.1"));
+        jcbxDifficulty.addItem(rb.getString("Recipe.difficulty.2"));
+
+        jcbxPriceTag.removeAllItems();
+        jcbxPriceTag.addItem(rb.getString("Recipe.price.0"));
+        jcbxPriceTag.addItem(rb.getString("Recipe.price.1"));
+        jcbxPriceTag.addItem(rb.getString("Recipe.price.2"));
+    }
+
+    private String copyMainImage() {
+        //TODO: copy image to destination
+        return "";
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
+
+        super.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -32,16 +80,49 @@ public class CreateRecipe extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jtpMainTab = new javax.swing.JTabbedPane();
         jpMainDetails = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jpExtraInfo = new javax.swing.JPanel();
+        jlblPrice = new javax.swing.JLabel();
+        jlblCategories = new javax.swing.JLabel();
+        jspnFreazer = new javax.swing.JSpinner();
+        jspnFridge = new javax.swing.JSpinner();
+        jlblFreazer = new javax.swing.JLabel();
+        jblFridge = new javax.swing.JLabel();
+        jlblKcal = new javax.swing.JLabel();
+        jlblDays1 = new javax.swing.JLabel();
+        jlblDays2 = new javax.swing.JLabel();
+        jlblCurrencySymbol = new javax.swing.JLabel();
+        jchkApplyStar = new javax.swing.JCheckBox();
+        jlblLabels = new javax.swing.JLabel();
+        jffCalories = new javax.swing.JFormattedTextField();
+        jffPrice = new javax.swing.JFormattedTextField();
+        jtfLabels = new javax.swing.JTextField();
+        jlblLabelHint = new javax.swing.JLabel();
+        jpGeneralInfo = new javax.swing.JPanel();
+        jtfName = new javax.swing.JTextField();
+        jlblName = new javax.swing.JLabel();
+        jcbxType = new javax.swing.JComboBox();
+        jspnServings = new javax.swing.JSpinner();
+        jlblServings = new javax.swing.JLabel();
+        jlblType = new javax.swing.JLabel();
+        jcbxDifficulty = new javax.swing.JComboBox();
+        jlblDifficulty = new javax.swing.JLabel();
+        jcbxPriceTag = new javax.swing.JComboBox();
+        jlblPriceTag = new javax.swing.JLabel();
+        jspnCooking = new javax.swing.JSpinner();
+        jspnPreparation = new javax.swing.JSpinner();
+        jlblCoocking = new javax.swing.JLabel();
+        jlblPreparation = new javax.swing.JLabel();
+        jspnRating = new javax.swing.JSpinner();
+        jlblRating = new javax.swing.JLabel();
         jpDirections = new javax.swing.JPanel();
         jscDirections = new javax.swing.JScrollPane();
         jtaDirections = new javax.swing.JTextArea();
         jlblDirections = new javax.swing.JLabel();
         jpIngredients = new javax.swing.JPanel();
         jscIngredients = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jlstIngredientList = new javax.swing.JList();
         jtfNewIngredient = new javax.swing.JTextField();
         jlblIngredient = new javax.swing.JLabel();
         jbtnAddIngredient = new javax.swing.JButton();
@@ -54,37 +135,236 @@ public class CreateRecipe extends javax.swing.JDialog {
         jbtnBrowse = new javax.swing.JButton();
         jpImagePreview = new javax.swing.JPanel();
         jlblImagePreview = new javax.swing.JLabel();
+        jpNutricional = new javax.swing.JPanel();
+        jspNutrTableScroll = new javax.swing.JScrollPane();
+        jtNutrTable = new javax.swing.JTable();
+        jpSuggestions = new javax.swing.JPanel();
+        jspSuggestionsScroll = new javax.swing.JScrollPane();
+        jtaSuggestions = new javax.swing.JTextArea();
+        jlblSuggestions = new javax.swing.JLabel();
         jbtnCancel = new javax.swing.JButton();
         jbtnCreate = new javax.swing.JButton();
+        jbtnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTextField1.setText("name ...");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
+        jpExtraInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("CreateRecipe.jpExtraInfo.border.title"))); // NOI18N
+
+        jlblPrice.setText(bundle.getString("CreateRecipe.jlblPrice.text")); // NOI18N
+
+        jlblCategories.setText(bundle.getString("CreateRecipe.jlblCategories.text")); // NOI18N
+
+        jlblFreazer.setText(bundle.getString("CreateRecipe.jlblFreazer.text")); // NOI18N
+
+        jblFridge.setText(bundle.getString("CreateRecipe.jblFridge.text")); // NOI18N
+
+        jlblKcal.setText(bundle.getString("CreateRecipe.jlblKcal.text")); // NOI18N
+
+        jlblDays1.setText(bundle.getString("CreateRecipe.jlblDays1.text")); // NOI18N
+
+        jlblDays2.setText(bundle.getString("CreateRecipe.jlblDays2.text")); // NOI18N
+
+        jlblCurrencySymbol.setText(bundle.getString("CreateRecipe.jlblCurrencySymbol.text")); // NOI18N
+
+        jchkApplyStar.setText(bundle.getString("CreateRecipe.jchkApplyStar.text")); // NOI18N
+
+        jlblLabels.setText(bundle.getString("CreateRecipe.jlblLabels.text")); // NOI18N
+
+        jlblLabelHint.setText(bundle.getString("CreateRecipe.jlblLabelHint.text")); // NOI18N
+
+        javax.swing.GroupLayout jpExtraInfoLayout = new javax.swing.GroupLayout(jpExtraInfo);
+        jpExtraInfo.setLayout(jpExtraInfoLayout);
+        jpExtraInfoLayout.setHorizontalGroup(
+            jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExtraInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblCategories)
+                    .addComponent(jlblPrice)
+                    .addComponent(jlblFreazer)
+                    .addComponent(jblFridge)
+                    .addComponent(jlblLabels))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpExtraInfoLayout.createSequentialGroup()
+                        .addComponent(jlblLabelHint)
+                        .addContainerGap())
+                    .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jpExtraInfoLayout.createSequentialGroup()
+                            .addComponent(jtfLabels, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                            .addContainerGap())
+                        .addGroup(jpExtraInfoLayout.createSequentialGroup()
+                            .addComponent(jchkApplyStar)
+                            .addContainerGap())
+                        .addGroup(jpExtraInfoLayout.createSequentialGroup()
+                            .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jffPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                                .addComponent(jffCalories, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                                .addComponent(jspnFreazer, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jspnFridge, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jlblCurrencySymbol)
+                                .addComponent(jlblKcal)
+                                .addComponent(jlblDays1)
+                                .addComponent(jlblDays2))
+                            .addGap(345, 345, 345)))))
+        );
+        jpExtraInfoLayout.setVerticalGroup(
+            jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExtraInfoLayout.createSequentialGroup()
+                .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblPrice)
+                    .addComponent(jffPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblCurrencySymbol))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblCategories)
+                    .addComponent(jffCalories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblKcal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFreazer)
+                    .addComponent(jspnFreazer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblDays1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jblFridge)
+                    .addComponent(jspnFridge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblDays2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkApplyStar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpExtraInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblLabels)
+                    .addComponent(jtfLabels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblLabelHint)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jpGeneralInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("CreateRecipe.jpGeneralInfo.border.title"))); // NOI18N
+
+        jlblName.setText(bundle.getString("CreateRecipe.jlblName.text")); // NOI18N
+
+        jcbxType.setEditable(true);
+
+        jlblServings.setText(bundle.getString("CreateRecipe.jlblServings.text")); // NOI18N
+
+        jlblType.setText(bundle.getString("CreateRecipe.jlblType.text")); // NOI18N
+
+        jlblDifficulty.setText(bundle.getString("CreateRecipe.jlblDifficulty.text")); // NOI18N
+
+        jlblPriceTag.setText(bundle.getString("CreateRecipe.jlblPriceTag.text")); // NOI18N
+
+        jspnCooking.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1227744000000L), null, null, java.util.Calendar.MINUTE));
+        jspnCooking.setEditor(new javax.swing.JSpinner.DateEditor(jspnCooking, "H:mm"));
+
+        jspnPreparation.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1227830400000L), null, null, java.util.Calendar.MINUTE));
+        jspnPreparation.setEditor(new javax.swing.JSpinner.DateEditor(jspnPreparation, "H:mm"));
+
+        jlblCoocking.setText(bundle.getString("CreateRecipe.jlblCoocking.text")); // NOI18N
+
+        jlblPreparation.setText(bundle.getString("CreateRecipe.jlblPreparation.text")); // NOI18N
+
+        jlblRating.setText(bundle.getString("CreateRecipe.jlblRating.text")); // NOI18N
+
+        javax.swing.GroupLayout jpGeneralInfoLayout = new javax.swing.GroupLayout(jpGeneralInfo);
+        jpGeneralInfo.setLayout(jpGeneralInfoLayout);
+        jpGeneralInfoLayout.setHorizontalGroup(
+            jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpGeneralInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblName)
+                    .addComponent(jlblType)
+                    .addComponent(jlblDifficulty)
+                    .addComponent(jlblPriceTag)
+                    .addComponent(jlblCoocking)
+                    .addComponent(jlblPreparation)
+                    .addComponent(jlblRating))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                    .addGroup(jpGeneralInfoLayout.createSequentialGroup()
+                        .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jcbxPriceTag, javax.swing.GroupLayout.Alignment.LEADING, 0, 225, Short.MAX_VALUE)
+                            .addComponent(jcbxDifficulty, javax.swing.GroupLayout.Alignment.LEADING, 0, 225, Short.MAX_VALUE)
+                            .addComponent(jcbxType, javax.swing.GroupLayout.Alignment.LEADING, 0, 225, Short.MAX_VALUE))
+                        .addGap(59, 59, 59))
+                    .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jspnRating, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jspnPreparation, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jspnCooking, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)))
+                .addGap(12, 12, 12)
+                .addComponent(jlblServings)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspnServings, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jpGeneralInfoLayout.setVerticalGroup(
+            jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpGeneralInfoLayout.createSequentialGroup()
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jspnServings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblServings)
+                    .addComponent(jlblName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblType))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbxDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblDifficulty))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbxPriceTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblPriceTag))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jspnCooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblCoocking))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jspnPreparation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblPreparation))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpGeneralInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jspnRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblRating)))
+        );
 
         javax.swing.GroupLayout jpMainDetailsLayout = new javax.swing.GroupLayout(jpMainDetails);
         jpMainDetails.setLayout(jpMainDetailsLayout);
         jpMainDetailsLayout.setHorizontalGroup(
             jpMainDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMainDetailsLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMainDetailsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addGroup(jpMainDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpExtraInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpGeneralInfo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpMainDetailsLayout.setVerticalGroup(
             jpMainDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMainDetailsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addComponent(jpGeneralInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpExtraInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab1", jpMainDetails);
+        jtpMainTab.addTab(bundle.getString("CreateRecipe.jpMainDetails.TabConstraints.tabTitle"), jpMainDetails); // NOI18N
 
         jtaDirections.setColumns(20);
         jtaDirections.setRows(5);
         jscDirections.setViewportView(jtaDirections);
 
-        jlblDirections.setText("Directions:");
+        jlblDirections.setText(bundle.getString("CreateRecipe.jlblDirections.text")); // NOI18N
 
         javax.swing.GroupLayout jpDirectionsLayout = new javax.swing.GroupLayout(jpDirections);
         jpDirections.setLayout(jpDirectionsLayout);
@@ -93,7 +373,7 @@ public class CreateRecipe extends javax.swing.JDialog {
             .addGroup(jpDirectionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpDirectionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscDirections, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                    .addComponent(jscDirections, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                     .addComponent(jlblDirections))
                 .addContainerGap())
         );
@@ -103,23 +383,43 @@ public class CreateRecipe extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jlblDirections)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscDirections, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                .addComponent(jscDirections, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Directions", jpDirections);
+        jtpMainTab.addTab(bundle.getString("CreateRecipe.jpDirections.TabConstraints.tabTitle"), jpDirections); // NOI18N
 
-        jscIngredients.setViewportView(jList1);
+        jscIngredients.setViewportView(jlstIngredientList);
 
-        jlblIngredient.setText("Ingredient: ");
+        jlblIngredient.setText(bundle.getString("CreateRecipe.jlblIngredient.text")); // NOI18N
 
         jbtnAddIngredient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/add.png"))); // NOI18N
+        jbtnAddIngredient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAddIngredientActionPerformed(evt);
+            }
+        });
 
         jbtnRemoveIngredient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/delete.png"))); // NOI18N
+        jbtnRemoveIngredient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRemoveIngredientActionPerformed(evt);
+            }
+        });
 
         jbtnIngredientDown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/resultset_down.png"))); // NOI18N
+        jbtnIngredientDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnIngredientDownActionPerformed(evt);
+            }
+        });
 
         jbtnIngredientUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/resultset_up.png"))); // NOI18N
+        jbtnIngredientUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnIngredientUpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpIngredientsLayout = new javax.swing.GroupLayout(jpIngredients);
         jpIngredients.setLayout(jpIngredientsLayout);
@@ -128,69 +428,66 @@ public class CreateRecipe extends javax.swing.JDialog {
             .addGroup(jpIngredientsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngredientsLayout.createSequentialGroup()
-                        .addComponent(jscIngredients, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jpIngredientsLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbtnIngredientUp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jpIngredientsLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbtnIngredientDown)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jpIngredientsLayout.createSequentialGroup()
-                                .addComponent(jbtnRemoveIngredient)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                     .addGroup(jpIngredientsLayout.createSequentialGroup()
                         .addComponent(jlblIngredient)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfNewIngredient, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnAddIngredient)))
-                .addGap(10, 10, 10))
+                        .addComponent(jtfNewIngredient, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
+                    .addComponent(jscIngredients, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnIngredientUp, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtnIngredientDown, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtnRemoveIngredient, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtnAddIngredient))
+                .addContainerGap())
         );
         jpIngredientsLayout.setVerticalGroup(
             jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpIngredientsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfNewIngredient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlblIngredient)
-                    .addComponent(jbtnAddIngredient))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpIngredientsLayout.createSequentialGroup()
+                        .addGroup(jpIngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtfNewIngredient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlblIngredient))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jscIngredients, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
+                    .addGroup(jpIngredientsLayout.createSequentialGroup()
+                        .addComponent(jbtnAddIngredient)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnIngredientUp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnIngredientDown)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnRemoveIngredient))
-                    .addComponent(jscIngredients, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                        .addComponent(jbtnRemoveIngredient)))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Ingredients", jpIngredients);
+        jtpMainTab.addTab(bundle.getString("CreateRecipe.jpIngredients.TabConstraints.tabTitle"), jpIngredients); // NOI18N
 
-        jlblImage.setText("Image:");
+        jlblImage.setText(bundle.getString("CreateRecipe.jlblImage.text")); // NOI18N
 
-        jbtnBrowse.setText("...");
+        jbtnBrowse.setText(bundle.getString("CreateRecipe.jbtnBrowse.text")); // NOI18N
+        jbtnBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBrowseActionPerformed(evt);
+            }
+        });
 
         jpImagePreview.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jlblImagePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblImagePreview.setText("preview ...");
+        jlblImagePreview.setText(bundle.getString("CreateRecipe.jlblImagePreview.text")); // NOI18N
 
         javax.swing.GroupLayout jpImagePreviewLayout = new javax.swing.GroupLayout(jpImagePreview);
         jpImagePreview.setLayout(jpImagePreviewLayout);
         jpImagePreviewLayout.setHorizontalGroup(
             jpImagePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlblImagePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addComponent(jlblImagePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
         jpImagePreviewLayout.setVerticalGroup(
             jpImagePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlblImagePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+            .addComponent(jlblImagePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpImageLayout = new javax.swing.GroupLayout(jpImage);
@@ -204,7 +501,7 @@ public class CreateRecipe extends javax.swing.JDialog {
                     .addGroup(jpImageLayout.createSequentialGroup()
                         .addComponent(jlblImage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfImageURL, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                        .addComponent(jtfImageURL, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnBrowse)))
                 .addContainerGap())
@@ -222,45 +519,104 @@ public class CreateRecipe extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Photo", jpImage);
+        jtpMainTab.addTab(bundle.getString("CreateRecipe.jpImage.TabConstraints.tabTitle"), jpImage); // NOI18N
 
-        jbtnCancel.setText("Cancel");
+        jtNutrTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jspNutrTableScroll.setViewportView(jtNutrTable);
+
+        javax.swing.GroupLayout jpNutricionalLayout = new javax.swing.GroupLayout(jpNutricional);
+        jpNutricional.setLayout(jpNutricionalLayout);
+        jpNutricionalLayout.setHorizontalGroup(
+            jpNutricionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jspNutrTableScroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+        );
+        jpNutricionalLayout.setVerticalGroup(
+            jpNutricionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNutricionalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jspNutrTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+        );
+
+        jtpMainTab.addTab(bundle.getString("CreateRecipe.jpNutricional.TabConstraints.tabTitle"), jpNutricional); // NOI18N
+
+        jtaSuggestions.setColumns(20);
+        jtaSuggestions.setRows(5);
+        jspSuggestionsScroll.setViewportView(jtaSuggestions);
+
+        jlblSuggestions.setText(bundle.getString("CreateRecipe.jlblSuggestions.text")); // NOI18N
+
+        javax.swing.GroupLayout jpSuggestionsLayout = new javax.swing.GroupLayout(jpSuggestions);
+        jpSuggestions.setLayout(jpSuggestionsLayout);
+        jpSuggestionsLayout.setHorizontalGroup(
+            jpSuggestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSuggestionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpSuggestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jspSuggestionsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                    .addComponent(jlblSuggestions))
+                .addContainerGap())
+        );
+        jpSuggestionsLayout.setVerticalGroup(
+            jpSuggestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSuggestionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblSuggestions)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspSuggestionsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jtpMainTab.addTab(bundle.getString("CreateRecipe.jpSuggestions.TabConstraints.tabTitle"), jpSuggestions); // NOI18N
+
+        jbtnCancel.setText(bundle.getString("CreateRecipe.jbtnCancel.text")); // NOI18N
         jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCancelActionPerformed(evt);
             }
         });
 
-        jbtnCreate.setText("Create");
+        jbtnCreate.setText(bundle.getString("CreateRecipe.jbtnCreate.text")); // NOI18N
         jbtnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCreateActionPerformed(evt);
             }
         });
 
+        jbtnHelp.setText(bundle.getString("CreateRecipe.jbtnHelp.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(405, Short.MAX_VALUE)
+                .addContainerGap(332, Short.MAX_VALUE)
                 .addComponent(jbtnCreate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnCancel)
+                .addGap(4, 4, 4)
+                .addComponent(jbtnHelp)
                 .addContainerGap())
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+            .addComponent(jtpMainTab)
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtnCancel, jbtnCreate});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtnCancel, jbtnCreate, jbtnHelp});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addComponent(jtpMainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnCreate)
                     .addComponent(jbtnCancel)
-                    .addComponent(jbtnCreate))
+                    .addComponent(jbtnHelp))
                 .addContainerGap())
         );
 
@@ -268,55 +624,215 @@ public class CreateRecipe extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-        // TODO add your handling code here:
+        dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
-        // TODO add your handling code here:
+        //TODO: create recipe code
+        String name = jtfName.getText().trim();
+
+        int servings;
+        try {
+            servings = Integer.parseInt(String.valueOf(jspnServings.getValue()));
+        } catch (NumberFormatException ex) {
+            servings = 0;
+        }
+
+        double rating;
+        try {
+            rating = Double.parseDouble(String.valueOf(jspnRating.getValue()));
+        } catch (NumberFormatException ex) {
+            rating = 0.0;
+        }
+
+        boolean stared = jchkApplyStar.isSelected();
+        String directions = jtaDirections.getText().trim();
+
+        int difficulty;
+        switch (jcbxDifficulty.getSelectedIndex()) {
+            case RecipeConstants.DIFFICULTY_LEVEL_EASY:
+                difficulty = RecipeConstants.DIFFICULTY_LEVEL_EASY;
+                break;
+            case RecipeConstants.DIFFICULTY_LEVEL_MEDIUM:
+                difficulty = RecipeConstants.DIFFICULTY_LEVEL_MEDIUM;
+                break;
+            case RecipeConstants.DIFFICULTY_LEVEL_HARD:
+                difficulty = RecipeConstants.DIFFICULTY_LEVEL_HARD;
+                break;
+            default:
+                difficulty = RecipeConstants.DIFFICULTY_LEVEL_EASY;
+        }
+
+        int priceTag;
+        switch (jcbxDifficulty.getSelectedIndex()) {
+            case RecipeConstants.PRICE_LEVEL_CHEAP:
+                priceTag = RecipeConstants.PRICE_LEVEL_CHEAP;
+                break;
+            case RecipeConstants.PRICE_LEVEL_AFFORDABLE:
+                priceTag = RecipeConstants.PRICE_LEVEL_AFFORDABLE;
+                break;
+
+            case RecipeConstants.PRICE_LEVEL_EXPENSIVE:
+                priceTag = RecipeConstants.PRICE_LEVEL_EXPENSIVE;
+                break;
+            default:
+                priceTag = RecipeConstants.PRICE_LEVEL_CHEAP;
+        }
+
+        double price;
+        try {
+            price = Double.parseDouble(String.valueOf(jffPrice.getValue()));
+        } catch (NumberFormatException ex) {
+            price = 0.0;
+        }
+
+        List<Ingredient> ingredients = null;
+        int limit = jlstIngredientList.getModel().getSize();
+        if (limit != 0) {
+            ingredients = new ArrayList<Ingredient>(limit);
+            for (int i = 0; i < limit; i++) {
+                ingredients.add(new Ingredient(String.valueOf(jlstIngredientList.getModel().getElementAt(i))));
+            }
+        }
+
+        String suggestion = jtaSuggestions.getText().trim();
+
+        RecipeType type;
+        if (jcbxType.getSelectedItem() instanceof RecipeType) {
+            type = (RecipeType) jcbxType.getSelectedItem();
+        } else {
+            type = new RecipeType(String.valueOf(jcbxType.getSelectedItem()));
+        }
+
+        List<Tag> tags = null;
+        String[] labels = jtfLabels.getText().trim().split(",");
+        if (labels != null) {
+            tags = new ArrayList<Tag>(labels.length);
+            for (String l : labels) {
+                tags.add(new Tag(l.trim()));
+            }
+        }
+
+        //Nutricional table;
+        int calories;
+        try {
+            calories = Integer.parseInt(String.valueOf(jffCalories.getValue()));
+        } catch (NumberFormatException ex) {
+            calories = 0;
+        }
+
+        TimeUnit cooking = new TimeUnit(1, 0);
+        jspnCooking.getValue();
+
+        TimeUnit prepTime = new TimeUnit(1, 0);
+        jspnPreparation.getValue();
+
+        int freazer;
+        try {
+            freazer = Integer.parseInt(String.valueOf(jspnFreazer.getValue()));
+        } catch (NumberFormatException ex) {
+            freazer = 0;
+        }
+
+        int fridge;
+        try {
+            fridge = Integer.parseInt(String.valueOf(jspnFridge.getValue()));
+        } catch (NumberFormatException ex) {
+            fridge = 0;
+        }
+
+        String mainImage = copyMainImage();
+        Recipe rec = new Recipe(name, servings, rating, stared, directions, new GregorianCalendar(),
+                difficulty, priceTag, price, ingredients, suggestion, type, tags,
+                null, calories, prepTime, cooking, freazer, fridge, mainImage);
+        eng.addRecipe(rec);
 }//GEN-LAST:event_jbtnCreateActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CreateRecipe dialog = new CreateRecipe(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnBrowseActionPerformed
+
+    private void jbtnAddIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddIngredientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAddIngredientActionPerformed
+
+    private void jbtnIngredientUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngredientUpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnIngredientUpActionPerformed
+
+    private void jbtnIngredientDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngredientDownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnIngredientDownActionPerformed
+
+    private void jbtnRemoveIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoveIngredientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnRemoveIngredientActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jblFridge;
     private javax.swing.JButton jbtnAddIngredient;
     private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnCreate;
+    private javax.swing.JButton jbtnHelp;
     private javax.swing.JButton jbtnIngredientDown;
     private javax.swing.JButton jbtnIngredientUp;
     private javax.swing.JButton jbtnRemoveIngredient;
+    private javax.swing.JComboBox jcbxDifficulty;
+    private javax.swing.JComboBox jcbxPriceTag;
+    private javax.swing.JComboBox jcbxType;
+    private javax.swing.JCheckBox jchkApplyStar;
+    private javax.swing.JFormattedTextField jffCalories;
+    private javax.swing.JFormattedTextField jffPrice;
+    private javax.swing.JLabel jlblCategories;
+    private javax.swing.JLabel jlblCoocking;
+    private javax.swing.JLabel jlblCurrencySymbol;
+    private javax.swing.JLabel jlblDays1;
+    private javax.swing.JLabel jlblDays2;
+    private javax.swing.JLabel jlblDifficulty;
     private javax.swing.JLabel jlblDirections;
+    private javax.swing.JLabel jlblFreazer;
     private javax.swing.JLabel jlblImage;
     private javax.swing.JLabel jlblImagePreview;
     private javax.swing.JLabel jlblIngredient;
+    private javax.swing.JLabel jlblKcal;
+    private javax.swing.JLabel jlblLabelHint;
+    private javax.swing.JLabel jlblLabels;
+    private javax.swing.JLabel jlblName;
+    private javax.swing.JLabel jlblPreparation;
+    private javax.swing.JLabel jlblPrice;
+    private javax.swing.JLabel jlblPriceTag;
+    private javax.swing.JLabel jlblRating;
+    private javax.swing.JLabel jlblServings;
+    private javax.swing.JLabel jlblSuggestions;
+    private javax.swing.JLabel jlblType;
+    private javax.swing.JList jlstIngredientList;
     private javax.swing.JPanel jpDirections;
+    private javax.swing.JPanel jpExtraInfo;
+    private javax.swing.JPanel jpGeneralInfo;
     private javax.swing.JPanel jpImage;
     private javax.swing.JPanel jpImagePreview;
     private javax.swing.JPanel jpIngredients;
     private javax.swing.JPanel jpMainDetails;
+    private javax.swing.JPanel jpNutricional;
+    private javax.swing.JPanel jpSuggestions;
     private javax.swing.JScrollPane jscDirections;
     private javax.swing.JScrollPane jscIngredients;
+    private javax.swing.JScrollPane jspNutrTableScroll;
+    private javax.swing.JScrollPane jspSuggestionsScroll;
+    private javax.swing.JSpinner jspnCooking;
+    private javax.swing.JSpinner jspnFreazer;
+    private javax.swing.JSpinner jspnFridge;
+    private javax.swing.JSpinner jspnPreparation;
+    private javax.swing.JSpinner jspnRating;
+    private javax.swing.JSpinner jspnServings;
+    private javax.swing.JTable jtNutrTable;
     private javax.swing.JTextArea jtaDirections;
+    private javax.swing.JTextArea jtaSuggestions;
     private javax.swing.JTextField jtfImageURL;
+    private javax.swing.JTextField jtfLabels;
+    private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfNewIngredient;
+    private javax.swing.JTabbedPane jtpMainTab;
     // End of variables declaration//GEN-END:variables
-
 }

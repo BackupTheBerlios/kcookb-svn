@@ -21,32 +21,48 @@
 package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.model.KCBEngine;
+import de.berlios.kcookb.model.listeners.KCBEngineEvent;
+import de.berlios.kcookb.model.listeners.KCBEngineListener;
 import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
-public class KCookB extends javax.swing.JFrame {
+public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
 
     private KCBEngine engine;
     private KCookB me = this;
     private Properties glSettings;
+    public static final String BUNDLE_PATH = "de/berlios/kcookb/resources/i18n/i18n";
+    private ResourceBundle rBundle;
+    private DefaultTreeModel tmAll;
+    private MutableTreeNode rootNode;
 
     /** Creates new form KCookB */
     public KCookB() {
         loadSettingsFile();
         engine = new KCBEngine();
+        engine.addListener(this);
+        rBundle = ResourceBundle.getBundle(KCookB.BUNDLE_PATH);
         initComponents();
+        jtAllRecipes.setModel(tmAll = new DefaultTreeModel(rootNode = new DefaultMutableTreeNode("Receitas")));
     }
 
     //TODO:
@@ -66,26 +82,107 @@ public class KCookB extends javax.swing.JFrame {
         }
     }
 
-    private void openBook() {
-        if (engine.hasOpenBook()) {//TODO: i18n
-            if (JOptionPane.showConfirmDialog(this, "Já existe um livro aberto " +
-                    "se continuar o livro será fechado. Deseja continuar?", "Livro Aberto...",
+    private void createBook() {
+        if (engine.hasOpenBook()) {
+            if (JOptionPane.showConfirmDialog(this, rBundle.getString("KCookB.openBookExists.message"),
+                    rBundle.getString("KCookB.openBookExists.title"),
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
-                    new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/error.png"))) != JOptionPane.OK_OPTION) {
+                    new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/error.png"))) !=
+                    JOptionPane.OK_OPTION) {
+                return;
+            }
+        }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new CreateBook(me, true, engine, glSettings.getProperty("default-home",
+                        System.getProperty("user.home"))).setVisible(true);
+            }
+        });
+    }
+
+    private void openBook() {
+        if (engine.hasOpenBook()) {
+            if (JOptionPane.showConfirmDialog(this, rBundle.getString("KCookB.openBookExists.message"),
+                    rBundle.getString("KCookB.openBookExists.title"),
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+                    new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/error.png"))) !=
+                    JOptionPane.OK_OPTION) {
                 return;
             }
         }
 
-        //TODO: add filter/icon
-        //TODO: start in default folder, userdocuments/cook books
         JFileChooser jfc = new JFileChooser();
+        jfc.setFileFilter(new KCBFileFilter());
+        jfc.setFileView(new KCBFileView());
+
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             engine.openBook(jfc.getSelectedFile().getAbsolutePath());
         }
     }
 
+    private void toggleExistingBookOptions(boolean state) {
+        //FILE MENU OPTIONS
+        jmiCloseBook.setEnabled(state);
+        jmiExport.setEnabled(state);
+        jmiPrint.setEnabled(state);
+
+        //EDIT MENU
+        jmEdit.setEnabled(state);
+
+        //TOOLS MENU
+        jmiZip.setEnabled(state);
+
+        //TOOLBAR BUTTONS
+        jbtnNewRecipe.setEnabled(state);
+        jbtEditRecipe.setEnabled(state);
+        jbtnRemoveRecipe.setEnabled(state);
+        jbtnPrintCurrent.setEnabled(state);
+        jtfSearchField.setEnabled(state);
+        jbtnSearch.setEnabled(state);
+        jbtnNext.setEnabled(state);
+        jbtnPrevious.setEnabled(state);
+
+    }
+
     private void printCurrent() {
         //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
+    }
+
+    private void showCreateRecipeDialog(final boolean edit) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new CreateRecipe(me, true, edit).setVisible(true);
+            }
+        });
+    }
+
+    public KCBEngine getEngine() {
+        return engine;
+    }
+
+    public Properties getGlSettings() {
+        return glSettings;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension mySize = getSize();
+
+        if (mySize.height > scrSize.height) {
+            mySize.height = scrSize.height;
+        }
+
+        if (mySize.width > scrSize.width) {
+            mySize.width = scrSize.width;
+        }
+
+        setLocation((scrSize.width - mySize.width) / 2,
+                (scrSize.height - mySize.height) / 2);
+        super.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -187,6 +284,7 @@ public class KCookB extends javax.swing.JFrame {
         jtbMainToolbar.add(separator7);
 
         jbtnNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_add.png"))); // NOI18N
+        jbtnNewRecipe.setEnabled(false);
         jbtnNewRecipe.setFocusable(false);
         jbtnNewRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnNewRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -198,6 +296,7 @@ public class KCookB extends javax.swing.JFrame {
         jtbMainToolbar.add(jbtnNewRecipe);
 
         jbtEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_edit.png"))); // NOI18N
+        jbtEditRecipe.setEnabled(false);
         jbtEditRecipe.setFocusable(false);
         jbtEditRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtEditRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -209,6 +308,7 @@ public class KCookB extends javax.swing.JFrame {
         jtbMainToolbar.add(jbtEditRecipe);
 
         jbtnRemoveRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_delete.png"))); // NOI18N
+        jbtnRemoveRecipe.setEnabled(false);
         jbtnRemoveRecipe.setFocusable(false);
         jbtnRemoveRecipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnRemoveRecipe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -221,6 +321,7 @@ public class KCookB extends javax.swing.JFrame {
         jtbMainToolbar.add(separator8);
 
         jbtnPrintCurrent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/printer.png"))); // NOI18N
+        jbtnPrintCurrent.setEnabled(false);
         jbtnPrintCurrent.setFocusable(false);
         jbtnPrintCurrent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnPrintCurrent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -235,10 +336,12 @@ public class KCookB extends javax.swing.JFrame {
         jtfSearchField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
         jtfSearchField.setText(bundle.getString("KCookB.jtfSearchField.text")); // NOI18N
+        jtfSearchField.setEnabled(false);
         jtfSearchField.setMaximumSize(new java.awt.Dimension(150, 20));
         jtbMainToolbar.add(jtfSearchField);
 
         jbtnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/magnifier.png"))); // NOI18N
+        jbtnSearch.setEnabled(false);
         jbtnSearch.setFocusable(false);
         jbtnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -251,6 +354,7 @@ public class KCookB extends javax.swing.JFrame {
         jtbMainToolbar.add(separator10);
 
         jbtnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/resultset_previous.png"))); // NOI18N
+        jbtnPrevious.setEnabled(false);
         jbtnPrevious.setFocusable(false);
         jbtnPrevious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnPrevious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -262,6 +366,7 @@ public class KCookB extends javax.swing.JFrame {
         jtbMainToolbar.add(jbtnPrevious);
 
         jbtnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/resultset_next.png"))); // NOI18N
+        jbtnNext.setEnabled(false);
         jbtnNext.setFocusable(false);
         jbtnNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -276,6 +381,8 @@ public class KCookB extends javax.swing.JFrame {
 
         jtbpMainTab.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jtAllRecipes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jscAllRecipes.setViewportView(jtAllRecipes);
 
         javax.swing.GroupLayout jpAllRecipesLayout = new javax.swing.GroupLayout(jpAllRecipes);
@@ -291,6 +398,8 @@ public class KCookB extends javax.swing.JFrame {
 
         jtbpMainTab.addTab(bundle.getString("KCookB.jpAllRecipes.TabConstraints.tabTitle"), null, jpAllRecipes, bundle.getString("KCookB.jpAllRecipes.TabConstraints.tabToolTip")); // NOI18N
 
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jtTaggedRecipes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jscTaggedRecipe.setViewportView(jtTaggedRecipes);
 
         javax.swing.GroupLayout jpTaggedRecipesLayout = new javax.swing.GroupLayout(jpTaggedRecipes);
@@ -306,6 +415,8 @@ public class KCookB extends javax.swing.JFrame {
 
         jtbpMainTab.addTab(bundle.getString("KCookB.jpTaggedRecipes.TabConstraints.tabTitle"), new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/tag_blue.png")), jpTaggedRecipes, bundle.getString("KCookB.jpTaggedRecipes.TabConstraints.tabToolTip")); // NOI18N
 
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jtStaredRecipes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jscStaredRecipes.setViewportView(jtStaredRecipes);
 
         javax.swing.GroupLayout jpStaredRecipesLayout = new javax.swing.GroupLayout(jpStaredRecipes);
@@ -363,6 +474,7 @@ public class KCookB extends javax.swing.JFrame {
         jmFile.add(jmRecent);
 
         jmiCloseBook.setText(bundle.getString("KCookB.jmiCloseBook.text")); // NOI18N
+        jmiCloseBook.setEnabled(false);
         jmiCloseBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiCloseBookActionPerformed(evt);
@@ -372,6 +484,7 @@ public class KCookB extends javax.swing.JFrame {
         jmFile.add(separator2);
 
         jmiExport.setText(bundle.getString("KCookB.jmiExport.text")); // NOI18N
+        jmiExport.setEnabled(false);
         jmiExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiExportActionPerformed(evt);
@@ -390,6 +503,7 @@ public class KCookB extends javax.swing.JFrame {
 
         jmiPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/printer.png"))); // NOI18N
         jmiPrint.setText(bundle.getString("KCookB.jmiPrint.text")); // NOI18N
+        jmiPrint.setEnabled(false);
         jmiPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiPrintActionPerformed(evt);
@@ -409,14 +523,15 @@ public class KCookB extends javax.swing.JFrame {
         jmbMenuBar.add(jmFile);
 
         jmEdit.setText(bundle.getString("KCookB.jmEdit.text")); // NOI18N
-        jmEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmEditActionPerformed(evt);
-            }
-        });
+        jmEdit.setEnabled(false);
 
         jmiNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_add.png"))); // NOI18N
         jmiNewRecipe.setText(bundle.getString("KCookB.jmiNewRecipe.text")); // NOI18N
+        jmiNewRecipe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiNewRecipeActionPerformed(evt);
+            }
+        });
         jmEdit.add(jmiNewRecipe);
 
         jmiEditRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page_edit.png"))); // NOI18N
@@ -452,6 +567,7 @@ public class KCookB extends javax.swing.JFrame {
         jmTools.setText(bundle.getString("KCookB.jmTools.text")); // NOI18N
 
         jmiZip.setText(bundle.getString("KCookB.jmiZip.text")); // NOI18N
+        jmiZip.setEnabled(false);
         jmiZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiZipActionPerformed(evt);
@@ -534,7 +650,7 @@ public class KCookB extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiNewBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNewBookActionPerformed
-        openBook();
+        createBook();
     }//GEN-LAST:event_jmiNewBookActionPerformed
 
     private void jmiOpenBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOpenBookActionPerformed
@@ -542,7 +658,6 @@ public class KCookB extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiOpenBookActionPerformed
 
     private void jmiCloseBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCloseBookActionPerformed
-        //TODO: validate
         engine.closeBook();
     }//GEN-LAST:event_jmiCloseBookActionPerformed
 
@@ -556,16 +671,13 @@ public class KCookB extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiExportActionPerformed
 
     private void jmiImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImportActionPerformed
-        /*        java.awt.EventQueue.invokeLater(new Runnable() {
-
-        public void run() {
-        new Import(this, true).setVisible(true);
-        }
-        });*/
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jmiImportActionPerformed
 
     private void jmiPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPrintActionPerformed
-        // TODO add your handling code here:
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jmiPrintActionPerformed
 
     private void jmiExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiExitActionPerformed
@@ -573,16 +685,13 @@ public class KCookB extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jmiExitActionPerformed
 
-    private void jmEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmEditActionPerformed
-
     private void jmiEditRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEditRecipeActionPerformed
-        // TODO add your handling code here:
+        showCreateRecipeDialog(true);
     }//GEN-LAST:event_jmiEditRecipeActionPerformed
 
     private void jmiDeleteRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDeleteRecipeActionPerformed
-        // TODO add your handling code here:
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jmiDeleteRecipeActionPerformed
 
     private void jmiFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFindActionPerformed
@@ -604,7 +713,8 @@ public class KCookB extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiZipActionPerformed
 
     private void jmiPluginsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPluginsActionPerformed
-        // TODO add your handling code here:
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jmiPluginsActionPerformed
 
     private void jmiOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOptionsActionPerformed
@@ -618,6 +728,7 @@ public class KCookB extends javax.swing.JFrame {
 
     private void jmiHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHelpActionPerformed
         //TODO: show help
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jmiHelpActionPerformed
 
     private void jmiWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiWebActionPerformed
@@ -635,9 +746,9 @@ public class KCookB extends javax.swing.JFrame {
             }
         }
 
-        if (failed) {//TODO: i18n
-            JOptionPane.showConfirmDialog(this, "Já existe um livro aberto " +
-                    "se continuar o livro será fechado. Deseja continuar?", "Livro Aberto...",
+        if (failed) {
+            JOptionPane.showConfirmDialog(this, rBundle.getString("KCookB.unsupportedDesktop.message"),
+                    rBundle.getString("KCookB.unsupportedDesktop.title"),
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/information.png")));
         }
@@ -653,7 +764,7 @@ public class KCookB extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiAboutActionPerformed
 
     private void jbtnNewBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNewBookActionPerformed
-        openBook();
+        createBook();
     }//GEN-LAST:event_jbtnNewBookActionPerformed
 
     private void jbtnOpenBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOpenBookActionPerformed
@@ -661,15 +772,16 @@ public class KCookB extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnOpenBookActionPerformed
 
     private void jbtnNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNewRecipeActionPerformed
-        // TODO add your handling code here:
+        showCreateRecipeDialog(false);
     }//GEN-LAST:event_jbtnNewRecipeActionPerformed
 
     private void jbtEditRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEditRecipeActionPerformed
-        // TODO add your handling code here:
+        showCreateRecipeDialog(true);
     }//GEN-LAST:event_jbtEditRecipeActionPerformed
 
     private void jbtnRemoveRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoveRecipeActionPerformed
-        // TODO add your handling code here:
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jbtnRemoveRecipeActionPerformed
 
     private void jbtnPrintCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrintCurrentActionPerformed
@@ -677,31 +789,49 @@ public class KCookB extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnPrintCurrentActionPerformed
 
     private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
-        // TODO add your handling code here:
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jbtnSearchActionPerformed
 
     private void jbtnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPreviousActionPerformed
-        // TODO add your handling code here:
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jbtnPreviousActionPerformed
 
     private void jbtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNextActionPerformed
-        // TODO add your handling code here:
+        //TODO: implement
+        throw new UnsupportedOperationException("Not implemented yet!");
     }//GEN-LAST:event_jbtnNextActionPerformed
+
+    private void jmiNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNewRecipeActionPerformed
+        showCreateRecipeDialog(false);
+    }//GEN-LAST:event_jmiNewRecipeActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        System.setProperty("java.util.logging.config.file", "logging.properties");
+        LogManager logManager = LogManager.getLogManager();
+        try {
+            logManager.readConfiguration();
+            Logger.getLogger(KCookB.class.getName()).log(Level.WARNING, "Logger Set!");
+        } catch (IOException ex) {
+            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, "Logger configuration failed", ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, "Logger configuration failed", ex);
+        }
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, "Look-and-feel error.", ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, "Look-and-feel error.", ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, "Look-and-feel error.", ex);
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KCookB.class.getName()).log(Level.SEVERE, "Look-and-feel error.", ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -774,4 +904,20 @@ public class KCookB extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator separator8;
     private javax.swing.JToolBar.Separator separator9;
     // End of variables declaration//GEN-END:variables
+
+    public void bookOpened(KCBEngineEvent e) {
+        toggleExistingBookOptions(true);
+    }
+
+    public void bookClosed(KCBEngineEvent e) {
+        toggleExistingBookOptions(true);
+    }
+
+    public void recipeAdded(KCBEngineEvent e) {
+        tmAll.insertNodeInto(new DefaultMutableTreeNode("Rece added"), rootNode, rootNode.getChildCount());
+    }
+
+    public void recipeDeleted(KCBEngineEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -20,6 +20,9 @@
  */
 package de.berlios.kcookb.gui;
 
+import java.io.File;
+import java.util.Properties;
+
 /**
  *
  * @author Knitter
@@ -32,6 +35,14 @@ public class Settings extends javax.swing.JDialog {
         initComponents();
     }
 
+    @Override
+    public void setVisible(boolean visible) {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
+
+        super.setVisible(true);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -41,67 +52,113 @@ public class Settings extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jpMainPanel = new javax.swing.JPanel();
+        jlblDefaultFolder = new javax.swing.JLabel();
+        jtfDefaultFolder = new javax.swing.JTextField();
+        jbtnBrowse = new javax.swing.JButton();
+        jlblRecentBooks = new javax.swing.JLabel();
+        jspnRecentBooks = new javax.swing.JSpinner();
+        jchkRenameImages = new javax.swing.JCheckBox();
+        jlblImagesLabel = new javax.swing.JLabel();
+        separator = new javax.swing.JSeparator();
+        jchkCreateImagesFolder = new javax.swing.JCheckBox();
         jbtnCancel = new javax.swing.JButton();
         jbtnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jpMainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("de/berlios/kcookb/resources/i18n/i18n"); // NOI18N
-        jLabel1.setText(bundle.getString("Settings.jLabel1.text")); // NOI18N
+        jlblDefaultFolder.setText(bundle.getString("Settings.jlblDefaultFolder.text")); // NOI18N
 
-        jTextField1.setText(bundle.getString("Settings.jTextField1.text")); // NOI18N
+        jtfDefaultFolder.setText(bundle.getString("Settings.jtfDefaultFolder.text")); // NOI18N
 
-        jButton3.setText(bundle.getString("Settings.jButton3.text")); // NOI18N
+        jbtnBrowse.setText(bundle.getString("Settings.jbtnBrowse.text")); // NOI18N
+        jbtnBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBrowseActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText(bundle.getString("Settings.jLabel2.text")); // NOI18N
+        jlblRecentBooks.setText(bundle.getString("Settings.jlblRecentBooks.text")); // NOI18N
 
-        jCheckBox1.setText(bundle.getString("Settings.jCheckBox1.text")); // NOI18N
+        jspnRecentBooks.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jspnRecentBooksStateChanged(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jchkRenameImages.setText(bundle.getString("Settings.jchkRenameImages.text")); // NOI18N
+        jchkRenameImages.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkRenameImagesActionPerformed(evt);
+            }
+        });
+
+        jlblImagesLabel.setText(bundle.getString("Settings.jlblImagesLabel.text")); // NOI18N
+
+        jchkCreateImagesFolder.setText(bundle.getString("Settings.jchkCreateImagesFolder.text")); // NOI18N
+        jchkCreateImagesFolder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchkCreateImagesFolderActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpMainPanelLayout = new javax.swing.GroupLayout(jpMainPanel);
+        jpMainPanel.setLayout(jpMainPanelLayout);
+        jpMainPanelLayout.setHorizontalGroup(
+            jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
-                    .addComponent(jLabel2))
-                .addContainerGap())
+                .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpMainPanelLayout.createSequentialGroup()
+                        .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpMainPanelLayout.createSequentialGroup()
+                                .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlblDefaultFolder)
+                                    .addComponent(jlblRecentBooks))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpMainPanelLayout.createSequentialGroup()
+                                        .addComponent(jtfDefaultFolder, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jbtnBrowse))
+                                    .addComponent(jspnRecentBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpMainPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jchkCreateImagesFolder)
+                                    .addComponent(jchkRenameImages))))
+                        .addContainerGap())
+                    .addGroup(jpMainPanelLayout.createSequentialGroup()
+                        .addComponent(jlblImagesLabel)
+                        .addGap(14, 14, 14)
+                        .addComponent(separator, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpMainPanelLayout.setVerticalGroup(
+            jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblDefaultFolder)
+                    .addComponent(jtfDefaultFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnBrowse))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblRecentBooks)
+                    .addComponent(jspnRecentBooks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jpMainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlblImagesLabel))
+                    .addGroup(jpMainPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(separator)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(jchkRenameImages)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jchkCreateImagesFolder))
         );
 
         jbtnCancel.setText(bundle.getString("Settings.jbtnCancel.text")); // NOI18N
@@ -125,7 +182,7 @@ public class Settings extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpMainPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -139,8 +196,8 @@ public class Settings extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpMainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnCancel)
                     .addComponent(jbtnSave))
@@ -155,19 +212,39 @@ public class Settings extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
-        // TODO add your handling code here:
+        Properties p = ((KCookB)getOwner()).getGlSettings();
+        p.setProperty("", "");
+        //TODO: save settings
     }//GEN-LAST:event_jbtnSaveActionPerformed
 
+    private void jchkRenameImagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkRenameImagesActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jchkRenameImagesActionPerformed
+
+    private void jchkCreateImagesFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchkCreateImagesFolderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchkCreateImagesFolderActionPerformed
+
+    private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnBrowseActionPerformed
+
+    private void jspnRecentBooksStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jspnRecentBooksStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jspnRecentBooksStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnSave;
+    private javax.swing.JCheckBox jchkCreateImagesFolder;
+    private javax.swing.JCheckBox jchkRenameImages;
+    private javax.swing.JLabel jlblDefaultFolder;
+    private javax.swing.JLabel jlblImagesLabel;
+    private javax.swing.JLabel jlblRecentBooks;
+    private javax.swing.JPanel jpMainPanel;
+    private javax.swing.JSpinner jspnRecentBooks;
+    private javax.swing.JTextField jtfDefaultFolder;
+    private javax.swing.JSeparator separator;
     // End of variables declaration//GEN-END:variables
-
 }

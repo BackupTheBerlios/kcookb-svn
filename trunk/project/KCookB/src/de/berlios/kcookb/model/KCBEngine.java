@@ -51,6 +51,9 @@ public class KCBEngine implements RecipeListener {
 
     private transient Vector<KCBEngineListener> listeners;
     private ObjectContainer db;
+    public static final String FILE_EXTENSION = ".kcb";
+    //
+    private Logger logger;
 
     /**
      * Creates a new KCBEngine.
@@ -59,6 +62,8 @@ public class KCBEngine implements RecipeListener {
      */
     public KCBEngine() {
         listeners = new Vector<KCBEngineListener>();
+        logger = Logger.getLogger(getClass().getName());
+        logger.log(Level.INFO, "KCBEngine created.");
     }
 
     /**
@@ -78,7 +83,8 @@ public class KCBEngine implements RecipeListener {
                 bookDir.mkdir();
                 File imgsDir = new File(bookDir + File.separator + "imgs");
                 imgsDir.mkdir();
-                openBook(bookDir + File.separator + name + ".kcb");//TODO: transform in constant
+                openBook(bookDir + File.separator + name + KCBEngine.FILE_EXTENSION);
+                logger.log(Level.INFO, "In createBook method: book created. Full path: " + bookDir + File.separator + name + KCBEngine.FILE_EXTENSION);
             }
         }
     }
@@ -90,11 +96,10 @@ public class KCBEngine implements RecipeListener {
      * @param file the file name to open or create.
      */
     public void openBook(String file) {
-
-
         //TODO: correct opening code
         try {
             db = Db4o.openFile(file);
+            fireBookOpened(new KCBEngineEvent(this));
         } catch (Db4oIOException ex) {
             //- I/O operation failed or was unexpectedly interrupted.
         } catch (DatabaseFileLockedException ex) {
@@ -120,8 +125,9 @@ public class KCBEngine implements RecipeListener {
             try {
                 db.close();
                 db = null;
+                fireBookClosed(new KCBEngineEvent(this));
             } catch (Db4oIOException ex) {
-                Logger.getLogger(getClass().getName()).log(Level.WARNING, "Unable to close book.", ex);
+                logger.log(Level.WARNING, "Unable to close book.", ex);
                 throw ex;
             }
         }
@@ -211,6 +217,22 @@ public class KCBEngine implements RecipeListener {
                 return rep.isStared();
             }
         });
+    }
+
+    /**
+     *
+     * @return an instance of ObjectSet as a List
+     */
+    public List<RecipeType> listAllTypes() {
+        return db.query(RecipeType.class);
+    }
+
+    /**
+     *
+     * @return an instance of ObjectSet as a List
+     */
+    public List<Tag> listAllTags() {
+        return db.query(Tag.class);
     }
 
     /**
@@ -419,22 +441,6 @@ public class KCBEngine implements RecipeListener {
 
     /**
      *
-     * @return an instance of ObjectSet as a List
-     */
-    public List<RecipeType> listAllTypes() {
-        return db.query(RecipeType.class);
-    }
-
-    /**
-     *
-     * @return an instance of ObjectSet as a List
-     */
-    public List<Tag> listAllTags() {
-        return db.query(Tag.class);
-    }
-
-    /**
-     *
      * @param e
      */
     public void fireRecipeDeleted(KCBEngineEvent e) {
@@ -465,6 +471,38 @@ public class KCBEngine implements RecipeListener {
 
             for (KCBEngineListener l : copy) {
                 l.recipeAdded(e);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param e
+     */
+    public void fireBookOpened(KCBEngineEvent e) {
+        Vector<KCBEngineListener> copy;
+        if (listeners != null) {
+
+            synchronized (this) {
+                copy = new Vector(listeners);
+            }
+
+            for (KCBEngineListener l : copy) {
+                l.bookOpened(e);
+            }
+        }
+    }
+
+    public void fireBookClosed(KCBEngineEvent e) {
+        Vector<KCBEngineListener> copy;
+        if (listeners != null) {
+
+            synchronized (this) {
+                copy = new Vector(listeners);
+            }
+
+            for (KCBEngineListener l : copy) {
+                l.bookClosed(e);
             }
         }
     }
