@@ -522,10 +522,13 @@
                   <SubComponents>
                     <Component class="javax.swing.JTree" name="jtAllRecipes">
                       <Properties>
-                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                          <TreeModel code=""/>
+                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="null" type="code"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="valueChanged" listener="javax.swing.event.TreeSelectionListener" parameters="javax.swing.event.TreeSelectionEvent" handler="jtAllRecipesValueChanged"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -570,8 +573,8 @@
                   <SubComponents>
                     <Component class="javax.swing.JTree" name="jtTaggedRecipes">
                       <Properties>
-                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                          <TreeModel code=""/>
+                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="null" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -618,8 +621,8 @@
                   <SubComponents>
                     <Component class="javax.swing.JTree" name="jtStaredRecipes">
                       <Properties>
-                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                          <TreeModel code=""/>
+                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="null" type="code"/>
                         </Property>
                       </Properties>
                     </Component>

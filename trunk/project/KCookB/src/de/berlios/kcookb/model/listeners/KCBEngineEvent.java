@@ -22,6 +22,7 @@ package de.berlios.kcookb.model.listeners;
 
 import java.util.EventObject;
 import de.berlios.kcookb.model.KCBEngine;
+import de.berlios.kcookb.model.Recipe;
 
 /**
  * Represents an event used by engine listeners.
@@ -32,7 +33,26 @@ import de.berlios.kcookb.model.KCBEngine;
  */
 public class KCBEngineEvent extends EventObject {
 
-    public KCBEngineEvent(KCBEngine source) {
+    private Recipe oldRecipe;
+    private Recipe newRecipe;
+    private String bookName;
+
+    public KCBEngineEvent(KCBEngine source, Recipe oldRecipe, Recipe newRecipe, String bookName) {
         super(source);
+        this.oldRecipe = oldRecipe;
+        this.newRecipe = newRecipe;
+        this.bookName = bookName;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public Recipe getNewRecipe() {
+        return newRecipe;
+    }
+
+    public Recipe getOldRecipe() {
+        return oldRecipe;
     }
 }

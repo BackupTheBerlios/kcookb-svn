@@ -74,4 +74,9 @@ public class Ingredient {
         hash = 53 * hash + (this.value != null ? this.value.hashCode() : 0);
         return hash;
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

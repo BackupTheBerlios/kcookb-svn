@@ -17,10 +17,14 @@ import de.berlios.kcookb.model.RecipeConstants;
 import de.berlios.kcookb.model.RecipeType;
 import de.berlios.kcookb.model.Tag;
 import de.berlios.kcookb.model.TimeUnit;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -30,6 +34,8 @@ public class CreateRecipe extends javax.swing.JDialog {
 
     private ResourceBundle rb;
     private KCBEngine eng;
+    private File selectedImageFile;
+    private DefaultListModel ingredientsLm;
 
     /** Creates new form CreateRecipe */
     public CreateRecipe(java.awt.Frame parent, boolean modal, boolean edit) {
@@ -61,6 +67,13 @@ public class CreateRecipe extends javax.swing.JDialog {
     private String copyMainImage() {
         //TODO: copy image to destination
         return "";
+    }
+
+    private void moveIngredient(int direction) {
+        if(direction * direction != 1) {
+            return;
+        }
+        //TODO: move item up or down
     }
 
     @Override
@@ -389,6 +402,7 @@ public class CreateRecipe extends javax.swing.JDialog {
 
         jtpMainTab.addTab(bundle.getString("CreateRecipe.jpDirections.TabConstraints.tabTitle"), jpDirections); // NOI18N
 
+        jlstIngredientList.setModel(ingredientsLm = new DefaultListModel());
         jscIngredients.setViewportView(jlstIngredientList);
 
         jlblIngredient.setText(bundle.getString("CreateRecipe.jlblIngredient.text")); // NOI18N
@@ -691,7 +705,7 @@ public class CreateRecipe extends javax.swing.JDialog {
         if (limit != 0) {
             ingredients = new ArrayList<Ingredient>(limit);
             for (int i = 0; i < limit; i++) {
-                ingredients.add(new Ingredient(String.valueOf(jlstIngredientList.getModel().getElementAt(i))));
+                ingredients.add((Ingredient)jlstIngredientList.getModel().getElementAt(i));
             }
         }
 
@@ -713,7 +727,7 @@ public class CreateRecipe extends javax.swing.JDialog {
             }
         }
 
-        //Nutricional table;
+        //TODO: Nutricional table;
         int calories;
         try {
             calories = Integer.parseInt(String.valueOf(jffCalories.getValue()));
@@ -721,6 +735,7 @@ public class CreateRecipe extends javax.swing.JDialog {
             calories = 0;
         }
 
+        //TODO: parse time units
         TimeUnit cooking = new TimeUnit(1, 0);
         jspnCooking.getValue();
 
@@ -744,28 +759,40 @@ public class CreateRecipe extends javax.swing.JDialog {
         String mainImage = copyMainImage();
         Recipe rec = new Recipe(name, servings, rating, stared, directions, new GregorianCalendar(),
                 difficulty, priceTag, price, ingredients, suggestion, type, tags,
-                null, calories, prepTime, cooking, freazer, fridge, mainImage);
+                null, calories, prepTime, cooking, freazer, fridge, mainImage, eng.generateValidId());
         eng.addRecipe(rec);
+        dispose();
 }//GEN-LAST:event_jbtnCreateActionPerformed
 
     private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
-        // TODO add your handling code here:
+        JFileChooser jfc = new JFileChooser();
+        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            String imagePath = jfc.getSelectedFile().getAbsolutePath();
+            jtfImageURL.setText(imagePath);
+            jlblImagePreview.setText("");
+            jlblImagePreview.setIcon(new ImageIcon(imagePath));
+            selectedImageFile = jfc.getSelectedFile();
+        }
+
     }//GEN-LAST:event_jbtnBrowseActionPerformed
 
     private void jbtnAddIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddIngredientActionPerformed
-        // TODO add your handling code here:
+        ingredientsLm.addElement(new Ingredient(jtfNewIngredient.getText().trim()));
     }//GEN-LAST:event_jbtnAddIngredientActionPerformed
 
     private void jbtnIngredientUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngredientUpActionPerformed
-        // TODO add your handling code here:
+        moveIngredient(-1);
     }//GEN-LAST:event_jbtnIngredientUpActionPerformed
 
     private void jbtnIngredientDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngredientDownActionPerformed
-        // TODO add your handling code here:
+        moveIngredient(1);
     }//GEN-LAST:event_jbtnIngredientDownActionPerformed
 
     private void jbtnRemoveIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoveIngredientActionPerformed
-        // TODO add your handling code here:
+        int index = jlstIngredientList.getSelectedIndex();
+        if(index >= 0 && index < ingredientsLm.getSize()) {
+            ingredientsLm.remove(index);
+        }
     }//GEN-LAST:event_jbtnRemoveIngredientActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

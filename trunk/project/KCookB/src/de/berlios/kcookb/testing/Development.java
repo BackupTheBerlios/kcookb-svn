@@ -57,12 +57,12 @@ public class Development {
     }
 
     private void populate(KCBEngine eng) {
-        eng.addRecipe(new Recipe("FreBra"));
-        eng.addRecipe(new Recipe("Macarrão"));
-        eng.addRecipe(new Recipe("Esparguete"));
-        eng.addRecipe(new Recipe("Receita 2"));
-        eng.addRecipe(new Recipe("ReceiTA 1"));
-        eng.addRecipe(new Recipe("Sopa Vaca"));
-        eng.addRecipe(new Recipe("VaCa Com Nabos"));
+        eng.addRecipe(new Recipe("FreBra", 1));
+        eng.addRecipe(new Recipe("Macarrão", 2));
+        eng.addRecipe(new Recipe("Esparguete", 3));
+        eng.addRecipe(new Recipe("Receita 2", 4));
+        eng.addRecipe(new Recipe("ReceiTA 1", 5));
+        eng.addRecipe(new Recipe("Sopa Vaca", 6));
+        eng.addRecipe(new Recipe("VaCa Com Nabos", 7));
     }
 }

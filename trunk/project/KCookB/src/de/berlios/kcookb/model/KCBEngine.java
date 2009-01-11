@@ -51,7 +51,9 @@ public class KCBEngine implements RecipeListener {
 
     private transient Vector<KCBEngineListener> listeners;
     private ObjectContainer db;
+    private String bName;
     public static final String FILE_EXTENSION = ".kcb";
+    private long recipes = 0;
     //
     private Logger logger;
 
@@ -64,6 +66,11 @@ public class KCBEngine implements RecipeListener {
         listeners = new Vector<KCBEngineListener>();
         logger = Logger.getLogger(getClass().getName());
         logger.log(Level.INFO, "KCBEngine created.");
+    }
+
+    public long generateValidId() {
+        //TODO: validate
+        return ++recipes;
     }
 
     /**
@@ -83,10 +90,35 @@ public class KCBEngine implements RecipeListener {
                 bookDir.mkdir();
                 File imgsDir = new File(bookDir + File.separator + "imgs");
                 imgsDir.mkdir();
-                openBook(bookDir + File.separator + name + KCBEngine.FILE_EXTENSION);
-                logger.log(Level.INFO, "In createBook method: book created. Full path: " + bookDir + File.separator + name + KCBEngine.FILE_EXTENSION);
+                try {
+                    db = Db4o.openFile(bookDir + File.separator + name + KCBEngine.FILE_EXTENSION);
+                    bName = name;
+                    fireBookCreated(new KCBEngineEvent(this, null, null, bName));
+                    logger.log(Level.INFO, "Book created with full path: " + bookDir + File.separator + name + KCBEngine.FILE_EXTENSION);
+                } catch (Db4oIOException ex) {
+                    //- I/O operation failed or was unexpectedly interrupted.
+                    //TODO: deleteFolders();
+                } catch (DatabaseFileLockedException ex) {
+                    //- the required database file is locked by another process.
+                    //TODO: deleteFolders();
+                } catch (IncompatibleFileFormatException ex) {
+                    //- runtime configuration is not compatible with the configuration
+                    //of the database file.
+                    //TODO: deleteFolders();
+                } catch (OldFormatException ex) {
+                    //- open operation failed because the database file is in old format
+                    //and Configuration.allowVersionUpdates(boolean) is set to false.
+                    //TODO: deleteFolders();
+                } catch (DatabaseReadOnlyException ex) {
+                    //- database was configured as read-only
+                    //TODO: deleteFolders();
+                }
             }
         }
+    }
+
+    private void deleteFolders() {
+        //TODO: code to delete created folders in case of exceptions
     }
 
     /**
@@ -99,7 +131,8 @@ public class KCBEngine implements RecipeListener {
         //TODO: correct opening code
         try {
             db = Db4o.openFile(file);
-            fireBookOpened(new KCBEngineEvent(this));
+            recipes = listAllRecipes().size();
+            fireBookOpened(new KCBEngineEvent(this, null, null, bName));
         } catch (Db4oIOException ex) {
             //- I/O operation failed or was unexpectedly interrupted.
         } catch (DatabaseFileLockedException ex) {
@@ -125,7 +158,7 @@ public class KCBEngine implements RecipeListener {
             try {
                 db.close();
                 db = null;
-                fireBookClosed(new KCBEngineEvent(this));
+                fireBookClosed(new KCBEngineEvent(this, null, null, bName));
             } catch (Db4oIOException ex) {
                 logger.log(Level.WARNING, "Unable to close book.", ex);
                 throw ex;
@@ -148,7 +181,7 @@ public class KCBEngine implements RecipeListener {
                 db.store(recipe);
                 db.commit();
                 recipe.addListener(this);
-                fireRecipeAdded(new KCBEngineEvent(this));
+                fireRecipeAdded(new KCBEngineEvent(this, null, recipe, bName));
             } catch (DatabaseClosedException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.WARNING, "Unable to add a new recipe.", ex);
             } catch (DatabaseReadOnlyException ex) {
@@ -171,7 +204,7 @@ public class KCBEngine implements RecipeListener {
                 db.delete(recipe);
                 db.commit();
                 recipe.removeListener(this);
-                fireRecipeDeleted(new KCBEngineEvent(this));
+                fireRecipeDeleted(new KCBEngineEvent(this, recipe, null, bName));
             } catch (DatabaseClosedException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.WARNING, "Unable to delete a recipe.", ex);
             } catch (DatabaseReadOnlyException ex) {
@@ -471,6 +504,24 @@ public class KCBEngine implements RecipeListener {
 
             for (KCBEngineListener l : copy) {
                 l.recipeAdded(e);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param e
+     */
+    public void fireBookCreated(KCBEngineEvent e) {
+        Vector<KCBEngineListener> copy;
+        if (listeners != null) {
+
+            synchronized (this) {
+                copy = new Vector(listeners);
+            }
+
+            for (KCBEngineListener l : copy) {
+                l.bookCreated(e);
             }
         }
     }

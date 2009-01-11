@@ -21,6 +21,7 @@
 package de.berlios.kcookb.gui;
 
 import de.berlios.kcookb.model.KCBEngine;
+import de.berlios.kcookb.model.Recipe;
 import de.berlios.kcookb.model.listeners.KCBEngineEvent;
 import de.berlios.kcookb.model.listeners.KCBEngineListener;
 import java.awt.Desktop;
@@ -42,6 +43,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 
@@ -62,7 +64,18 @@ public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
         engine.addListener(this);
         rBundle = ResourceBundle.getBundle(KCookB.BUNDLE_PATH);
         initComponents();
-        jtAllRecipes.setModel(tmAll = new DefaultTreeModel(rootNode = new DefaultMutableTreeNode("Receitas")));
+
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+        //ImageIcon rootIcon = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/book.png"));
+        ImageIcon leaftIcon = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/page.png"));
+        ImageIcon closedIcon = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/book.png"));
+        ImageIcon openedIcon = new ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/book_open.png"));
+        renderer.setClosedIcon(closedIcon);
+        renderer.setLeafIcon(leaftIcon);
+        renderer.setOpenIcon(openedIcon);
+
+        jtAllRecipes.setCellRenderer(renderer);
+
     }
 
     //TODO:
@@ -113,8 +126,8 @@ public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
         }
 
         JFileChooser jfc = new JFileChooser();
-        jfc.setFileFilter(new KCBFileFilter());
-        jfc.setFileView(new KCBFileView());
+        //jfc.setFileFilter(new KCBFileFilter());
+        //jfc.setFileView(new KCBFileView());
 
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             engine.openBook(jfc.getSelectedFile().getAbsolutePath());
@@ -381,8 +394,12 @@ public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
 
         jtbpMainTab.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jtAllRecipes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtAllRecipes.setModel(null);
+        jtAllRecipes.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                jtAllRecipesValueChanged(evt);
+            }
+        });
         jscAllRecipes.setViewportView(jtAllRecipes);
 
         javax.swing.GroupLayout jpAllRecipesLayout = new javax.swing.GroupLayout(jpAllRecipes);
@@ -398,8 +415,7 @@ public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
 
         jtbpMainTab.addTab(bundle.getString("KCookB.jpAllRecipes.TabConstraints.tabTitle"), null, jpAllRecipes, bundle.getString("KCookB.jpAllRecipes.TabConstraints.tabToolTip")); // NOI18N
 
-        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jtTaggedRecipes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtTaggedRecipes.setModel(null);
         jscTaggedRecipe.setViewportView(jtTaggedRecipes);
 
         javax.swing.GroupLayout jpTaggedRecipesLayout = new javax.swing.GroupLayout(jpTaggedRecipes);
@@ -415,8 +431,7 @@ public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
 
         jtbpMainTab.addTab(bundle.getString("KCookB.jpTaggedRecipes.TabConstraints.tabTitle"), new javax.swing.ImageIcon(getClass().getResource("/de/berlios/kcookb/resources/tag_blue.png")), jpTaggedRecipes, bundle.getString("KCookB.jpTaggedRecipes.TabConstraints.tabToolTip")); // NOI18N
 
-        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jtStaredRecipes.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtStaredRecipes.setModel(null);
         jscStaredRecipes.setViewportView(jtStaredRecipes);
 
         javax.swing.GroupLayout jpStaredRecipesLayout = new javax.swing.GroupLayout(jpStaredRecipes);
@@ -807,6 +822,23 @@ public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
         showCreateRecipeDialog(false);
     }//GEN-LAST:event_jmiNewRecipeActionPerformed
 
+    private void jtAllRecipesValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jtAllRecipesValueChanged
+
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) jtAllRecipes.getLastSelectedPathComponent();
+        if (node == null) {
+            return;
+        }
+        
+        Object nodeInfo = node.getUserObject();
+        if (node.isLeaf()) {
+            Recipe r = (Recipe) nodeInfo;
+            jTextPane1.setText(r.getName() + "\n\n" + r.getDirections());
+            //Cast and do something
+        } else {
+            //do something else
+        }
+    }//GEN-LAST:event_jtAllRecipesValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -905,19 +937,31 @@ public class KCookB extends javax.swing.JFrame implements KCBEngineListener {
     private javax.swing.JToolBar.Separator separator9;
     // End of variables declaration//GEN-END:variables
 
+    public void bookCreated(KCBEngineEvent e) {
+        jtAllRecipes.setModel(tmAll = new DefaultTreeModel(rootNode = new DefaultMutableTreeNode(e.getBookName())));
+        toggleExistingBookOptions(true);
+        //TODO: create all other trees.
+    }
+    
     public void bookOpened(KCBEngineEvent e) {
         toggleExistingBookOptions(true);
+        //TODO: tree creation and population
     }
 
     public void bookClosed(KCBEngineEvent e) {
+        //TODO: confirm cleaning code
         toggleExistingBookOptions(true);
+        jtAllRecipes.setModel(null);
+        jtStaredRecipes.setModel(null);
+        jtTaggedRecipes.setModel(null);
     }
 
     public void recipeAdded(KCBEngineEvent e) {
-        tmAll.insertNodeInto(new DefaultMutableTreeNode("Rece added"), rootNode, rootNode.getChildCount());
+        //TODO: search for insert position
+        tmAll.insertNodeInto(new DefaultMutableTreeNode(e.getNewRecipe()), rootNode, rootNode.getChildCount());
     }
 
     public void recipeDeleted(KCBEngineEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        //TODO: remove item, search for correct index
     }
 }

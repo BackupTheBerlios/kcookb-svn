@@ -35,6 +35,7 @@ import java.util.Vector;
  */
 public class Recipe {
 
+    private long id;
     private String name;
     private int servings;
     private double rating;
@@ -61,7 +62,7 @@ public class Recipe {
             String directions, GregorianCalendar added, int difficulty, int priceTag,
             double price, List<Ingredient> ingredients, String suggestion,
             RecipeType type, List<Tag> tags, Nutricional table, int calories,
-            TimeUnit prepTime, TimeUnit cooking, int freazer, int fridge, String mainImage) {
+            TimeUnit prepTime, TimeUnit cooking, int freazer, int fridge, String mainImage, long id) {
 
         this.name = name;
         this.servings = servings;
@@ -86,12 +87,16 @@ public class Recipe {
         listeners = new Vector<RecipeListener>();
     }
 
-    public Recipe(String name) {
+    public Recipe(String name, long id) {
         this(name, 0, 0.0, false, "", null, RecipeConstants.DIFFICULTY_LEVEL_EASY,
                 RecipeConstants.PRICE_LEVEL_CHEAP, 0.0, null, "", null, null,
-                null, 0, null, null, 0, 0, "");
+                null, 0, null, null, 0, 0, "", id);
     }
 
+    public long getId() {
+        return id;
+    }
+    
     public GregorianCalendar getAdded() {
         return added;
     }
@@ -314,5 +319,10 @@ public class Recipe {
         }
 
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

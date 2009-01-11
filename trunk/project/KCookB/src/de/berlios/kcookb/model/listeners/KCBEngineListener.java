@@ -33,6 +33,8 @@ import java.util.EventListener;
  */
 public interface KCBEngineListener extends EventListener {
 
+
+    void bookCreated(KCBEngineEvent e);
     /**
      * Notifies listeners that a book has been opened in the engine.
      *
